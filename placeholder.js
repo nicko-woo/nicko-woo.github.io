@@ -3,7 +3,7 @@ var PlaceHolder = function ($scope, $element) {
         var items = [{
             text: "PayUsingPayoneer",
             key: "PayUsingPayoneer",
-            icon: "fa fa-car",
+            icon: "fa fa-credit-card",
             content: {
                 moduleName: "PayUsingPayoneer",
                 controlName: "PayUsingPayoneer"

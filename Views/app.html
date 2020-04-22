@@ -1,7 +1,14 @@
-<div ng-controller="FedsAppView"> 
-    <div class="chart-container" style="position: relative">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
-    <script src="https://linnacademy.linnapp.com/Views/Simple/Views/FedsApp.js"></script>
-    <canvas id="myBarChart"></canvas>     
+<div ng-controller="PayUsingPayoneerView">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet" />
+    <button id="show-modal-btn">Open Modal</button>
+
+    <div id="myModal" class="md-dialog">
+        <div class="md-dialog-window">
+            <div class="md-dialog-header">
+                <div class="md-dialog-header-close-btn"></div>
+                <div class="md-dialog-header-text">$header</div>
+            </div>
+            <div class="md-dialog-content">$content</div>
+        </div>
     </div>
-    </div>
+</div>

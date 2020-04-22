@@ -1,58 +1,90 @@
-var FedsAppView = function($scope){
-	
-    var self = this;
-    $scope.InventoryItemId = '';
-    $scope.lwServer = '';
-    $scope.Token = ''; 
-    $scope.SKU = [];
-    $scope.QTY = [];
-    
-    function getStockItemIdFromDataObject(data) {                                
-          if (typeof (data) === "function") {
-              var fromParent = data();
-              if (fromParent != null && fromParent.stockItemId != null) {
-                  return fromParent.stockItemId;
-              }
-          }
-  
-          return null;
-      } 
-    self.onMessage = function(msg) {												
-          switch (msg.key) {
-              case Core.Messenger.MESSAGE_TYPES.INITIALIZE:
-              $scope.lwServer = msg.data.session.server;
-              $scope.Token = msg.data.session.token;
-              $scope.InventoryItemId = getStockItemIdFromDataObject(msg.data.data);    
-              $scope.ItemDetails();
-                  break;
-          }
-      };
-    $scope.ItemDetails = function() {                                                      
-          $.ajax({
-              type: 'POST',
-          url: $scope.lwServer + '/api/Macro/Run',       
-          data: {pkStockItemId: $scope.InventoryItemId,
-          applicationName:'FedsApp1',macroName:'FedorMacro'},
-          headers: {'Authorization': $scope.Token, 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8', 'Accept-Language': 'application/json'}
-        }).done(function( data )
-        {
-          for (var i = 0; i < data.length; i++)
-          {           
-                 $scope.SKU.push(data[i].SKU);
-                 $scope.QTY.push(data[i].Quantity);
-          }
-          var ctx = document.getElementById("myBarChart").getContext('2d');
-          var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: $scope.SKU,																
-              datasets: [{
-                label: [],
-                data: $scope.QTY,
-                backgroundColor: "rgba(255,153,0,0.6)"
-              }]},
-              options: { legend: { display: false }} 
-          });  
-        });  
-      };
-  };
+class ModalWindow {
+  constructor(options) {
+    this.opts = Object.assign({}, ModalWindow._defaultOptions, options)
+    this.modal = document.querySelector(this.opts.selector)
+    this.initialize()
+    this.addEventHandlers()
+    this.afterRender()
+  }
+  initialize() {
+    if (this.opts.headerText) {
+      this.query('.md-dialog-header-text').textContent = this.opts.headerText
+    }
+    if (this.opts.htmlContent) {
+      this.query('.md-dialog-content').innerHTML = this.opts.htmlContent
+    } else if (this.opts.textContent) {
+      this.query('.md-dialog-content').textContent = this.opts.textContent
+    }
+    if (this.opts.theme) {
+      this.modal.classList.add(`md-theme-${this.opts.theme}`)
+    }
+  }
+  addEventHandlers() {
+    this.query('.md-dialog-header-close-btn').addEventListener('click', (e) => {
+      this.setVisible(false)
+    })
+    if (this.opts.mode !== 'modal') {
+      this.modal.addEventListener('click', (e) => {
+        if (e.target === this.modal) {
+          this.setVisible(false)
+        }
+      })
+    }
+  }
+  afterRender() {
+    if (this.opts.show === true) {
+      this.setVisible(true);
+    }
+  }
+  setVisible(visible) {
+    this.modal.classList.toggle('md-dialog-visible', visible)
+    if (visible) {
+       this.onOpen() // class method override or callback (below)
+       if (typeof this.opts.onOpen === 'function') {
+        this.opts.onOpen(this.modal)
+       }
+    } else {
+      this.onClose() // class method override or callback (below)
+      if (typeof this.opts.onClose === 'function') {
+        this.opts.onClose(this.modal)
+       }
+    }
+  }
+  query(childSelector) {
+    return this.modal.querySelector(childSelector)
+  }
+  // Example hooks
+  onOpen() { }
+  onClose() { } 
+}
+ModalWindow._defaultOptions = {
+  selector: '.md-dialog',
+  show: false,
+  mode: 'modal'
+}
+
+class MyCustomModalWindow extends ModalWindow {
+  constructor(options) {
+    super(options)
+  }
+  onOpen() {
+    console.log('Opened!') // or you can use options.onOpen
+  }
+  onClose() {
+    console.log('Closed!') // or you can use options.onClose
+  }
+}
+
+let modal = new MyCustomModalWindow({
+  show: true, // Show the modal on creation
+  mode: null, // Disable modal mode, allow click outside to close
+  headerText: 'Hello World!',
+  htmlContent: '<p>This is an example of the popup.</p>',
+  theme : 'dark',
+  onClose : (self) => {
+    console.log('Another close hook...')
+  }
+})
+document.querySelector('#show-modal-btn').addEventListener('click', (e) => {
+  modal.setVisible(true)
+})
