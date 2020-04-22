@@ -1,3 +1,4 @@
+angular.module(['ui.bootstrap']);
 var PlaceHolder = function ($scope, $element) {
     this.getItems = function () {
         var items = [{
