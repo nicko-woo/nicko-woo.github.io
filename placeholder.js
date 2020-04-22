@@ -5,8 +5,8 @@ var PlaceHolder = function ($scope, $element) {
             key: "FedsApp1",
             icon: "fa fa-car",
             content: {
-                moduleName: "FedsApp",
-                controlName: "FedsApp"
+                moduleName: "FedsApp1",
+                controlName: "FedsApp1"
             }
         }];
 
