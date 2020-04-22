@@ -1,12 +1,12 @@
 var PlaceHolder = function ($scope, $element) {
     this.getItems = function () {
         var items = [{
-            text: "App",
-            key: "App",
+            text: "FedsApp",
+            key: "FedsApp",
             icon: "fa fa-car",
             content: {
-                moduleName: "App",
-                controlName: "App"
+                moduleName: "FedsApp",
+                controlName: "FedsApp"
             }
         }];
 
