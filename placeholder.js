@@ -16,6 +16,10 @@ var PlaceHolder = function ($scope, $element) {
     this.isEnabled = function (itemKey) {
         return true;
     }
+
+    this.onClick = function() {
+        console.log('click-click');
+    }
 }
 
 // Core.PlaceHolderManager.register("MyInventory_EditInventoryItem_Tabs", PlaceHolder)
