@@ -18,7 +18,7 @@ var PlaceHolder = function ($scope, $element) {
     }
 }
 
-Core.PlaceHolderManager.register("PurchaseOrders_EditPurchaseOrder_RightTopButtons", PlaceHolder)
+Core.PlaceHolderManager.register("PurchaseOrder_EditPurchaseOrder_RightTopButtons", PlaceHolder)
 
 
 // var PlaceHolder = function ($scope, $element) {
