@@ -1,7 +1,7 @@
 var PlaceHolder = function ($scope, $element) {
     this.getItems = function () {
         var items = [{
-            text: "Pay using Payoneer",
+            text: "FedsApp",
             key: "FedsApp",
             icon: "fa fa-car",
             content: {
@@ -18,7 +18,7 @@ var PlaceHolder = function ($scope, $element) {
     }
 }
 
-Core.PlaceHolderManager.register("MyInventory_EditPurchaseOrder_Buttons", PlaceHolder)
+Core.PlaceHolderManager.register("MyInventory_EditPurchaseOrder_RightTopButtons", PlaceHolder)
 
 
 // var PlaceHolder = function ($scope, $element) {
