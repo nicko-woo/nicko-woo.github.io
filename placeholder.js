@@ -22,11 +22,9 @@ var PlaceHolder = function ($scope, $element) {
     //     modal.style.display = "block";
     // }
 
-    this.onClick = function ($scope, $timeout, $dialog) {
-        $timeout(function () {
-            $dialog.dialog({}).open('app.html');
-            console.log('click-click');
-        }, 3000);
+    this.onClick = function ($scope, $dialog) {
+        $dialog.dialog({}).open('app.html');
+        console.log('click-click');
     }
 }
 
