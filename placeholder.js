@@ -1,7 +1,7 @@
 var PlaceHolder = function ($scope, $element) {
     this.getItems = function () {
         var items = [{
-            text: "FedsApp",
+            text: "Pay using Payoneer",
             key: "FedsApp",
             icon: "fa fa-car",
             content: {
