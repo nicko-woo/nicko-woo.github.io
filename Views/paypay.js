@@ -1,3 +1,3 @@
-var PayUsingPayoneerView = function($scope){
+var PayWithPayoneerView = function($scope){
 	
 };

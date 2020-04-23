@@ -1,12 +1,12 @@
 var PlaceHolder = function ($scope, $element) {
     this.getItems = function () {
         var items = [{
-            text: "Pay Using Payoneer",
-            key: "PayUsingPayoneerButton",
+            text: "Pay With Payoneer",
+            key: "PayWithPayoneerButton",
             icon: "fa fa-credit-card",
             content: {
-                moduleName: "PayUsingPayoneer",
-                controlName: "PayUsingPayoneerButton"
+                moduleName: "PayWithPayoneer",
+                controlName: "PayWithPayoneer"
             }
         }];
 
@@ -21,8 +21,8 @@ var PlaceHolder = function ($scope, $element) {
 
     this.onClick = function ($scope, $element) {
         var win = new wind({
-            moduleName: "PurchaseOrder",
-            windowName: "PurchaseOrderExtendedProperties",
+            moduleName: "PayWithPayoneer",
+            windowName: "PayWithPayoneerView",
             width: "600px",
             closeOnEscape: false,
             closeOnBackDrop: false,
