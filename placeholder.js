@@ -27,8 +27,8 @@ var PlaceHolder = function ($scope, $element) {
             closeOnEscape: false,
             closeOnBackDrop: false,
             data: {
-                pkPurchaseId: $scope.purchaseOrder.pkPurchaseID,
-                ExtendedProperties: $scope.ExtendedProperties
+                // pkPurchaseId: $scope.purchaseOrder.pkPurchaseID,
+                // ExtendedProperties: $scope.ExtendedProperties
             }
         }, self.options);
         win.onWindowClosed = function (event) {
