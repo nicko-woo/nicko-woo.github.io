@@ -27,7 +27,7 @@ var PlaceHolder = function ($scope, $element) {
     //     console.log('click-click');
     // }
 
-    this.onClick = function () {
+    this.onClick = function ($scope) {
         var win = new wind({
             moduleName: "PurchaseOrder",
             windowName: "PurchaseOrderExtendedProperties",
