@@ -21,7 +21,7 @@ var PlaceHolder = function ($scope, $element) {
 
     this.onClick = function ($scope, $element) {
         var win = new wind({
-            moduleName: "PayUsingPayoneer",
+            moduleName: "PurchaseOrder",
             // windowName: "app",
             width: "600px",
             closeOnEscape: false,
