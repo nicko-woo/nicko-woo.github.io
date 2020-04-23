@@ -29,20 +29,20 @@ var PlaceHolder = function ($scope, $element) {
 
     var modal = document.getElementById("my_modal");
     var span = document.getElementsByClassName("close_modal_window")[0];
-   
+
     this.onClick = function () {
-       modal.style.display = "block";
+        modal.style.display = "block";
     }
-   
-    span.onclick = function () {
-       modal.style.display = "none";
-    }
-   
-    window.onclick = function (event) {
-       if (event.target == modal) {
-           modal.style.display = "none";
-       }
-   }
+
+    // span.onclick = function () {
+    //     modal.style.display = "none";
+    // }
+
+    // window.onclick = function (event) {
+    //     if (event.target == modal) {
+    //         modal.style.display = "none";
+    //     }
+    // }
 
     // this.onClick = function ($scope) {
     //     var win = new wind({
