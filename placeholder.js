@@ -6,7 +6,7 @@ var PlaceHolder = function ($scope, $element) {
             icon: "fa fa-credit-card",
             content: {
                 moduleName: "PayUsingPayoneer",
-                controlName: "PayUsingPayoneer"
+                controlName: "PayUsingPayoneerButton"
             }
         }];
 
@@ -19,11 +19,11 @@ var PlaceHolder = function ($scope, $element) {
 
     const wind = require('core/Window');
 
-    this.onClick = function ($scope) {
+    this.onClick = function ($scope, $element) {
         var win = new wind({
             moduleName: "PayUsingPayoneer",
             // windowName: "app",
-            width: "950px",
+            width: "600px",
             closeOnEscape: false,
             closeOnBackDrop: false,
             data: {}
