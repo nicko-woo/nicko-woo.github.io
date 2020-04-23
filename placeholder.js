@@ -20,7 +20,7 @@ var PlaceHolder = function ($scope, $element) {
     const wind = require('core/Window');
 
     this.onClick = function ($scope) {
-        var win = wind({
+        var win = new wind({
             moduleName: "PurchaseOrder",
             windowName: "PurchaseOrderExtendedProperties",
             width: "950px",
