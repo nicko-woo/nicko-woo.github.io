@@ -1,4 +1,4 @@
-var FedsAppView = function($scope){
+var PayUsingPayoneerView = function($scope){
 	
   var self = this;
   $scope.InventoryItemId = '';
