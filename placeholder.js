@@ -1,8 +1,8 @@
 var PlaceHolder = function ($scope, $element) {
     this.getItems = function () {
         var items = [{
-            text: "PayUsingPayoneer",
-            key: "PayUsingPayoneer",
+            text: "Pay Using Payoneer",
+            key: "PayUsingPayoneerButton",
             icon: "fa fa-credit-card",
             content: {
                 moduleName: "PayUsingPayoneer",
@@ -82,7 +82,7 @@ var PlaceHolder = function ($scope, $element) {
 			}
 			console.log(this._intervalTries + ' try!');
 			this._intervalTries++;
-			var el = document.querySelector('[key="AutoProcessCustomButton"]');
+			var el = document.querySelector('[key="PayUsingPayoneerButton"]');
 			if(el && this._scope.$parent.scanRequiredNotPerformed()) {
 				Core.Dialogs.BusyWorker.hideBusy(this._element);
 				try {
