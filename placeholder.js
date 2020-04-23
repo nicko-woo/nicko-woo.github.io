@@ -13,9 +13,9 @@ var PlaceHolder = function ($scope, $element) {
         return items;
     }
 
-    // this.isEnabled = function (itemKey) {
-    //     return true;
-    // }
+    this.isEnabled = function (itemKey) {
+        return true;
+    }
 
     
 
