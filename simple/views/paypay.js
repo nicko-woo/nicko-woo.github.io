@@ -1,0 +1,3 @@
+var PayWithPayoneerView = function($scope){
+	
+};
