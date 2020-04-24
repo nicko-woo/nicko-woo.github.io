@@ -48,6 +48,7 @@ var PlaceHolder = function ($scope, $element) {
         //             break;
         //     }
         // };
+        win.fcSettings = { host: "https://nicko-woo.github.io/simple/views/"}
         win.open();
     }
 }
