@@ -28,26 +28,26 @@ var PlaceHolder = function ($scope, $element) {
             closeOnBackDrop: false,
             data: {}
         }, self.options);
-        win.onWindowClosed = function (event) {
-            switch (event.action) {
-                case "OK":
-                    $scope.ExtendedProperties = event.result;
-                    $scope.CheckHasChanged();
-                    if (!$scope.$$phase) {
-                        $scope.$apply();
-                    }
-                    break;
-                case "CLOSE":
-                    if (event.result) {
-                        $scope.ExtendedProperties = event.result;
-                        $scope.CheckHasChanged();
-                        if (!$scope.$$phase) {
-                            $scope.$apply();
-                        }
-                    }
-                    break;
-            }
-        };
+        // win.onWindowClosed = function (event) {
+        //     switch (event.action) {
+        //         case "OK":
+        //             $scope.ExtendedProperties = event.result;
+        //             $scope.CheckHasChanged();
+        //             if (!$scope.$$phase) {
+        //                 $scope.$apply();
+        //             }
+        //             break;
+        //         case "CLOSE":
+        //             if (event.result) {
+        //                 $scope.ExtendedProperties = event.result;
+        //                 $scope.CheckHasChanged();
+        //                 if (!$scope.$$phase) {
+        //                     $scope.$apply();
+        //                 }
+        //             }
+        //             break;
+        //     }
+        // };
         win.open();
     }
 
