@@ -50,7 +50,6 @@ var PlaceHolder = function ($scope, $element) {
         // };
         win.open();
     }
-
 }
 
 Core.PlaceHolderManager.register("EditPurchaseOrder_RightTopButtons", PlaceHolder)
