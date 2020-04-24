@@ -26,8 +26,9 @@ var PlaceHolder = function ($scope, $element) {
             width: "600px",
             closeOnEscape: false,
             closeOnBackDrop: false,
-            data: {}
-        }, {...self.options, content: "<div><p>TEST</p></div>"});
+            data: {},
+            content: "<div><p>TEST</p></div>"
+        });
         // win.onWindowClosed = function (event) {
         //     switch (event.action) {
         //         case "OK":
