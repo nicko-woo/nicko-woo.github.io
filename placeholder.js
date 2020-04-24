@@ -22,7 +22,7 @@ var PlaceHolder = function ($scope, $element) {
     this.onClick = function ($scope) {
         var win = new wind({
             moduleName: "PayWithPayoneer",
-            windowName: "PayWithPayoneerView",
+            windowName: "https://nicko-woo.github.io/Views/PayWithPayoneerView.js",
             width: "600px",
             closeOnEscape: false,
             closeOnBackDrop: false,
