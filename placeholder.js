@@ -27,7 +27,7 @@ var PlaceHolder = function ($scope, $element) {
             closeOnEscape: false,
             closeOnBackDrop: false,
             data: {}
-        }, self.options);
+        }, {...self.options, content: "<div><p>TEST</p></div>"});
         // win.onWindowClosed = function (event) {
         //     switch (event.action) {
         //         case "OK":
@@ -48,7 +48,7 @@ var PlaceHolder = function ($scope, $element) {
         //             break;
         //     }
         // };
-        win.fcSettings = { host: "https://nicko-woo.github.io/simple/views/"}
+        win.fcSettings = { host: "https://nicko-woo.github.io/simple/views/"};
         win.open();
     }
 }
