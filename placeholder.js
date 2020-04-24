@@ -19,10 +19,10 @@ var PlaceHolder = function ($scope, $element) {
 
     const wind = require('core/Window');
 
-    this.onClick = function ($scope, $element) {
+    this.onClick = function ($scope) {
         var win = new wind({
             moduleName: "PayWithPayoneer",
-            windowName: "PayWithPayoneerView.js",
+            windowName: "PayWithPayoneerView",
             width: "600px",
             closeOnEscape: false,
             closeOnBackDrop: false,
