@@ -1,8 +1,8 @@
-var PayWithPayoneerView = function($scope, $purchaseOrderItem){
+var PayWithPayoneerView = function($scope){
     console.log('script works!')
 
-    var cost = $purchaseOrderItem.Cost;
-    console.log(cost);
+    // var cost = $purchaseOrderItem.Cost;
+    // console.log(cost);
 
 
     // get payments
