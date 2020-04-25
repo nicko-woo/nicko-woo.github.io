@@ -23,6 +23,7 @@ var PlaceHolder = function ($scope, $element) {
         var win = new wind({
             moduleName: "PayWithPayoneer",
             windowName: "PayWithPayoneer",
+            title: "Pay with Payoneer - Order Test",
             width: "900px",
             height: "600px",
             closeOnEscape: false,
