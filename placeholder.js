@@ -52,5 +52,5 @@ var PlaceHolder = function ($scope, $element) {
         win.open();
     }
 }
-Core.PlaceHolderManager.register("MyInventory_EditInventoryItem_Tabs", PlaceHolder)
-// Core.PlaceHolderManager.register("EditPurchaseOrder_RightTopButtons", PlaceHolder)
+// Core.PlaceHolderManager.register("MyInventory_EditInventoryItem_Tabs", PlaceHolder)
+Core.PlaceHolderManager.register("EditPurchaseOrder_RightTopButtons", PlaceHolder)
