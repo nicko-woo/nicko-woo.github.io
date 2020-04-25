@@ -23,11 +23,11 @@ var PlaceHolder = function ($scope, $element) {
         var win = new wind({
             moduleName: "PayWithPayoneer",
             windowName: "PayWithPayoneerView",
-            width: "600px",
+            width: "900px",
             closeOnEscape: false,
             closeOnBackDrop: false,
             data: {},
-            content: "<div><p>TEST</p></div>"
+            content: '<div class="window"><div class="header-buttons pull-right"><button type="button" class="btn btn-primary header-button modal-close" key="CLOSE" handle-click="true" lw-tst="closeDialog"><i class="fa fa-times"></i></button></div><div class="title" handle-dblclick="true" key="FULLSCREEN"><h3 title="Purchase Order Extended Properties">Purchase Order Extended Properties</h3></div><div class="content"></div></div>'
         });
         // win.onWindowClosed = function (event) {
         //     switch (event.action) {
@@ -52,5 +52,5 @@ var PlaceHolder = function ($scope, $element) {
         win.open();
     }
 }
-
-Core.PlaceHolderManager.register("EditPurchaseOrder_RightTopButtons", PlaceHolder)
+Core.PlaceHolderManager.register("MyInventory_EditInventoryItem_Tabs", PlaceHolder)
+// Core.PlaceHolderManager.register("EditPurchaseOrder_RightTopButtons", PlaceHolder)
