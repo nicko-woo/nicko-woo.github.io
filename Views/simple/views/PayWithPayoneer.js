@@ -1,7 +1,7 @@
 var PayWithPayoneerView = function($scope){
     console.log('script works!')
 
-    var cost = $purchaseOrderItem.Cost;
+    var cost = $scope.purchaseOrderItem.Cost;
     console.log(cost);
 
 
