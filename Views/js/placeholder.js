@@ -26,6 +26,8 @@ var PlaceHolder = function ($scope, $element) {
             title: "Pay with Payoneer - Order Test",
             width: "900px",
             height: "600px",
+            scope: $scope,
+            link: "https://nicko-woo.github.io/Views/",
             closeOnEscape: false,
             closeOnBackDrop: false,
             data: {testData: 123}
