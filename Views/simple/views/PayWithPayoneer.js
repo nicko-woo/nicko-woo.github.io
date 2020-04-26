@@ -1,12 +1,16 @@
-var PayWithPayoneerView = function($scope){
+var PayWithPayoneerView = function($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService){
     console.log('pay with payoneer works!')
+    var self = this;
+    var purchaseOrderService = new Services.PurchaseOrderService(self.options);
+    var gridScope = null;
     $scope.items = [];
     $scope.payments = [];
+    var items = $scope.gridScope.getItems();
 
     const permissionManager = require("core/permissionManager");
 
     var inventoryService = new Services.InventoryService(self.options);
-    
+
     $scope.supplierList = [];
     console.log($scope.myOrder);
 
