@@ -14,7 +14,7 @@ var PayWithPayoneerView = function($scope, $element, $filter, $compile, $q, cont
     console.log($scope.myOrder);
     $scope.testVar = "test_87";
     
-    var items = $scope.$parent.gridScope.getItems();
+    var test = $scope.$parent.hashCode;
 
     inventoryService.GetSuppliers(function (event) {
         if (!event.hasErrors()) {
