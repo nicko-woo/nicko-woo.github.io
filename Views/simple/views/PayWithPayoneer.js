@@ -13,7 +13,7 @@ var PayWithPayoneerView = function($scope, $element, $filter, $compile, $q, cont
     $scope.supplierList = [];
     console.log($scope.myOrder);
     
-    var items = $scope.gridScope.getItems();
+    // var items = $scope.gridScope.getItems();
 
     inventoryService.GetSuppliers(function (event) {
         if (!event.hasErrors()) {
