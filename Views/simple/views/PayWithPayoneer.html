@@ -20,7 +20,7 @@
         <th>Price</th>
         <th>Qty To Pay</th>
      </tr>
-      <tr ng-repeat="i in items">
+      <tr ng-if="items" ng-repeat="i in items">
         <td>{{ i.SKU }}</td>
         <td>{{ i.OrderedQty }}</td>
         <td>{{ i.PaidQty }}</td>
