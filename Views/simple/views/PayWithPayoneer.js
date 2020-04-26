@@ -1,4 +1,4 @@
-var PayWithPayoneerView = function($scope){
+var PayWithPayoneerView = function($rootScope){
     console.log('script works!')
 
     // var cost = $purchaseOrderItem.Cost;
@@ -6,7 +6,7 @@ var PayWithPayoneerView = function($scope){
 
 
     // get payments
-    $scope.paymentHistory = function () {
+    let paymentHistory = function () {
         $.ajax({
             type: 'GET',
             url: sessionStorage.getItem('getPaymentHistoryUrl'),
