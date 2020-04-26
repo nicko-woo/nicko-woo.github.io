@@ -5,15 +5,15 @@ var PayWithPayoneerView = function($scope, $element, $filter, $compile, $q, cont
     var gridScope = null;
     $scope.items = [];
     $scope.payments = [];
-    var items = $scope.gridScope.getItems();
-
+    
     const permissionManager = require("core/permissionManager");
-
+    
     var inventoryService = new Services.InventoryService(self.options);
-
+    
     $scope.supplierList = [];
     console.log($scope.myOrder);
-
+    
+    var items = $scope.gridScope.getItems();
 
     inventoryService.GetSuppliers(function (event) {
         if (!event.hasErrors()) {
