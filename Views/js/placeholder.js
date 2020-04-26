@@ -28,7 +28,7 @@ var PlaceHolder = function ($scope, $element) {
             height: "600px",
             closeOnEscape: false,
             closeOnBackDrop: false,
-            data: {}
+            data: {testData: 123}
         });
         
         win.open();
