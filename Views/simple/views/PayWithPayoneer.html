@@ -1,20 +1,66 @@
 <div ng-controller="PayWithPayoneerView">
+
   <h1>some text</h1>
   <p>some content 123</p>
 
   <div>
-    <button ng-click="page='first'">First</button>
-    <button ng-click="page='second'">Second</button>
+    <button ng-click="page='byItem'">By Item</button>
+    <button ng-click="page='byAmount'">By Amount</button>
   </div>
 
+  <div ng-init="page='byItem'"></div>
 
-  <div ng-init="page='first'"></div>
-
-  <div ng-show="page === 'first'">
-    <h2>First</h2>
+  <div ng-show="page === 'byItem'">
+    <h2>PO Items</h2>
+    <table>
+      <tr>
+        <th>SKU</th>
+        <th>Ordered Qty</th>
+        <th>Payd Qty</th>
+        <th>Price</th>
+        <th>Qty To Pay</th>
+     </tr>
+      <tr ng-repeat="i in items">
+        <td>{{ i.SKU }}</td>
+        <td>{{ i.OrderedQty }}</td>
+        <td>{{ i.PaidQty }}</td>
+        <td>{{ i.Price }}</td>
+        <td>{{ i.QtyToPay }}</td>
+      </tr>
+    </table>
   </div>
 
-  <div ng-show="page === 'second'">
-    <h2>Second</h2>
+  <div ng-show="page === 'byAmount'">
+    <h2>PO Items</h2>
+    <table>
+      <tr>
+        <th>SKU</th>
+        <th>Ordered Qty</th>
+        <th>Price</th>
+        <th>Total</th>
+     </tr>
+      <tr ng-repeat="i in items">
+        <td>{{ i.SKU }}</td>
+        <td>{{ i.OrderedQty }}</td>
+        <td>{{ i.Price }}</td>
+        <td>{{ i.Total }}</td>
+      </tr>
+    </table>
   </div>
+
+  <h2>Payment History</h2>
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Paid</th>
+      <th>Items paid</th>
+   </tr>
+    <tr ng-repeat="p in payments">
+      <td>{{ p.Date }}</td>
+      <td>{{ i.Paid }}</td>
+      <td>{{ i.ItemsPaid }}</td>
+    </tr>
+  </table>
+</div>
+
 </div>
