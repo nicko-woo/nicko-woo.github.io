@@ -1,8 +1,33 @@
-var PayWithPayoneerView = function($rootScope){
-    console.log('script works!')
+var PayWithPayoneerView = function($scope){
+    console.log('pay with payoneer works!')
+    $scope.items = [];
+    $scope.payments = [];
 
-    // var cost = $purchaseOrderItem.Cost;
-    // console.log(cost);
+    const permissionManager = require("core/permissionManager");
+
+    var inventoryService = new Services.InventoryService(self.options);
+    
+    $scope.supplierList = [];
+    console.log($scope.myOrder);
+
+
+    inventoryService.GetSuppliers(function (event) {
+        if (!event.hasErrors()) {
+
+            var permissionsSuppliers = permissionManager.GetList("GlobalPermissions.PurchaseOrder.SearchPurchaseOrder.SupplierList");
+            if (permissionsSuppliers.length === 0) {
+                $scope.supplierList = event.result;
+                console.log($scope.supplierList[5].ContactName);
+            }
+            else {
+                for (var i = 0; i < event.result.length; i++) {
+                    if (permissionsSuppliers.contains(event.result[i].pkSupplierID)) {
+                        $scope.supplierList.push(event.result[i]);
+                    }
+                }
+            }
+        }
+    });
 
 
     // get payments
