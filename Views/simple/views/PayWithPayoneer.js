@@ -12,6 +12,7 @@ var PayWithPayoneerView = function($scope, $element, $filter, $compile, $q, cont
     
     $scope.supplierList = [];
     console.log($scope.myOrder);
+    $scope.testVar = "test_87";
     
     // var items = $scope.gridScope.getItems();
 
