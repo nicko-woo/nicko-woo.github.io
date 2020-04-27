@@ -22,14 +22,15 @@ var PlaceHolder = function ($scope, $element) {
     this.onClick = function () {
         var win = new wind({
             moduleName: "PayWithPayoneer",
-            windowName: "PayWithPayoneer",
+            windowName: "PayWithPayoneerView",
             title: "Pay with Payoneer - Order Test",
             width: "900px",
             height: "600px",
-            scope: $scope.$parent,
             closeOnEscape: false,
             closeOnBackDrop: false,
-            data: {testData: 123}
+            data: {},
+            moduleDefinition: {selector: "PayWithPayoneer"},
+            isSystem: false
         });
         
         win.open();
