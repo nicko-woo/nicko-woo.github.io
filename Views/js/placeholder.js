@@ -29,7 +29,7 @@ var PlaceHolder = function ($scope, $element) {
                 items: $scope.gridScope.getItems(),
                 externalInvoiceNumber: $scope.purchaseOrder.ExternalInvoiceNumber
             },
-            ngScope: $scope.$parent
+            ngScope: $scope
 
         });
         
