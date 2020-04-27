@@ -2,10 +2,11 @@ var PayWithPayoneerView = function($scope, $element, $filter, $compile, $q, cont
     console.log('pay with payoneer works!')
     var self = this;
     var purchaseOrderService = new Services.PurchaseOrderService(self.options);
+    var gridScope = null;
 
+    $scope.items = $scope.$parent.items;
     $scope.testVar = $scope.$parent.purchaseOrder.pkPurchaseID;
     $scope.payments = [];
-    $scope.items = $scope.$parent.gridScope.getItems();
     
     
     var inventoryService = new Services.InventoryService(self.options);
