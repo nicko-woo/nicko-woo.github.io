@@ -3,9 +3,9 @@ var PayWithPayoneerView = function($scope, $element, $filter, $compile, $q, cont
     var self = this;
     var purchaseOrderService = new Services.PurchaseOrderService(self.options);
 
-    $scope.items = $scope.$parent.gridScope.getItems();
     $scope.testVar = $scope.$parent.purchaseOrder.pkPurchaseID;
     $scope.payments = [];
+    $scope.items = $scope.$parent.gridScope.getItems();
     
     
     var inventoryService = new Services.InventoryService(self.options);
