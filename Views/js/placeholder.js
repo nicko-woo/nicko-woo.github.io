@@ -28,7 +28,9 @@ var PlaceHolder = function ($scope, $element) {
                 pkPurchaseId: $scope.purchaseOrder.pkPurchaseID,
                 items: $scope.gridScope.getItems(),
                 externalInvoiceNumber: $scope.purchaseOrder.ExternalInvoiceNumber
-            }
+            },
+            ngScope: $scope.$parent
+
         });
         
         win.open();
