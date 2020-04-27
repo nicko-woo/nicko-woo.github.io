@@ -16,13 +16,15 @@ var PlaceHolder = function ($scope, $element) {
     const wind = require('core/Window');
 
     this.onClick = function () {
+        var gridScope = $element.find(".itemsGrid").scope();
+
         var win = new wind({
             moduleName: "PayWithPayoneer",
             windowName: "PayWithPayoneer",
             title: "Pay with Payoneer - Order Test",
             closeOnEscape: false,
             closeOnBackDrop: false,
-            data: {testVar: 142},
+            data: {Items: gridScope.getItems()},
             isSystem: false
         });
         
