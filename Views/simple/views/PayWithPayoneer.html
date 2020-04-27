@@ -2,7 +2,7 @@
   <p>{{ testVar }}</p>
 
   <div>
-    <button ng-click="page='byItem'">By Item</button>
+    <button class="pwpButton" ng-click="page='byItem'">By Item</button>
     <button ng-click="page='byAmount'">By Amount</button>
   </div>
 
@@ -21,10 +21,10 @@
      </tr>
       <tr ng-repeat="i in items">
         <td>{{ i.SKU }}</td>
-        <td>{{ i.OrderedQty }}</td>
-        <td>{{ i.PaidQty }}</td>
-        <td>{{ i.Price }}</td>
-        <td>{{ i.QtyToPay }}</td>
+        <td>{{ i.Quantity }}</td>
+        <td></td>
+        <td>{{ i.UnitCost }}</td>
+        <td></td>
       </tr>
     </table>
   </div>
