@@ -4,8 +4,10 @@ var PayWithPayoneerView = function($scope, $element, $filter, $compile, $q, cont
     var purchaseOrderService = new Services.PurchaseOrderService(self.options);
     var gridScope = null;
 
-    $scope.items = $scope.$parent.items;
-    $scope.testVar = $scope.$parent.purchaseOrder.pkPurchaseID;
+    $scope = $scope.$parent.$parent;
+    $scope.items = $scope.gridScope.getItems();
+
+    $scope.testVar = $scope.purchaseOrder.pkPurchaseID;
     $scope.payments = [];
     
     
@@ -14,23 +16,7 @@ var PayWithPayoneerView = function($scope, $element, $filter, $compile, $q, cont
     $scope.supplierList = [];
     console.log($scope.myOrder);
     
-    inventoryService.GetSuppliers(function (event) {
-        if (!event.hasErrors()) {
-
-            var permissionsSuppliers = permissionManager.GetList("GlobalPermissions.PurchaseOrder.SearchPurchaseOrder.SupplierList");
-            if (permissionsSuppliers.length === 0) {
-                $scope.supplierList = event.result;
-                console.log($scope.supplierList[5].ContactName);
-            }
-            else {
-                for (var i = 0; i < event.result.length; i++) {
-                    if (permissionsSuppliers.contains(event.result[i].pkSupplierID)) {
-                        $scope.supplierList.push(event.result[i]);
-                    }
-                }
-            }
-        }
-    });
+    
 
 
     // get payments
