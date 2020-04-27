@@ -22,6 +22,7 @@ var PlaceHolder = function ($scope, $element) {
             title: "Pay with Payoneer - Order Test",
             closeOnEscape: false,
             closeOnBackDrop: false,
+            data: {testVar: 142},
             isSystem: false
         });
         
