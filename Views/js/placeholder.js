@@ -24,7 +24,8 @@ var PlaceHolder = function ($scope, $element) {
             title: "Pay with Payoneer - Order Test",
             closeOnEscape: false,
             closeOnBackDrop: false,
-            data: {Items: gridScope.getItems()},
+            data: { pkPurchaseId: $scope.purchaseOrder.pkPurchaseID,
+            items: $scope.gridScope.getItems()},
             isSystem: false
         });
         
