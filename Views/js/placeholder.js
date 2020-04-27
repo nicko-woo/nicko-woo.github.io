@@ -3,11 +3,7 @@ var PlaceHolder = function ($scope, $element) {
         var items = [{
             text: "Pay With Payoneer",
             key: "PayWithPayoneerButton",
-            icon: "fa fa-credit-card",
-            content: {
-                moduleName: "PayWithPayoneer",
-                controlName: "PayWithPayoneer"
-            }
+            icon: "fa fa-credit-card"
         }];
 
         return items;
@@ -22,14 +18,10 @@ var PlaceHolder = function ($scope, $element) {
     this.onClick = function () {
         var win = new wind({
             moduleName: "PayWithPayoneer",
-            windowName: "PayWithPayoneerView",
+            windowName: "PayWithPayoneer",
             title: "Pay with Payoneer - Order Test",
-            width: "900px",
-            height: "600px",
             closeOnEscape: false,
             closeOnBackDrop: false,
-            data: {},
-            moduleDefinition: {selector: "PayWithPayoneer"},
             isSystem: false
         });
         
