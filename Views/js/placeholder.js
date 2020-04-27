@@ -21,13 +21,14 @@ var PlaceHolder = function ($scope, $element) {
         var win = new wind({
             moduleName: "PayWithPayoneer",
             windowName: "PayWithPayoneer",
-            title: "Pay with Payoneer - Order Test",
+            title: "Pay with Payoneer - " + $scope.purchaseOrder.ExternalInvoiceNumber,
             closeOnEscape: false,
             closeOnBackDrop: false,
-            data: { pkPurchaseId: $scope.purchaseOrder.pkPurchaseID,
+            data: {
+                pkPurchaseId: $scope.purchaseOrder.pkPurchaseID,
                 items: $scope.gridScope.getItems(),
-                externalInvoiceNumber: $scope.purchaseOrder.ExternalInvoiceNumber},
-                isSystem: false
+                externalInvoiceNumber: $scope.purchaseOrder.ExternalInvoiceNumber
+            }
         });
         
         win.open();
