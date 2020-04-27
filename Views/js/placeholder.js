@@ -25,8 +25,9 @@ var PlaceHolder = function ($scope, $element) {
             closeOnEscape: false,
             closeOnBackDrop: false,
             data: { pkPurchaseId: $scope.purchaseOrder.pkPurchaseID,
-            items: $scope.gridScope.getItems()},
-            isSystem: false
+                items: $scope.gridScope.getItems(),
+                externalInvoiceNumber: $scope.purchaseOrder.ExternalInvoiceNumber},
+                isSystem: false
         });
         
         win.open();
