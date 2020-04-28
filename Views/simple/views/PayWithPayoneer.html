@@ -1,7 +1,7 @@
 <div ng-controller="PayWithPayoneerView">
 
   <p>{{ testVar }}</p>
-  
+
 
   <div>
     <button class="pwpButton" ng-click="page='byItem'">By Item</button>
@@ -9,22 +9,22 @@
   </div>
 
   <div ng-init="page='byItem'"></div>
-  
+
 
   <div ng-show="page === 'byItem'">
     <h2>PO Items</h2>
 
-  <div class="linngrid"></div>
+    <div class="linngrid"></div>
 
-<div class="slickgrid itemsgrid slickgrid ui-widget" id="myGrid" style="width:600px;height:500px;"></div>
-    <table >
+
+    <table>
       <tr>
         <th>SKU</th>
         <th>Ordered Qty</th>
         <th>Payd Qty</th>
         <th>Price</th>
         <th>Qty To Pay</th>
-     </tr>
+      </tr>
       <tr ng-repeat="i in items">
         <td>{{ i.SKU }}</td>
         <td>{{ i.Quantity }}</td>
@@ -43,7 +43,7 @@
         <th>Ordered Qty</th>
         <th>Price</th>
         <th>Total</th>
-     </tr>
+      </tr>
       <tr ng-repeat="i in items">
         <td>{{ i.SKU }}</td>
         <td>{{ i.OrderedQty }}</td>
@@ -59,7 +59,7 @@
       <th>Date</th>
       <th>Paid</th>
       <th>Items paid</th>
-   </tr>
+    </tr>
     <tr ng-repeat="p in payments">
       <td>{{ p.Date }}</td>
       <td>{{ i.Paid }}</td>
