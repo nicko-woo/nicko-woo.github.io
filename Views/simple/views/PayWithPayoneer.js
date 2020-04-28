@@ -24,7 +24,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.init = function () {
 
-        $scope.gridScope.setItems($scope.items);
+        // $scope.gridScope.setItems($scope.items);
 
         var grid;
         var columns = [
