@@ -11,7 +11,7 @@ var PayWithPayoneerView = function($scope, $element, $filter, $compile, $q, cont
     
     $scope.supplierList = [];
 
-    $scope.gridScope.setItems($scope.items);
+    $scope.$parent.gridScope.setItems($scope.items);
     
 
     // function Initialize() {
@@ -21,6 +21,13 @@ var PayWithPayoneerView = function($scope, $element, $filter, $compile, $q, cont
     //     $scope.gridScope.setItems($scope.items);
     //     $scope.$apply();
     // }
+
+    $scope.init = function () {
+        $scope.$parent.gridScope.setItems($scope.items);
+    };
+
+    $scope.init();
+
     
 
 
