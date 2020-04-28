@@ -67,7 +67,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     var dataView = new Slick.Data.DataView();
 
-    var containerEl = "myGrid123";
+    var containerEl = "#myGrid123";
 
     //Create columns
     var columns = [
@@ -103,6 +103,24 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
       
       // This will fire the change events and update the grid.
       dataView.setItems(data);
+
+      $scope.init = function () {
+        dataView.beginUpdate();
+        grid.invalidateAllRows();
+        dataView.setItems(data);
+        dataView.endUpdate();
+        grid.render();
+      };
+
+      $scope.init();
+
+      $scope.refreshData = function() {
+        dataView.beginUpdate();
+        grid.invalidateAllRows();
+        dataView.setItems(data);
+        dataView.endUpdate();
+        grid.render();
+      }
 
 
 };
