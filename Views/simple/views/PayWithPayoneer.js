@@ -63,9 +63,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.init();
 
-
-
-
     // get payments
     // let paymentHistory = function () {
     //     $.ajax({
