@@ -23,7 +23,7 @@ var PayWithPayoneerView = function($scope, $element, $filter, $compile, $q, cont
     // }
 
     $scope.init = function () {
-        $scope.$parent.gridScope.setItems($scope.items);
+        $scope.$parent.gridScope.setItems($scope.items, "igpwp");
     };
 
     $scope.init();
