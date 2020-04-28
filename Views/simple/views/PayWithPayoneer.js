@@ -121,6 +121,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     // // //     dataView.endUpdate();
     // // //     grid.render();
     // // //   }
+    
 
     var grid;
     var columns = [{
