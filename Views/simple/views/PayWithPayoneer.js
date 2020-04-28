@@ -121,21 +121,50 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     // // //     dataView.endUpdate();
     // // //     grid.render();
     // // //   }
-    
+
+
+    // var grid;
+    // var columns = [{
+    //     id: "column",
+    //     name: "",
+    //     field: "column",
+    //     //selectable: false,
+    //     focusable: false
+    // },
+    // {
+    //     id: "data",
+    //     name: "Data",
+    //     field: "data"
+    // }
+    // ];
+
+    // var options = {
+    //     enableCellNavigation: true,
+    //     enableColumnReorder: false
+    // };
+
+    // $(function () {
+    //     var data = [];
+    //     for (var i = 0; i < 100; i++)
+    //         data[i] = {
+    //             column: "Column " + i,
+    //             data: i
+
+    //         };
+
+    //     grid = new Slick.Grid("#myGrid123", data, columns, options);
+    //     $(".l0").addClass("slick-header-column")
+
+    //     grid.onScroll.subscribe(function () {
+    //         $(".l0").addClass("slick-header-column")
+    //     })
+    // })
 
     var grid;
-    var columns = [{
-        id: "column",
-        name: "",
-        field: "column",
-        //selectable: false,
-        focusable: false
-    },
-    {
-        id: "data",
-        name: "Data",
-        field: "data"
-    }
+    var columns = [
+        { id: "column1", name: "SKU", field: "SKU" },
+        { id: "column2", name: "Quantity", field: "Quantity" },
+        { id: "column3", name: "Price", field: "UnitCost" }
     ];
 
     var options = {
@@ -144,14 +173,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     };
 
     $(function () {
-        var data = [];
-        for (var i = 0; i < 100; i++)
-            data[i] = {
-                column: "Column " + i,
-                data: i
-
-            };
-
+        var data = $scope.items;
         grid = new Slick.Grid("#myGrid123", data, columns, options);
         $(".l0").addClass("slick-header-column")
 
