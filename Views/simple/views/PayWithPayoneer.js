@@ -54,10 +54,9 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             }
 
             grid = new Slick.Grid("#myGrid123", data, columns, options);
-        grid.setItems(data);
         })
 
-        
+        var gridScope = $element.find(".slickgrid").scope();
 
         $('#myGrid123').on('shown', grid.resizeCanvas)
     };
