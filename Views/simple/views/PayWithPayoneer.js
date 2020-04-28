@@ -75,6 +75,11 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         { id: "column2", name: "Language", field: "lang" },
         { id: "column3", name: "Year", field: "year" }
     ];
+    
+    var options = {
+        enableCellNavigation: true,
+        enableColumnReorder: false
+    };
 
     // Pass it as a data provider to SlickGrid.
     var grid = new Slick.Grid(containerEl, dataView, columns, options);
