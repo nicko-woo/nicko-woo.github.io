@@ -10,15 +10,17 @@ var PayWithPayoneerView = function($scope, $element, $filter, $compile, $q, cont
     $scope.payments = [];
     
     $scope.supplierList = [];
+
+    $scope.gridScope.setItems($scope.items);
     
 
-    function Initialize() {
-        // $scope.gridScope.subscribe("onDblClick", onDoubleClick);
-        // $scope.radioOnChanged($scope.buttons[0]);
-        let items = $scope.$parent.gridScope.getItems();
-        $scope.gridScope.setItems(items);
-        $scope.$apply();
-    }
+    // function Initialize() {
+    //     // $scope.gridScope.subscribe("onDblClick", onDoubleClick);
+    //     // $scope.radioOnChanged($scope.buttons[0]);
+    //     let items = $scope.$parent.gridScope.getItems();
+    //     $scope.gridScope.setItems($scope.items);
+    //     $scope.$apply();
+    // }
     
 
 
