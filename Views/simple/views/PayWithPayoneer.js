@@ -22,7 +22,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     //     $scope.$apply();
     // }
 
-    
+
     $scope.init = function () {
 
         var grid;
@@ -53,7 +53,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                 };
             }
 
-            grid = new Slick.Grid("#myGrid", data, columns, options);
+            grid = new Slick.Grid("#myGrid123", data, columns, options);
         })
     };
 
