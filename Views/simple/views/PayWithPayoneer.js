@@ -10,60 +10,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.payments = [];
     $scope.supplierList = [];
 
-    // $scope.$parent.gridScope.setItems($scope.items);
-
-
-    // function Initialize() {
-    //     // $scope.gridScope.subscribe("onDblClick", onDoubleClick);
-    //     // $scope.radioOnChanged($scope.buttons[0]);
-    //     let items = $scope.$parent.gridScope.getItems();
-    //     $scope.gridScope.setItems($scope.items);
-    //     $scope.$apply();
-    // }
-
-
-    // $scope.init = function () {
-
-    //     // $scope.gridScope.setItems($scope.items);
-
-    //     var grid;
-    //     var columns = [
-    //         { id: "title", name: "Title", field: "title" },
-    //         { id: "duration", name: "Duration", field: "duration" },
-    //         { id: "%", name: "% Complete", field: "percentComplete" },
-    //         { id: "start", name: "Start", field: "start" },
-    //         { id: "finish", name: "Finish", field: "finish" },
-    //         { id: "effort-driven", name: "Effort Driven", field: "effortDriven" }
-    //     ];
-
-    //     var options = {
-    //         enableCellNavigation: true,
-    //         enableColumnReorder: false
-    //     };
-
-    //     $(function () {
-    //         var data = [];
-    //         for (var i = 0; i < 5; i++) {
-    //             data[i] = {
-    //                 title: "Task " + i,
-    //                 duration: "5 days",
-    //                 percentComplete: Math.round(Math.random() * 100),
-    //                 start: "01/01/2009",
-    //                 finish: "01/05/2009",
-    //                 effortDriven: (i % 5 == 0)
-    //             };
-    //         }
-
-    //         grid = new Slick.Grid("#myGrid123", data, columns, options);
-    //     })
-
-    //     var gridScope = $element.find(".slickgrid").scope();
-
-    //     $('#myGrid123').on('shown', grid.resizeCanvas);
-    //     $("#myGrid123").children(".slick-viewport").css("height", "300px");
-    // };
-
-    // $scope.init();
 
     // // // var dataView = new Slick.Data.DataView();
 

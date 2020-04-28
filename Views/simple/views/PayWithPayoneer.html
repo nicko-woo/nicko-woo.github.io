@@ -15,83 +15,29 @@
 
   <div ng-init="page='byItem'"></div>
 
-
   <div ng-show="page === 'byItem'">
     <h2>PO Items</h2>
 
-    <table class="generic-module-layout">
-      <tbody>
-        <tr>
-          <td class="flexible-content">
-            <div class="linngrid">
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="linngrid" id="pwpByItemGrid" style="width:600px;height:200px;"></div>
 
-    <table>
-      <tr>
-        <th>SKU</th>
-        <th>Ordered Qty</th>
-        <th>Payd Qty</th>
-        <th>Price</th>
-        <th>Qty To Pay</th>
-      </tr>
-      <tr ng-repeat="i in items">
-        <td>{{ i.SKU }}</td>
-        <td>{{ i.Quantity }}</td>
-        <td></td>
-        <td>{{ i.UnitCost }}</td>
-        <td></td>
-      </tr>
-    </table>
   </div>
 
   <div ng-show="page === 'byAmount'">
     <h2>PO Items</h2>
-    <table>
-      <tr>
-        <th>SKU</th>
-        <th>Ordered Qty</th>
-        <th>Price</th>
-        <th>Total</th>
-      </tr>
-      <tr ng-repeat="i in items">
-        <td>{{ i.SKU }}</td>
-        <td>{{ i.OrderedQty }}</td>
-        <td>{{ i.Price }}</td>
-        <td>{{ i.Total }}</td>
-      </tr>
-    </table>
+
   </div>
 
   <h2>Payment History</h2>
-  <table>
-    <tr>
-      <th>Date</th>
-      <th>Paid</th>
-      <th>Items paid</th>
-    </tr>
-    <tr ng-repeat="p in payments">
-      <td>{{ p.Date }}</td>
-      <td>{{ i.Paid }}</td>
-      <td>{{ i.ItemsPaid }}</td>
-    </tr>
-  </table>
+
 </div>
 
-
-<div id="myGrid123" style="width:600px;height:200px;"></div>
-<div id="myGrid" style="width:600px;height:500px;"></div>
 
 <p>grid</p>
 
 <div class="linngrid">
-  <div class="slickgrid ui-widget" id="myGrid123" lw-tst="grid"
+  <div class="slickgrid ui-widget" id="pwpByItemGrid" lw-tst="grid"
     style="width: 100%; min-height: 300px; outline: 0px; position: relative;" name="itemsGrid">
     <div tabindex="0" hidefocus="" style="position:fixed;width:0;height:0;top:0;left:0;outline:0;"></div>
-    
   </div>
 </div>
 
