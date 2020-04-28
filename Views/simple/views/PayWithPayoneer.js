@@ -42,7 +42,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
         $(function () {
             var data = [];
-            for (var i = 0; i < 500; i++) {
+            for (var i = 0; i < 20; i++) {
                 data[i] = {
                     title: "Task " + i,
                     duration: "5 days",
