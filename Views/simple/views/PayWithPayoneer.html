@@ -1,4 +1,9 @@
 <div ng-controller="PayWithPayoneerView">
+  <script src="http://mleibman.github.com/SlickGrid/slick.grid.css"></script>
+<script src="http://mleibman.github.com/SlickGrid/slick.core.js"></script>
+<script src="http://mleibman.github.com/SlickGrid/slick.grid.js"></script>
+<script src="http://mleibman.github.com/SlickGrid/lib/jquery.event.drag-2.2.js"></script>
+<script src="http://mleibman.github.com/SlickGrid/css/smoothness/jquery-ui-1.8.16.custom.css"></script>
 
   <p>{{ testVar }}</p>
 
@@ -8,7 +13,7 @@
     <button ng-click="page='byAmount'">By Amount</button>
     <button ng-click="refreshData()">Update data</button>
   </div>
-  
+
 
   <div ng-init="page='byItem'"></div>
 
