@@ -120,7 +120,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $(function () {
         var data = $scope.items;
-        grid = new Slick.Grid("#myGrid123", data, columns, options);
+        grid = new Slick.Grid("#pwpByItemGrid", data, columns, options);
         $(".l0").addClass("slick-header-column")
 
         grid.onScroll.subscribe(function () {
