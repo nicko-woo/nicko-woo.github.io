@@ -8,10 +8,9 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.testVar = $scope.$parent.purchaseOrder.pkPurchaseID;
     $scope.payments = [];
-
     $scope.supplierList = [];
 
-    $scope.$parent.gridScope.setItems($scope.items);
+    // $scope.$parent.gridScope.setItems($scope.items);
 
 
     // function Initialize() {
@@ -24,6 +23,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
 
     $scope.init = function () {
+
+        $scope.gridScope.setItems($scope.items);
 
         var grid;
         var columns = [
@@ -53,7 +54,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                 };
             }
 
-            grid = new Slick.Grid("#myGrid123", data, columns, options);
+            grid = new Slick.Grid("slickgrid", data, columns, options);
         })
 
         var gridScope = $element.find(".slickgrid").scope();
