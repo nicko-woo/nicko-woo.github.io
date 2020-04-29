@@ -10,7 +10,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.payments = [];
     $scope.supplierList = [];
 
-    $scope.gridScope = $element.find(".slickgrid1").scope();
 
 
     // // // var dataView = new Slick.Data.DataView();
