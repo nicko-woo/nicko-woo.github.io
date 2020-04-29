@@ -33,10 +33,10 @@
 
                         <div class="linngrid" id="pwpByItemGrid" style="width: 100%; min-height: 100px; outline: 0px; position: relative;"></div>
 
-                        <p>Paid: </p>
-                        <p>Outstanding: </p>
-                        <p>Selected To Pay: </p>
-                        <p>Your balance is: </p>
+                        <p>Paid: {{ orderCurrency }}{{ paid }}</p>
+                        <p>Outstanding: {{ orderCurrency }}{{ paid }} </p>
+                        <p>Selected To Pay: {{ orderCurrency }}{{ paid }} </p>
+                        <p>Your balance is: {{ orderCurrency }}{{ paid }} </p>
 
                         <button class="btn btn-primary" ng-click="payByItems()">Pay</button>
                       </td>

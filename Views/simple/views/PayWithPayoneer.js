@@ -10,6 +10,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.paid = null;
     $scope.selectedToPay = null;
     $scope.balance = null;
+    $scope.orderCurrency = '$';
 
     // // pay by items data grid
 
