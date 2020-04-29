@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works1256!')
+    console.log('pay with payoneer works127!')
 
     $scope.gridScope = null;
 
@@ -9,6 +9,38 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.testVar = $scope.$parent.purchaseOrder.pkPurchaseID;
     $scope.payments = [];
     $scope.supplierList = [];
+
+    var pwpByItemsGrid;
+    var columns = [
+        { id: "column1", name: "SKU", field: "SKU" },
+        { id: "column2", name: "Ordered Quantity", field: "Quantity" },
+        { id: "column3", name: "Paid Quantity", field: "Quantity" },
+        { id: "column4", name: "Price", field: "UnitCost" },
+        { id: "column5", name: "Quantity To Pay", field: "Quantity" }
+    ];
+
+    var options = {
+        enableCellNavigation: true,
+        enableColumnReorder: false
+    };
+
+    $(function () {
+        var data = $scope.items;
+        pwpByItemsGrid = new Slick.Grid("#pwpByItemGrid", data, columns, options);
+        $(".l0").addClass("slick-header-column")
+
+        pwpByItemsGrid.onScroll.subscribe(function () {
+            $(".l0").addClass("slick-header-column")
+        })
+    })
+
+      $scope.init = function () {
+        pwpByItemsGrid.invalidateAllRows();
+        pwpByItemsGrid.render();
+      };
+
+      $scope.init();
+
 
 
 
@@ -107,34 +139,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     //     })
     // })
 
-    var grid;
-    var columns = [
-        { id: "column1", name: "SKU", field: "SKU" },
-        { id: "column2", name: "Quantity", field: "Quantity" },
-        { id: "column3", name: "Price", field: "UnitCost" }
-    ];
-
-    var options = {
-        enableCellNavigation: true,
-        enableColumnReorder: false
-    };
-
-    $(function () {
-        var data = $scope.items;
-        grid = new Slick.Grid("#pwpByItemGrid", data, columns, options);
-        $(".l0").addClass("slick-header-column")
-
-        grid.onScroll.subscribe(function () {
-            $(".l0").addClass("slick-header-column")
-        })
-    })
-
-      $scope.init = function () {
-        grid.invalidateAllRows();
-        grid.render();
-      };
-
-      $scope.init();
-
+    
 
 };
