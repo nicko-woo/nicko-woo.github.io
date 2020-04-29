@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works121!')
+    console.log('pay with payoneer works122!')
 
     $scope.gridScope = null;
 
@@ -10,7 +10,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.payments = [];
     $scope.supplierList = [];
 
-    $scope.gridScope = $element.find(".slickgrid").scope();
+    $scope.gridScope = $element.find(".slickgrid1").scope();
 
 
     // // // var dataView = new Slick.Data.DataView();
