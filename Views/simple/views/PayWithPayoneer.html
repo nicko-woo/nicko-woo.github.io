@@ -3,6 +3,7 @@
   <script src="https://cdn.jsdelivr.net/npm/slickgrid@2.4.21/slick.grid.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/slickgrid@2.4.21/slick.editors.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/slickgrid@2.4.21/slick.formatters.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slickgrid@2.4.21/slick.dataview.js"></script>
   
   <section>
     <table class="generic-module-layout tabset" lw-tst="tab_set" modern-layout="" tab-loaded="tabLoaded">
@@ -11,11 +12,11 @@
           <td class="static-content header-menu-content">
             <ul class="nav nav-tabs" ng-class="{'nav-justified' : justified === 'true'}"
               ng-hide="tabSet.shouldHideHeader();">
-              <li class="active" data-index="0" lw-tst="tab_Stock"><a>
-                  <lw-tab-header lw-tst="tab_Stock" class="active">By Item</lw-tab-header>
+              <li class="active" data-index="0" lw-tst="tab_ByItem"><a>
+                  <lw-tab-header lw-tst="tab_ByItem" class="active">By Item</lw-tab-header>
                 </a></li>
-              <li data-index="1" lw-tst="tab_Supply" class=""><a>
-                  <lw-tab-header lw-tst="tab_Supply" class="">By Amount</lw-tab-header>
+              <li data-index="1" lw-tst="tab_ByAmount" class=""><a>
+                  <lw-tab-header lw-tst="tab_ByAmount" class="">By Amount</lw-tab-header>
                 </a></li>
             </ul>
           </td>
@@ -30,14 +31,14 @@
                       <td class="flexible-content">
                         <p>By Item Content</p>
 
-                        <div class="linngrid" id="pwpByItemGrid" style="width: 100%; min-height: 200px; outline: 0px; position: relative;"></div>
+                        <div class="linngrid" id="pwpByItemGrid" style="width: 100%; min-height: 100px; outline: 0px; position: relative;"></div>
 
                         <p>Paid: </p>
                         <p>Outstanding: </p>
                         <p>Selected To Pay: </p>
                         <p>Your balance is: </p>
 
-                        <button class="btn btn-primary" ng-click="refreshData()">Pay</button>
+                        <button class="btn btn-primary" ng-click="payByItems()">Pay</button>
                       </td>
                     </tr>
                   </tbody>
@@ -50,7 +51,7 @@
                       <td class="flexible-content">
                         <p>By Amount Content</p>
 
-                        <button class="btn btn-primary" ng-click="refreshData()">Pay</button>
+                        <button class="btn btn-primary" ng-click="payByAmount()">Pay</button>
                       </td>
                     </tr>
                   </tbody>
