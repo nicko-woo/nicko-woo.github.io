@@ -11,7 +11,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.selectedToPay = null;
     $scope.balance = null;
 
-    // pay by items data grid
+    // // pay by items data grid
 
     // var pwpByItemsGrid;
     // var columns = [
