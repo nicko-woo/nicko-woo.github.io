@@ -1,14 +1,14 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works145!')
+    console.log('pay with payoneer works146!')
 
     $scope = $scope.$parent;
     $scope.items = $scope.$parent.gridScope.getItems();
 
     $scope.testVar = $scope.$parent.purchaseOrder.pkPurchaseID;
     $scope.payments = [];
-    $scope.outstanding = null;
-    $scope.paid = null;
-    $scope.selectedToPay = null;
+    $scope.outstanding = "0.00";
+    $scope.paid = "0.00";
+    $scope.selectedToPay = "0.00";
     $scope.balance = null;
     $scope.orderCurrency = '$';
 
@@ -53,14 +53,17 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     //Create columns
     var columns = [
-        { id: "column1", name: "ID", field: "id" },
-        { id: "column2", name: "Language", field: "lang" },
-        { id: "column3", name: "Year", field: "year" }
+        { id: "column1", name: "SKU", field: "SKU" },
+        { id: "column2", name: "Ordered Quantity", field: "Quantity" },
+        { id: "column3", name: "Paid Quantity", field: "Quantity" },
+        { id: "column4", name: "Price", field: "UnitCost" },
+        { id: "column5", name: "Quantity To Pay", field: "Quantity" }
     ];
 
     var options = {
         enableCellNavigation: true,
-        enableColumnReorder: false
+        enableColumnReorder: false,
+        enableAutoResize: true
     };
 
     // Pass it as a data provider to SlickGrid.
@@ -77,11 +80,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         grid.render();
     });
 
-    var data = [
-        {'id': 'l1', 'lang': 'Java', 'year': 1995},
-        {'id': 'l2', 'lang': 'JavaScript', 'year': 1995},
-        {'id': 'l3', 'lang': 'C#', 'year': 2000},
-        {'id': 'l4', 'lang': 'Python', 'year': 1991}];
+    var data = $scope.items;
 
       // This will fire the change events and update the grid.
       dataView.setItems(data);
