@@ -32,6 +32,14 @@
                       <td class="flexible-content">
                         <p>By Item Content</p>
 
+                        <div id="pwpByItemGrid" style="min-width:600px;height:200px;"></div>
+
+                        <p>Paid: </p>
+                        <p>Outstanding: </p>
+                        <p>Selected To Pay: </p>
+                        <p>Your balance is: </p>
+
+                        <button class="btn btn-primary" ng-click="refreshData()">Pay</button>
                       </td>
                     </tr>
                   </tbody>
@@ -44,33 +52,14 @@
                       <td class="flexible-content">
                         <p>By Amount Content</p>
 
+                        <div id="pwpByItemGrid" style="min-width:600px;height:200px;"></div>
+
+                        <button class="btn btn-primary" ng-click="refreshData()">Pay</button>
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-
-              <div class="tab-pane position-relative" data-index="6">
-                <div style="height:260px;">
-                  <table lw-tst="grid_SoldStats" class="lw-table" style="margin-bottom: 0;">
-                    <!-- FIRST LEVEL -->
-                    <thead>
-                      <tr>
-                        <th class="expander"></th>
-                        <th>Source</th>
-                        <th style="width:100px">Quantity</th>
-                        <th style="width:100px">Total</th>
-                        <th style="width:100px">Cost</th>
-                        <th style="width:100px">Profit margin</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!---->
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
             </div>
           </td>
         </tr>
@@ -79,40 +68,15 @@
     <lw-tab-set lw-tst="tab_set" modern-layout="" tab-loaded="tabLoaded">
       <lw-tab class="active" data-index="0">
 
-
       </lw-tab>
 
       <lw-tab data-index="1">
-
 
       </lw-tab>
     </lw-tab-set>
   </section>
 
-
-  <div>
-    <button class="btn btn-primary" ng-click="page='byItem'">By Item</button>
-    <button class="btn btn-primary" ng-click="page='byAmount'">By Amount</button>
-    <button ng-click="refreshData()">Update data</button>
-  </div>
-
-
-  <div ng-init="page='byItem'"></div>
-
-  <div ng-show="page === 'byItem'">
-    <h2>PO Items</h2>
-
-
-
-  </div>
-
-  <div ng-show="page === 'byAmount'">
-    <h2>PO Items</h2>
-
-  </div>
-
-
-  <div id="pwpByItemGrid" style="min-width:600px;height:200px;"></div>
+  
 
   <h2>Payment History</h2>
 

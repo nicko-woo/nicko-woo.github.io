@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works118!')
+    console.log('pay with payoneer works119!')
 
     $scope.gridScope = null;
 
