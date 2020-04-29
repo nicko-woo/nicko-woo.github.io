@@ -1,14 +1,13 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works134!')
+    console.log('pay with payoneer works135!')
 
-    $scope.gridScope = null;
+    // $scope.gridScope = null;
 
     $scope = $scope.$parent;
     $scope.items = $scope.$parent.gridScope.getItems();
 
     $scope.testVar = $scope.$parent.purchaseOrder.pkPurchaseID;
     $scope.payments = [];
-    $scope.supplierList = [];
 
     var pwpByItemsGrid;
     var columns = [
@@ -40,9 +39,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
       };
 
       $scope.init();
-
-
-
 
     // // // var dataView = new Slick.Data.DataView();
 
@@ -138,7 +134,4 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     //         $(".l0").addClass("slick-header-column")
     //     })
     // })
-
-    
-
 };
