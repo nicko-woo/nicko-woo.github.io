@@ -20,7 +20,9 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     var options = {
         enableCellNavigation: true,
-        enableColumnReorder: false
+        enableColumnReorder: false,
+        enableAutoResize: true,
+
     };
 
     $(function () {
@@ -33,12 +35,12 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         // })
     })
 
-      $scope.init = function () {
+      $scope.onInit = function () {
         pwpByItemsGrid.invalidateAllRows();
         pwpByItemsGrid.render();
       };
 
-      $scope.init();
+      $scope.onInit();
 
     // // // var dataView = new Slick.Data.DataView();
 
