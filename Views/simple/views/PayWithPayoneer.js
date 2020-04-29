@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works125!')
+    console.log('pay with payoneer works1256!')
 
     $scope.gridScope = null;
 
@@ -128,6 +128,13 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             $(".l0").addClass("slick-header-column")
         })
     })
+
+      $scope.init = function () {
+        grid.invalidateAllRows();
+        grid.render();
+      };
+
+      $scope.init();
 
 
 };
