@@ -46,8 +46,1479 @@
                     <tr>
                       <td class="flexible-content">
                         <p>By Amount Content</p>
+                        <section>
+                          <h2>Item stats:</h2>
+                          <lw-control lw-tst="StockFinder_Info" controlname="StockFinder_Info"
+                            data="15c826bb-0210-49cf-ad85-15c9241e3474">
+                            <div class="lwControl static" style="max-width: 100%;">
+                              <div ng-controller="StockFinder_InfoView" class="content">
 
-                        <div id="pwpByItemGrid" style="width: 100%; min-height: 200px; outline: 0px; position: relative;"></div>
+                                <content>
+                                  <!---->
+                                  <table class="generic-module-layout tabset" lw-tst="tab_set" modern-layout=""
+                                    tab-loaded="tabLoaded">
+                                    <tbody>
+                                      <tr>
+                                        <td class="static-content header-menu-content">
+                                          <ul class="nav nav-tabs" ng-class="{'nav-justified' : justified === 'true'}"
+                                            ng-hide="tabSet.shouldHideHeader();">
+                                            <li class="active" data-index="0" lw-tst="tab_Stock"><a>
+                                                <lw-tab-header lw-tst="tab_Stock" class="active">Stock</lw-tab-header>
+                                              </a></li>
+                                            <li data-index="1" lw-tst="tab_Supply" class=""><a>
+                                                <lw-tab-header lw-tst="tab_Supply" class="">Supply</lw-tab-header>
+                                              </a></li>
+                                            <li data-index="2" lw-tst="tab_PO" class=""><a>
+                                                <lw-tab-header lw-tst="tab_PO" class="">PO</lw-tab-header>
+                                              </a></li>
+                                            <li data-index="3" lw-tst="tab_AlsoSold"><a>
+                                                <lw-tab-header lw-tst="tab_AlsoSold">Also Sold</lw-tab-header>
+                                              </a></li>
+                                            <li data-index="4" lw-tst="tab_Returns"><a>
+                                                <lw-tab-header lw-tst="tab_Returns">Returns</lw-tab-header>
+                                              </a></li>
+                                            <li data-index="5" lw-tst="tab_Scrap"><a>
+                                                <lw-tab-header lw-tst="tab_Scrap">Scrap</lw-tab-header>
+                                              </a></li>
+                                            <li data-index="6" lw-tst="tab_SoldStats"><a>
+                                                <lw-tab-header lw-tst="tab_SoldStats">Sold Stats</lw-tab-header>
+                                              </a></li>
+
+                                          </ul>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="flexible-content">
+                                          <div class="tab-content">
+                                            <div class="tab-pane position-relative active" data-index="0">
+                                              <table class="generic-module-layout">
+                                                <tbody>
+                                                  <tr>
+                                                    <td class="flexible-content">
+                                                      <div class="linngrid">
+                                                        <div ng-transclude=""
+                                                          class="slickgrid stock-grid slickgrid slickgrid_902785 ui-widget"
+                                                          lw-tst="grid_Stock" enabletextselectiononcells="true"
+                                                          style="outline: 0px; position: relative;">
+                                                          <div tabindex="0" hidefocus=""
+                                                            style="position:fixed;width:0;height:0;top:0;left:0;outline:0;">
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-header slick-pane-left"
+                                                            tabindex="0" style="width: 100%;">
+                                                            <div
+                                                              class="ui-state-default slick-header slick-header-left">
+                                                              <div
+                                                                class="slick-header-columns slick-header-columns-left"
+                                                                style="left: -1000px; width: 1777px;" unselectable="on">
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slick-header-sortable"
+                                                                  id="slickgrid_902785a378c50d-e2ab-3275-b21e-3572e711f0d5"
+                                                                  title="" style="width: 194px;"><span
+                                                                    class="slick-column-name">Name</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slickgrid-align-center slick-header-sortable"
+                                                                  id="slickgrid_9027855660b3d2-19c4-bc5c-582d-5455615c2e55"
+                                                                  title="" style="width: 93px;"><span
+                                                                    class="slick-column-name">Level</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slickgrid-align-center slick-header-sortable"
+                                                                  id="slickgrid_90278596cdc003-c0bf-a059-cb17-6e3d662e8da8"
+                                                                  title="" style="width: 92px;"><span
+                                                                    class="slick-column-name">In Open Orders</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slickgrid-align-center slick-header-sortable"
+                                                                  id="slickgrid_90278522f8d47a-7177-2f23-81bf-f7c9d5cdbd9d"
+                                                                  title="" style="width: 92px;"><span
+                                                                    class="slick-column-name">Available</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slickgrid-align-center slick-header-sortable"
+                                                                  id="slickgrid_90278533c4044b-3c3d-0d44-f537-72edf548033a"
+                                                                  title="" style="width: 92px;"><span
+                                                                    class="slick-column-name">Due</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slick-header-sortable"
+                                                                  id="slickgrid_9027859dee7afc-a22d-19c3-54ce-d0075e72be34"
+                                                                  title="" style="width: 143px;"><span
+                                                                    class="slick-column-name">Unit Cost</span><span
+                                                                    class="slick-sort-indicator"></span></div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-header slick-pane-right"
+                                                            tabindex="0" style="display: none;">
+                                                            <div
+                                                              class="ui-state-default slick-header slick-header-right">
+                                                              <div
+                                                                class="slick-header-columns slick-header-columns-right"
+                                                                style="left: -1000px; width: 0px;" unselectable="on">
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-top slick-pane-left"
+                                                            tabindex="0" style="top: 37px; height: 213px; width: 100%;">
+                                                            <div class="ui-state-default slick-headerrow"
+                                                              style="display: none; width: 100%;">
+                                                              <div
+                                                                style="display: block; height: 1px; position: absolute; top: 0px; left: 0px; width: 760px;">
+                                                              </div>
+                                                              <div
+                                                                class="slick-headerrow-columns slick-headerrow-columns-left"
+                                                                style="width: 760px;"></div>
+                                                            </div>
+                                                            <div class="ui-state-default slick-top-panel-scroller"
+                                                              style="display: none;">
+                                                              <div class="slick-top-panel" style="width:10000px"></div>
+                                                            </div>
+                                                            <div
+                                                              class="slick-viewport slick-viewport-top slick-viewport-left"
+                                                              tabindex="0" hidefocus=""
+                                                              style="overflow: auto; height: 213px; width: 100%;">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-left"
+                                                                tabindex="0" hidefocus=""
+                                                                style="width: 760px; height: 196px;">
+                                                                <div class="ui-widget-content slick-row even"
+                                                                  style="top:0px">
+                                                                  <div class="slick-cell l0 r0"><span
+                                                                      ng-non-bindable="">Default</span></div>
+                                                                  <div class="slick-cell l1 r1  slickgrid-align-center">
+                                                                    <span ng-non-bindable="">0</span></div>
+                                                                  <div class="slick-cell l2 r2  slickgrid-align-center">
+                                                                    <span ng-non-bindable="">0</span></div>
+                                                                  <div class="slick-cell l3 r3  slickgrid-align-center">
+                                                                    <div
+                                                                      style="margin: -5px;padding:5px;text-align:center;color:white;background-color: #ff7782;">
+                                                                      0</div>
+                                                                  </div>
+                                                                  <div class="slick-cell l4 r4  slickgrid-align-center">
+                                                                    <span ng-non-bindable="">0</span></div>
+                                                                  <div class="slick-cell l5 r5">0.00</div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row odd"
+                                                                  style="top:28px">
+                                                                  <div class="slick-cell l0 r0"><span
+                                                                      ng-non-bindable="">Location 2</span></div>
+                                                                  <div class="slick-cell l1 r1  slickgrid-align-center">
+                                                                    <span ng-non-bindable="">0</span></div>
+                                                                  <div class="slick-cell l2 r2  slickgrid-align-center">
+                                                                    <span ng-non-bindable="">0</span></div>
+                                                                  <div class="slick-cell l3 r3  slickgrid-align-center">
+                                                                    <div
+                                                                      style="margin: -5px;padding:5px;text-align:center;color:white;background-color: #ff7782;">
+                                                                      0</div>
+                                                                  </div>
+                                                                  <div class="slick-cell l4 r4  slickgrid-align-center">
+                                                                    <span ng-non-bindable="">0</span></div>
+                                                                  <div class="slick-cell l5 r5">0.00</div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row even"
+                                                                  style="top:56px">
+                                                                  <div class="slick-cell l0 r0"><span
+                                                                      ng-non-bindable="">Location 3</span></div>
+                                                                  <div class="slick-cell l1 r1  slickgrid-align-center">
+                                                                    <span ng-non-bindable="">12</span></div>
+                                                                  <div class="slick-cell l2 r2  slickgrid-align-center">
+                                                                    <span ng-non-bindable="">0</span></div>
+                                                                  <div class="slick-cell l3 r3  slickgrid-align-center">
+                                                                    <div
+                                                                      style="margin: -5px;padding:5px;text-align:center;color:white;background-color: #AAC99E;">
+                                                                      12</div>
+                                                                  </div>
+                                                                  <div class="slick-cell l4 r4  slickgrid-align-center">
+                                                                    <span ng-non-bindable="">0</span></div>
+                                                                  <div class="slick-cell l5 r5">16.67</div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                            <div class="slickgrid-loading-viewport-left" tabindex="0"
+                                                              hidefocus="" style="">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-left"
+                                                                tabindex="0" hidefocus=""
+                                                                style="height: 196px; width: 760px;">
+                                                                <div class="ui-widget-content slick-row even fake-row"
+                                                                  style="top: 0px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row odd fake-row"
+                                                                  style="top: 28px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row even fake-row"
+                                                                  style="top: 56px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row odd fake-row"
+                                                                  style="top: 84px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row even fake-row"
+                                                                  style="top: 112px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row odd fake-row"
+                                                                  style="top: 140px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row even fake-row"
+                                                                  style="top: 168px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row odd fake-row"
+                                                                  style="top: 196px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-top slick-pane-right"
+                                                            tabindex="0" style="display: none;">
+                                                            <div class="ui-state-default slick-headerrow"
+                                                              style="display: none;">
+                                                              <div
+                                                                style="display: block; height: 1px; position: absolute; top: 0px; left: 0px; width: 760px;">
+                                                              </div>
+                                                              <div
+                                                                class="slick-headerrow-columns slick-headerrow-columns-right">
+                                                              </div>
+                                                            </div>
+                                                            <div class="ui-state-default slick-top-panel-scroller"
+                                                              style="display: none;">
+                                                              <div class="slick-top-panel" style="width:10000px"></div>
+                                                            </div>
+                                                            <div
+                                                              class="slick-viewport slick-viewport-top slick-viewport-right"
+                                                              tabindex="0" hidefocus=""
+                                                              style="overflow: auto; height: 213px;">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-right"
+                                                                tabindex="0" hidefocus="" style="height: 196px;"></div>
+                                                            </div>
+                                                            <div class="slickgrid-loading-viewport-right" tabindex="0"
+                                                              hidefocus="">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-right"
+                                                                tabindex="0" hidefocus=""
+                                                                style="height: 196px; width: 0px;"></div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-bottom slick-pane-left"
+                                                            tabindex="0" style="display: none;">
+                                                            <div
+                                                              class="slick-viewport slick-viewport-bottom slick-viewport-left"
+                                                              tabindex="0" hidefocus="" style="overflow: auto;">
+                                                              <div
+                                                                class="grid-canvas grid-canvas-bottom grid-canvas-left"
+                                                                tabindex="0" hidefocus=""></div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-bottom slick-pane-right"
+                                                            tabindex="0" style="display: none;">
+                                                            <div
+                                                              class="slick-viewport slick-viewport-bottom slick-viewport-right"
+                                                              tabindex="0" hidefocus="" style="overflow: auto;">
+                                                              <div
+                                                                class="grid-canvas grid-canvas-bottom grid-canvas-right"
+                                                                tabindex="0" hidefocus=""></div>
+                                                            </div>
+                                                          </div>
+                                                          <div tabindex="0" hidefocus=""
+                                                            style="position:fixed;width:0;height:0;top:0;left:0;outline:0;">
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                            <div class="tab-pane position-relative" data-index="1">
+                                              <table class="generic-module-layout">
+                                                <tbody>
+                                                  <tr>
+                                                    <td class="flexible-content">
+                                                      <div class="linngrid">
+                                                        <div ng-transclude=""
+                                                          class="slickgrid supply-grid slickgrid slickgrid_45532 ui-widget"
+                                                          lw-tst="grid_Supply" enabletextselectiononcells="true"
+                                                          style="outline: 0px; position: relative;">
+                                                          <div tabindex="0" hidefocus=""
+                                                            style="position:fixed;width:0;height:0;top:0;left:0;outline:0;">
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-header slick-pane-left"
+                                                            tabindex="0" style="width: 100%;">
+                                                            <div
+                                                              class="ui-state-default slick-header slick-header-left">
+                                                              <div
+                                                                class="slick-header-columns slick-header-columns-left"
+                                                                style="left: -1000px; width: 1777px;" unselectable="on">
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slick-header-sortable"
+                                                                  id="slickgrid_4553261c326a2-495f-bf87-f721-e9bc6cbaff70"
+                                                                  title="" style="width: 86px;"><span
+                                                                    class="slick-column-name">Default</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slick-header-sortable"
+                                                                  id="slickgrid_4553219bcfa14-854d-e0e3-e599-e8b993f1602e"
+                                                                  title="" style="width: 86px;"><span
+                                                                    class="slick-column-name">Supplier</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slickgrid-align-center slick-header-sortable"
+                                                                  id="slickgrid_45532580dc031-ad0b-c22d-2dec-a81dabb82e79"
+                                                                  title="" style="width: 86px;"><span
+                                                                    class="slick-column-name">Code</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slick-header-sortable"
+                                                                  id="slickgrid_45532a257f327-85bf-e73f-8f77-783a17ded1ad"
+                                                                  title="" style="width: 86px;"><span
+                                                                    class="slick-column-name">Pur. Price</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slick-header-sortable"
+                                                                  id="slickgrid_455325ebb989a-22f4-c2b4-6e36-b0ccdfa6f45b"
+                                                                  title="" style="width: 86px;"><span
+                                                                    class="slick-column-name">Min. Price</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slick-header-sortable"
+                                                                  id="slickgrid_45532bb806277-c48f-b7db-809f-cf9029cd7f19"
+                                                                  title="" style="width: 86px;"><span
+                                                                    class="slick-column-name">Max. Price</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slick-header-sortable"
+                                                                  id="slickgrid_45532fdd30ce7-56b9-d8a0-57b5-cb2d9d371fb7"
+                                                                  title="" style="width: 86px;"><span
+                                                                    class="slick-column-name">Avg. Price</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slickgrid-align-center slick-header-sortable"
+                                                                  id="slickgrid_45532ecb28581-1ca1-8c1c-fc62-d8549c270a54"
+                                                                  title="" style="width: 86px;"><span
+                                                                    class="slick-column-name">Avg. Lead Time</span><span
+                                                                    class="slick-sort-indicator"></span></div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-header slick-pane-right"
+                                                            tabindex="0" style="display: none;">
+                                                            <div
+                                                              class="ui-state-default slick-header slick-header-right">
+                                                              <div
+                                                                class="slick-header-columns slick-header-columns-right"
+                                                                style="left: -1000px; width: 0px;" unselectable="on">
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-top slick-pane-left"
+                                                            tabindex="0" style="top: 37px; height: 213px; width: 100%;">
+                                                            <div class="ui-state-default slick-headerrow"
+                                                              style="display: none; width: 100%;">
+                                                              <div
+                                                                style="display: block; height: 1px; position: absolute; top: 0px; left: 0px; width: 760px;">
+                                                              </div>
+                                                              <div
+                                                                class="slick-headerrow-columns slick-headerrow-columns-left"
+                                                                style="width: 760px;"></div>
+                                                            </div>
+                                                            <div class="ui-state-default slick-top-panel-scroller"
+                                                              style="display: none;">
+                                                              <div class="slick-top-panel" style="width:10000px"></div>
+                                                            </div>
+                                                            <div
+                                                              class="slick-viewport slick-viewport-top slick-viewport-left"
+                                                              tabindex="0" hidefocus=""
+                                                              style="overflow: auto; height: 213px; width: 100%;">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-left"
+                                                                tabindex="0" hidefocus=""
+                                                                style="width: 760px; height: 196px;">
+                                                                <div class="ui-widget-content slick-row even"
+                                                                  style="top:0px">
+                                                                  <div class="slick-cell l0 r0">
+                                                                    <i class="icon-ok" ng-show="true"></i>
+                                                                  </div>
+                                                                  <div class="slick-cell l1 r1"><span
+                                                                      ng-non-bindable="">Default</span></div>
+                                                                  <div class="slick-cell l2 r2  slickgrid-align-center">
+                                                                    <span ng-non-bindable="">1000000146TESTAP</span>
+                                                                  </div>
+                                                                  <div class="slick-cell l3 r3">5.00</div>
+                                                                  <div class="slick-cell l4 r4">0.00</div>
+                                                                  <div class="slick-cell l5 r5">0.00</div>
+                                                                  <div class="slick-cell l6 r6">0.00</div>
+                                                                  <div class="slick-cell l7 r7  slickgrid-align-center">
+                                                                    <span ng-non-bindable="">0</span></div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                            <div class="slickgrid-loading-viewport-left" tabindex="0"
+                                                              hidefocus="" style="">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-left"
+                                                                tabindex="0" hidefocus=""
+                                                                style="height: 196px; width: 760px;">
+                                                                <div class="ui-widget-content slick-row even fake-row"
+                                                                  style="top: 0px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                  <div class="slick-cell l6 r6"></div>
+                                                                  <div class="slick-cell l7 r7"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row odd fake-row"
+                                                                  style="top: 28px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                  <div class="slick-cell l6 r6"></div>
+                                                                  <div class="slick-cell l7 r7"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row even fake-row"
+                                                                  style="top: 56px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                  <div class="slick-cell l6 r6"></div>
+                                                                  <div class="slick-cell l7 r7"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row odd fake-row"
+                                                                  style="top: 84px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                  <div class="slick-cell l6 r6"></div>
+                                                                  <div class="slick-cell l7 r7"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row even fake-row"
+                                                                  style="top: 112px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                  <div class="slick-cell l6 r6"></div>
+                                                                  <div class="slick-cell l7 r7"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row odd fake-row"
+                                                                  style="top: 140px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                  <div class="slick-cell l6 r6"></div>
+                                                                  <div class="slick-cell l7 r7"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row even fake-row"
+                                                                  style="top: 168px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                  <div class="slick-cell l6 r6"></div>
+                                                                  <div class="slick-cell l7 r7"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row odd fake-row"
+                                                                  style="top: 196px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                  <div class="slick-cell l6 r6"></div>
+                                                                  <div class="slick-cell l7 r7"></div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-top slick-pane-right"
+                                                            tabindex="0" style="display: none;">
+                                                            <div class="ui-state-default slick-headerrow"
+                                                              style="display: none;">
+                                                              <div
+                                                                style="display: block; height: 1px; position: absolute; top: 0px; left: 0px; width: 760px;">
+                                                              </div>
+                                                              <div
+                                                                class="slick-headerrow-columns slick-headerrow-columns-right">
+                                                              </div>
+                                                            </div>
+                                                            <div class="ui-state-default slick-top-panel-scroller"
+                                                              style="display: none;">
+                                                              <div class="slick-top-panel" style="width:10000px"></div>
+                                                            </div>
+                                                            <div
+                                                              class="slick-viewport slick-viewport-top slick-viewport-right"
+                                                              tabindex="0" hidefocus=""
+                                                              style="overflow: auto; height: 213px;">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-right"
+                                                                tabindex="0" hidefocus="" style="height: 196px;"></div>
+                                                            </div>
+                                                            <div class="slickgrid-loading-viewport-right" tabindex="0"
+                                                              hidefocus="">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-right"
+                                                                tabindex="0" hidefocus=""
+                                                                style="height: 196px; width: 0px;"></div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-bottom slick-pane-left"
+                                                            tabindex="0" style="display: none;">
+                                                            <div
+                                                              class="slick-viewport slick-viewport-bottom slick-viewport-left"
+                                                              tabindex="0" hidefocus="" style="overflow: auto;">
+                                                              <div
+                                                                class="grid-canvas grid-canvas-bottom grid-canvas-left"
+                                                                tabindex="0" hidefocus=""></div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-bottom slick-pane-right"
+                                                            tabindex="0" style="display: none;">
+                                                            <div
+                                                              class="slick-viewport slick-viewport-bottom slick-viewport-right"
+                                                              tabindex="0" hidefocus="" style="overflow: auto;">
+                                                              <div
+                                                                class="grid-canvas grid-canvas-bottom grid-canvas-right"
+                                                                tabindex="0" hidefocus=""></div>
+                                                            </div>
+                                                          </div>
+                                                          <div tabindex="0" hidefocus=""
+                                                            style="position:fixed;width:0;height:0;top:0;left:0;outline:0;">
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                            <div class="tab-pane position-relative" data-index="2">
+                                              <table class="generic-module-layout">
+                                                <tbody>
+                                                  <tr>
+                                                    <td class="flexible-content">
+                                                      <div class="linngrid">
+                                                        <div ng-transclude=""
+                                                          class="slickgrid po-grid slickgrid slickgrid_891180 ui-widget"
+                                                          lw-tst="grid_PO" enabletextselectiononcells="true"
+                                                          style="outline: 0px; position: relative;">
+                                                          <div tabindex="0" hidefocus=""
+                                                            style="position:fixed;width:0;height:0;top:0;left:0;outline:0;">
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-header slick-pane-left"
+                                                            tabindex="0" style="width: 100%;">
+                                                            <div
+                                                              class="ui-state-default slick-header slick-header-left">
+                                                              <div
+                                                                class="slick-header-columns slick-header-columns-left"
+                                                                style="left: -1000px; width: 1777px;" unselectable="on">
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slick-header-sortable"
+                                                                  id="slickgrid_891180ee94ab2d-01a6-28f1-fb57-0a1731d1a678"
+                                                                  title="" style="width: 99px;"><span
+                                                                    class="slick-column-name">Supplier</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slick-header-sortable"
+                                                                  id="slickgrid_891180045a83bc-811c-0f4a-34a1-fd993f1c7198"
+                                                                  title="" style="width: 99px;"><span
+                                                                    class="slick-column-name">Location</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slickgrid-align-center slick-header-sortable"
+                                                                  id="slickgrid_8911807c1bc66d-615c-e56f-b13d-150da96336ef"
+                                                                  title="" style="width: 99px;"><span
+                                                                    class="slick-column-name">PO Date</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slickgrid-align-center slick-header-sortable"
+                                                                  id="slickgrid_891180d17347c7-a4b8-f094-88d6-a07688e0e867"
+                                                                  title="" style="width: 100px;"><span
+                                                                    class="slick-column-name">Del. Date</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slickgrid-align-center slick-header-sortable"
+                                                                  id="slickgrid_891180afa16999-43a5-df1e-396e-f8f977359611"
+                                                                  title="" style="width: 100px;"><span
+                                                                    class="slick-column-name">Quantity</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slickgrid-align-center slick-header-sortable"
+                                                                  id="slickgrid_891180085ae5b6-7340-c58a-e996-a8ce03a4ccf1"
+                                                                  title="" style="width: 100px;"><span
+                                                                    class="slick-column-name">Delivered</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slick-header-sortable"
+                                                                  id="slickgrid_89118020db69d7-e6cd-fffd-8f67-9fcf9bc96a50"
+                                                                  title="" style="width: 100px;"><span
+                                                                    class="slick-column-name">Unit cost</span><span
+                                                                    class="slick-sort-indicator"></span></div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-header slick-pane-right"
+                                                            tabindex="0" style="display: none;">
+                                                            <div
+                                                              class="ui-state-default slick-header slick-header-right">
+                                                              <div
+                                                                class="slick-header-columns slick-header-columns-right"
+                                                                style="left: -1000px; width: 0px;" unselectable="on">
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-top slick-pane-left"
+                                                            tabindex="0" style="top: 37px; height: 213px; width: 100%;">
+                                                            <div class="ui-state-default slick-headerrow"
+                                                              style="display: none; width: 100%;">
+                                                              <div
+                                                                style="display: block; height: 1px; position: absolute; top: 0px; left: 0px; width: 760px;">
+                                                              </div>
+                                                              <div
+                                                                class="slick-headerrow-columns slick-headerrow-columns-left"
+                                                                style="width: 760px;"></div>
+                                                            </div>
+                                                            <div class="ui-state-default slick-top-panel-scroller"
+                                                              style="display: none;">
+                                                              <div class="slick-top-panel" style="width:10000px"></div>
+                                                            </div>
+                                                            <div
+                                                              class="slick-viewport slick-viewport-top slick-viewport-left"
+                                                              tabindex="0" hidefocus=""
+                                                              style="overflow: auto; height: 213px; width: 100%;">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-left"
+                                                                tabindex="0" hidefocus=""
+                                                                style="width: 760px; height: 196px;"></div>
+                                                            </div>
+                                                            <div class="slickgrid-loading-viewport-left" tabindex="0"
+                                                              hidefocus="" style="">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-left"
+                                                                tabindex="0" hidefocus=""
+                                                                style="height: 196px; width: 760px;">
+                                                                <div class="ui-widget-content slick-row even fake-row"
+                                                                  style="top: 0px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                  <div class="slick-cell l6 r6"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row odd fake-row"
+                                                                  style="top: 28px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                  <div class="slick-cell l6 r6"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row even fake-row"
+                                                                  style="top: 56px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                  <div class="slick-cell l6 r6"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row odd fake-row"
+                                                                  style="top: 84px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                  <div class="slick-cell l6 r6"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row even fake-row"
+                                                                  style="top: 112px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                  <div class="slick-cell l6 r6"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row odd fake-row"
+                                                                  style="top: 140px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                  <div class="slick-cell l6 r6"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row even fake-row"
+                                                                  style="top: 168px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                  <div class="slick-cell l6 r6"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row odd fake-row"
+                                                                  style="top: 196px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                  <div class="slick-cell l4 r4"></div>
+                                                                  <div class="slick-cell l5 r5"></div>
+                                                                  <div class="slick-cell l6 r6"></div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-top slick-pane-right"
+                                                            tabindex="0" style="display: none;">
+                                                            <div class="ui-state-default slick-headerrow"
+                                                              style="display: none;">
+                                                              <div
+                                                                style="display: block; height: 1px; position: absolute; top: 0px; left: 0px; width: 760px;">
+                                                              </div>
+                                                              <div
+                                                                class="slick-headerrow-columns slick-headerrow-columns-right">
+                                                              </div>
+                                                            </div>
+                                                            <div class="ui-state-default slick-top-panel-scroller"
+                                                              style="display: none;">
+                                                              <div class="slick-top-panel" style="width:10000px"></div>
+                                                            </div>
+                                                            <div
+                                                              class="slick-viewport slick-viewport-top slick-viewport-right"
+                                                              tabindex="0" hidefocus=""
+                                                              style="overflow: auto; height: 213px;">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-right"
+                                                                tabindex="0" hidefocus="" style="height: 196px;"></div>
+                                                            </div>
+                                                            <div class="slickgrid-loading-viewport-right" tabindex="0"
+                                                              hidefocus="">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-right"
+                                                                tabindex="0" hidefocus=""
+                                                                style="height: 196px; width: 0px;"></div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-bottom slick-pane-left"
+                                                            tabindex="0" style="display: none;">
+                                                            <div
+                                                              class="slick-viewport slick-viewport-bottom slick-viewport-left"
+                                                              tabindex="0" hidefocus="" style="overflow: auto;">
+                                                              <div
+                                                                class="grid-canvas grid-canvas-bottom grid-canvas-left"
+                                                                tabindex="0" hidefocus=""></div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-bottom slick-pane-right"
+                                                            tabindex="0" style="display: none;">
+                                                            <div
+                                                              class="slick-viewport slick-viewport-bottom slick-viewport-right"
+                                                              tabindex="0" hidefocus="" style="overflow: auto;">
+                                                              <div
+                                                                class="grid-canvas grid-canvas-bottom grid-canvas-right"
+                                                                tabindex="0" hidefocus=""></div>
+                                                            </div>
+                                                          </div>
+                                                          <div tabindex="0" hidefocus=""
+                                                            style="position:fixed;width:0;height:0;top:0;left:0;outline:0;">
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                            <div class="tab-pane position-relative" data-index="3">
+                                              <table class="generic-module-layout">
+                                                <tbody>
+                                                  <tr>
+                                                    <td class="flexible-content">
+                                                      <div class="linngrid">
+                                                        <div ng-transclude=""
+                                                          class="slickgrid also-sold-grid slickgrid slickgrid_866172 ui-widget"
+                                                          lw-tst="grid_AlsoSold" enabletextselectiononcells="true"
+                                                          style="outline: 0px; position: relative;">
+                                                          <div tabindex="0" hidefocus=""
+                                                            style="position:fixed;width:0;height:0;top:0;left:0;outline:0;">
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-header slick-pane-left"
+                                                            tabindex="0" style="width: 100%;">
+                                                            <div
+                                                              class="ui-state-default slick-header slick-header-left">
+                                                              <div
+                                                                class="slick-header-columns slick-header-columns-left"
+                                                                style="left: -1000px; width: 1777px;" unselectable="on">
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slick-header-sortable"
+                                                                  id="slickgrid_866172a73bb16f-d47a-938f-a1f8-a1eb3aa7a5c8"
+                                                                  title="" style="width: 245px;"><span
+                                                                    class="slick-column-name">SKU</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slick-header-sortable"
+                                                                  id="slickgrid_86617254fc5866-f261-3315-492a-7e14fab7510a"
+                                                                  title="" style="width: 244px;"><span
+                                                                    class="slick-column-name">Item Title</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slickgrid-align-center slick-header-sortable"
+                                                                  id="slickgrid_8661723e51b1e8-25cf-d2a0-cb9c-4842387e7714"
+                                                                  title="" style="width: 244px;"><span
+                                                                    class="slick-column-name">Quantity</span><span
+                                                                    class="slick-sort-indicator"></span></div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-header slick-pane-right"
+                                                            tabindex="0" style="display: none;">
+                                                            <div
+                                                              class="ui-state-default slick-header slick-header-right">
+                                                              <div
+                                                                class="slick-header-columns slick-header-columns-right"
+                                                                style="left: -1000px; width: 0px;" unselectable="on">
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-top slick-pane-left"
+                                                            tabindex="0" style="top: 37px; height: 213px; width: 100%;">
+                                                            <div class="ui-state-default slick-headerrow"
+                                                              style="display: none; width: 100%;">
+                                                              <div
+                                                                style="display: block; height: 1px; position: absolute; top: 0px; left: 0px; width: 760px;">
+                                                              </div>
+                                                              <div
+                                                                class="slick-headerrow-columns slick-headerrow-columns-left"
+                                                                style="width: 760px;"></div>
+                                                            </div>
+                                                            <div class="ui-state-default slick-top-panel-scroller"
+                                                              style="display: none;">
+                                                              <div class="slick-top-panel" style="width:10000px"></div>
+                                                            </div>
+                                                            <div
+                                                              class="slick-viewport slick-viewport-top slick-viewport-left"
+                                                              tabindex="0" hidefocus=""
+                                                              style="overflow: auto; height: 213px; width: 100%;">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-left"
+                                                                tabindex="0" hidefocus=""
+                                                                style="width: 760px; height: 196px;"></div>
+                                                            </div>
+                                                            <div class="slickgrid-loading-viewport-left" tabindex="0"
+                                                              hidefocus="" style="">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-left"
+                                                                tabindex="0" hidefocus=""
+                                                                style="height: 196px; width: 760px;">
+                                                                <div class="ui-widget-content slick-row even fake-row"
+                                                                  style="top: 0px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row odd fake-row"
+                                                                  style="top: 28px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row even fake-row"
+                                                                  style="top: 56px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row odd fake-row"
+                                                                  style="top: 84px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-top slick-pane-right"
+                                                            tabindex="0" style="display: none;">
+                                                            <div class="ui-state-default slick-headerrow"
+                                                              style="display: none;">
+                                                              <div
+                                                                style="display: block; height: 1px; position: absolute; top: 0px; left: 0px; width: 760px;">
+                                                              </div>
+                                                              <div
+                                                                class="slick-headerrow-columns slick-headerrow-columns-right">
+                                                              </div>
+                                                            </div>
+                                                            <div class="ui-state-default slick-top-panel-scroller"
+                                                              style="display: none;">
+                                                              <div class="slick-top-panel" style="width:10000px"></div>
+                                                            </div>
+                                                            <div
+                                                              class="slick-viewport slick-viewport-top slick-viewport-right"
+                                                              tabindex="0" hidefocus=""
+                                                              style="overflow: auto; height: 213px;">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-right"
+                                                                tabindex="0" hidefocus="" style="height: 196px;"></div>
+                                                            </div>
+                                                            <div class="slickgrid-loading-viewport-right" tabindex="0"
+                                                              hidefocus="">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-right"
+                                                                tabindex="0" hidefocus=""
+                                                                style="height: 196px; width: 0px;"></div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-bottom slick-pane-left"
+                                                            tabindex="0" style="display: none;">
+                                                            <div
+                                                              class="slick-viewport slick-viewport-bottom slick-viewport-left"
+                                                              tabindex="0" hidefocus="" style="overflow: auto;">
+                                                              <div
+                                                                class="grid-canvas grid-canvas-bottom grid-canvas-left"
+                                                                tabindex="0" hidefocus=""></div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-bottom slick-pane-right"
+                                                            tabindex="0" style="display: none;">
+                                                            <div
+                                                              class="slick-viewport slick-viewport-bottom slick-viewport-right"
+                                                              tabindex="0" hidefocus="" style="overflow: auto;">
+                                                              <div
+                                                                class="grid-canvas grid-canvas-bottom grid-canvas-right"
+                                                                tabindex="0" hidefocus=""></div>
+                                                            </div>
+                                                          </div>
+                                                          <div tabindex="0" hidefocus=""
+                                                            style="position:fixed;width:0;height:0;top:0;left:0;outline:0;">
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                            <div class="tab-pane position-relative" data-index="4">
+                                              <table class="generic-module-layout">
+                                                <tbody>
+                                                  <tr>
+                                                    <td class="flexible-content">
+                                                      <div class="linngrid">
+                                                        <div ng-transclude=""
+                                                          class="slickgrid returns-grid slickgrid slickgrid_395684 ui-widget"
+                                                          lw-tst="grid_Returns" enabletextselectiononcells="true"
+                                                          style="outline: 0px; position: relative;">
+                                                          <div tabindex="0" hidefocus=""
+                                                            style="position:fixed;width:0;height:0;top:0;left:0;outline:0;">
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-header slick-pane-left"
+                                                            tabindex="0" style="width: 100%;">
+                                                            <div
+                                                              class="ui-state-default slick-header slick-header-left">
+                                                              <div
+                                                                class="slick-header-columns slick-header-columns-left"
+                                                                style="left: -1000px; width: 1777px;" unselectable="on">
+                                                                <div class="ui-state-default slick-header-column"
+                                                                  id="slickgrid_395684428589e7-c023-ef71-341d-66ff19bd66c0"
+                                                                  title="" style="width: 245px;"><span
+                                                                    class="slick-column-name">Month</span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slickgrid-align-center slick-header-sortable"
+                                                                  id="slickgrid_39568460d02c96-39cc-e01c-df15-c5a12f5ee612"
+                                                                  title="" style="width: 244px;"><span
+                                                                    class="slick-column-name">Quantity</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slick-header-sortable"
+                                                                  id="slickgrid_3956848ea575fe-3824-50e6-c3d4-a0fc6744be4c"
+                                                                  title="" style="width: 244px;"><span
+                                                                    class="slick-column-name">Reason</span><span
+                                                                    class="slick-sort-indicator"></span></div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-header slick-pane-right"
+                                                            tabindex="0" style="display: none;">
+                                                            <div
+                                                              class="ui-state-default slick-header slick-header-right">
+                                                              <div
+                                                                class="slick-header-columns slick-header-columns-right"
+                                                                style="left: -1000px; width: 0px;" unselectable="on">
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-top slick-pane-left"
+                                                            tabindex="0" style="top: 37px; height: 213px; width: 100%;">
+                                                            <div class="ui-state-default slick-headerrow"
+                                                              style="display: none; width: 100%;">
+                                                              <div
+                                                                style="display: block; height: 1px; position: absolute; top: 0px; left: 0px; width: 760px;">
+                                                              </div>
+                                                              <div
+                                                                class="slick-headerrow-columns slick-headerrow-columns-left"
+                                                                style="width: 760px;"></div>
+                                                            </div>
+                                                            <div class="ui-state-default slick-top-panel-scroller"
+                                                              style="display: none;">
+                                                              <div class="slick-top-panel" style="width:10000px"></div>
+                                                            </div>
+                                                            <div
+                                                              class="slick-viewport slick-viewport-top slick-viewport-left"
+                                                              tabindex="0" hidefocus=""
+                                                              style="overflow: auto; height: 213px; width: 100%;">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-left"
+                                                                tabindex="0" hidefocus=""
+                                                                style="width: 760px; height: 196px;"></div>
+                                                            </div>
+                                                            <div class="slickgrid-loading-viewport-left" tabindex="0"
+                                                              hidefocus="" style="">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-left"
+                                                                tabindex="0" hidefocus=""
+                                                                style="height: 196px; width: 760px;">
+                                                                <div class="ui-widget-content slick-row even fake-row"
+                                                                  style="top: 0px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row odd fake-row"
+                                                                  style="top: 28px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row even fake-row"
+                                                                  style="top: 56px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row odd fake-row"
+                                                                  style="top: 84px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-top slick-pane-right"
+                                                            tabindex="0" style="display: none;">
+                                                            <div class="ui-state-default slick-headerrow"
+                                                              style="display: none;">
+                                                              <div
+                                                                style="display: block; height: 1px; position: absolute; top: 0px; left: 0px; width: 760px;">
+                                                              </div>
+                                                              <div
+                                                                class="slick-headerrow-columns slick-headerrow-columns-right">
+                                                              </div>
+                                                            </div>
+                                                            <div class="ui-state-default slick-top-panel-scroller"
+                                                              style="display: none;">
+                                                              <div class="slick-top-panel" style="width:10000px"></div>
+                                                            </div>
+                                                            <div
+                                                              class="slick-viewport slick-viewport-top slick-viewport-right"
+                                                              tabindex="0" hidefocus=""
+                                                              style="overflow: auto; height: 213px;">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-right"
+                                                                tabindex="0" hidefocus="" style="height: 196px;"></div>
+                                                            </div>
+                                                            <div class="slickgrid-loading-viewport-right" tabindex="0"
+                                                              hidefocus="">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-right"
+                                                                tabindex="0" hidefocus=""
+                                                                style="height: 196px; width: 0px;"></div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-bottom slick-pane-left"
+                                                            tabindex="0" style="display: none;">
+                                                            <div
+                                                              class="slick-viewport slick-viewport-bottom slick-viewport-left"
+                                                              tabindex="0" hidefocus="" style="overflow: auto;">
+                                                              <div
+                                                                class="grid-canvas grid-canvas-bottom grid-canvas-left"
+                                                                tabindex="0" hidefocus=""></div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-bottom slick-pane-right"
+                                                            tabindex="0" style="display: none;">
+                                                            <div
+                                                              class="slick-viewport slick-viewport-bottom slick-viewport-right"
+                                                              tabindex="0" hidefocus="" style="overflow: auto;">
+                                                              <div
+                                                                class="grid-canvas grid-canvas-bottom grid-canvas-right"
+                                                                tabindex="0" hidefocus=""></div>
+                                                            </div>
+                                                          </div>
+                                                          <div tabindex="0" hidefocus=""
+                                                            style="position:fixed;width:0;height:0;top:0;left:0;outline:0;">
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                            <div class="tab-pane position-relative" data-index="5">
+                                              <table class="generic-module-layout">
+                                                <tbody>
+                                                  <tr>
+                                                    <td class="flexible-content">
+                                                      <div class="linngrid">
+                                                        <div ng-transclude=""
+                                                          class="slickgrid scrap-grid slickgrid slickgrid_49755 ui-widget"
+                                                          lw-tst="grid_Scrap" enabletextselectiononcells="true"
+                                                          style="outline: 0px; position: relative;">
+                                                          <div tabindex="0" hidefocus=""
+                                                            style="position:fixed;width:0;height:0;top:0;left:0;outline:0;">
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-header slick-pane-left"
+                                                            tabindex="0" style="width: 100%;">
+                                                            <div
+                                                              class="ui-state-default slick-header slick-header-left">
+                                                              <div
+                                                                class="slick-header-columns slick-header-columns-left"
+                                                                style="left: -1000px; width: 1777px;" unselectable="on">
+                                                                <div class="ui-state-default slick-header-column"
+                                                                  id="slickgrid_497556a7b01f9-6786-3d3a-6644-7d0aae1a5c62"
+                                                                  title="" style="width: 181px;"><span
+                                                                    class="slick-column-name">Month</span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slickgrid-align-center slick-header-sortable"
+                                                                  id="slickgrid_49755d80d1ce5-52ac-33a8-e6ec-2b66ad8f3e26"
+                                                                  title="" style="width: 181px;"><span
+                                                                    class="slick-column-name">Quantity</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slick-header-sortable"
+                                                                  id="slickgrid_497559ca4c43f-0feb-a098-8360-f71cff8fda2f"
+                                                                  title="" style="width: 181px;"><span
+                                                                    class="slick-column-name">Scrap Cost</span><span
+                                                                    class="slick-sort-indicator"></span>
+                                                                  <div class="slick-resizable-handle"></div>
+                                                                </div>
+                                                                <div
+                                                                  class="ui-state-default slick-header-column slick-header-sortable"
+                                                                  id="slickgrid_497551ffeaf97-cc46-27a9-0672-27aea64877a6"
+                                                                  title="" style="width: 181px;"><span
+                                                                    class="slick-column-name">Scrap Reason</span><span
+                                                                    class="slick-sort-indicator"></span></div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-header slick-pane-right"
+                                                            tabindex="0" style="display: none;">
+                                                            <div
+                                                              class="ui-state-default slick-header slick-header-right">
+                                                              <div
+                                                                class="slick-header-columns slick-header-columns-right"
+                                                                style="left: -1000px; width: 0px;" unselectable="on">
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-top slick-pane-left"
+                                                            tabindex="0" style="top: 37px; height: 213px; width: 100%;">
+                                                            <div class="ui-state-default slick-headerrow"
+                                                              style="display: none; width: 100%;">
+                                                              <div
+                                                                style="display: block; height: 1px; position: absolute; top: 0px; left: 0px; width: 760px;">
+                                                              </div>
+                                                              <div
+                                                                class="slick-headerrow-columns slick-headerrow-columns-left"
+                                                                style="width: 760px;"></div>
+                                                            </div>
+                                                            <div class="ui-state-default slick-top-panel-scroller"
+                                                              style="display: none;">
+                                                              <div class="slick-top-panel" style="width:10000px"></div>
+                                                            </div>
+                                                            <div
+                                                              class="slick-viewport slick-viewport-top slick-viewport-left"
+                                                              tabindex="0" hidefocus=""
+                                                              style="overflow: auto; height: 213px; width: 100%;">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-left"
+                                                                tabindex="0" hidefocus=""
+                                                                style="width: 760px; height: 196px;"></div>
+                                                            </div>
+                                                            <div class="slickgrid-loading-viewport-left" tabindex="0"
+                                                              hidefocus="" style="">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-left"
+                                                                tabindex="0" hidefocus=""
+                                                                style="height: 196px; width: 760px;">
+                                                                <div class="ui-widget-content slick-row even fake-row"
+                                                                  style="top: 0px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row odd fake-row"
+                                                                  style="top: 28px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row even fake-row"
+                                                                  style="top: 56px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                </div>
+                                                                <div class="ui-widget-content slick-row odd fake-row"
+                                                                  style="top: 84px;">
+                                                                  <div class="slick-cell l0 r0"></div>
+                                                                  <div class="slick-cell l1 r1"></div>
+                                                                  <div class="slick-cell l2 r2"></div>
+                                                                  <div class="slick-cell l3 r3"></div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-top slick-pane-right"
+                                                            tabindex="0" style="display: none;">
+                                                            <div class="ui-state-default slick-headerrow"
+                                                              style="display: none;">
+                                                              <div
+                                                                style="display: block; height: 1px; position: absolute; top: 0px; left: 0px; width: 760px;">
+                                                              </div>
+                                                              <div
+                                                                class="slick-headerrow-columns slick-headerrow-columns-right">
+                                                              </div>
+                                                            </div>
+                                                            <div class="ui-state-default slick-top-panel-scroller"
+                                                              style="display: none;">
+                                                              <div class="slick-top-panel" style="width:10000px"></div>
+                                                            </div>
+                                                            <div
+                                                              class="slick-viewport slick-viewport-top slick-viewport-right"
+                                                              tabindex="0" hidefocus=""
+                                                              style="overflow: auto; height: 213px;">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-right"
+                                                                tabindex="0" hidefocus="" style="height: 196px;"></div>
+                                                            </div>
+                                                            <div class="slickgrid-loading-viewport-right" tabindex="0"
+                                                              hidefocus="">
+                                                              <div class="grid-canvas grid-canvas-top grid-canvas-right"
+                                                                tabindex="0" hidefocus=""
+                                                                style="height: 196px; width: 0px;"></div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-bottom slick-pane-left"
+                                                            tabindex="0" style="display: none;">
+                                                            <div
+                                                              class="slick-viewport slick-viewport-bottom slick-viewport-left"
+                                                              tabindex="0" hidefocus="" style="overflow: auto;">
+                                                              <div
+                                                                class="grid-canvas grid-canvas-bottom grid-canvas-left"
+                                                                tabindex="0" hidefocus=""></div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="slick-pane slick-pane-bottom slick-pane-right"
+                                                            tabindex="0" style="display: none;">
+                                                            <div
+                                                              class="slick-viewport slick-viewport-bottom slick-viewport-right"
+                                                              tabindex="0" hidefocus="" style="overflow: auto;">
+                                                              <div
+                                                                class="grid-canvas grid-canvas-bottom grid-canvas-right"
+                                                                tabindex="0" hidefocus=""></div>
+                                                            </div>
+                                                          </div>
+                                                          <div tabindex="0" hidefocus=""
+                                                            style="position:fixed;width:0;height:0;top:0;left:0;outline:0;">
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+
+                                            </div>
+                                            <div class="tab-pane position-relative" data-index="6">
+                                              <div style="height:260px;">
+                                                <table lw-tst="grid_SoldStats" class="lw-table"
+                                                  style="margin-bottom: 0;">
+                                                  <!-- FIRST LEVEL -->
+                                                  <thead>
+                                                    <tr>
+                                                      <th class="expander"></th>
+                                                      <th>Source</th>
+                                                      <th style="width:100px">Quantity</th>
+                                                      <th style="width:100px">Total</th>
+                                                      <th style="width:100px">Cost</th>
+                                                      <th style="width:100px">Profit margin</th>
+                                                    </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                    <!---->
+                                                  </tbody>
+                                                </table>
+                                              </div>
+                                            </div>
+
+                                          </div>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                  <lw-tab-set lw-tst="tab_set" modern-layout="" tab-loaded="tabLoaded">
+                                    <lw-tab class="active" data-index="0">
+
+
+                                    </lw-tab>
+
+                                    <lw-tab data-index="1">
+
+
+                                    </lw-tab>
+
+                                    <lw-tab data-index="2">
+
+
+                                    </lw-tab>
+
+                                    <lw-tab data-index="3">
+
+
+                                    </lw-tab>
+
+                                    <lw-tab data-index="4">
+
+
+                                    </lw-tab>
+
+                                    <lw-tab data-index="5">
+
+
+                                    </lw-tab>
+
+                                    <lw-tab data-index="6">
+
+
+                                    </lw-tab>
+                                  </lw-tab-set>
+                                </content>
+
+                              </div>
+                            </div>
+                          </lw-control>
+                        </section>
+
+                        <div class="linngrid" id="pwpByItemGrid"
+                          style="width: 100%; min-height: 200px; outline: 0px; position: relative;"></div>
 
                         <button class="btn btn-primary" ng-click="refreshData()">Pay</button>
                       </td>
@@ -76,4 +1547,3 @@
   <h2>Payment History</h2>
 
 </div>
-
