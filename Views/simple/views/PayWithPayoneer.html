@@ -6,117 +6,74 @@
   <p>{{ testVar }}</p>
 
   <section>
-    <h2>Item stats:</h2>
-    <lw-control lw-tst="StockFinder_Info" controlname="StockFinder_Info" data="9fe24889-21b8-484e-a132-18e71c925e16">
-      <div class="lwControl static" style="max-width: 100%;">
-            <!---->
-            <table class="generic-module-layout tabset" lw-tst="tab_set" modern-layout="" tab-loaded="tabLoaded">
-              <tbody>
-                <tr>
-                  <td class="static-content header-menu-content">
-                    <ul class="nav nav-tabs" ng-class="{'nav-justified' : justified === 'true'}"
-                      ng-hide="tabSet.shouldHideHeader();">
-                      <li class="active" data-index="0" lw-tst="tab_Stock"><a>
-                          <lw-tab-header lw-tst="tab_Stock" class="active">Stock</lw-tab-header>
-                        </a></li>
-                      <li data-index="1" lw-tst="tab_Supply" class=""><a>
-                          <lw-tab-header lw-tst="tab_Supply" class="">Supply</lw-tab-header>
-                        </a></li>
-                      
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="flexible-content">
-                    <div class="tab-content">
-                      <div class="tab-pane position-relative active" data-index="0">
-                        <table class="generic-module-layout">
-                          <tbody>
-                            <tr>
-                              <td class="flexible-content">
+    <table class="generic-module-layout tabset" lw-tst="tab_set" modern-layout="" tab-loaded="tabLoaded">
+      <tbody>
+        <tr>
+          <td class="static-content header-menu-content">
+            <ul class="nav nav-tabs" ng-class="{'nav-justified' : justified === 'true'}"
+              ng-hide="tabSet.shouldHideHeader();">
+              <li class="active" data-index="0" lw-tst="tab_Stock"><a>
+                  <lw-tab-header lw-tst="tab_Stock" class="active">Stock</lw-tab-header>
+                </a></li>
+              <li data-index="1" lw-tst="tab_Supply" class=""><a>
+                  <lw-tab-header lw-tst="tab_Supply" class="">Supply</lw-tab-header>
+                </a></li>
+              
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="flexible-content">
+            <div class="tab-content">
+              <div class="tab-pane position-relative active" data-index="0">
+                <table class="generic-module-layout">
+                  <tbody>
+                    <tr>
+                      <td class="flexible-content">
 
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="tab-pane position-relative" data-index="1">
-                        <table class="generic-module-layout">
-                          <tbody>
-                            <tr>
-                              <td class="flexible-content">
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tab-pane position-relative" data-index="1">
+                <table class="generic-module-layout">
+                  <tbody>
+                    <tr>
+                      <td class="flexible-content">
 
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      
-                      <div class="tab-pane position-relative" data-index="6">
-                        <div style="height:260px;">
-                          <table lw-tst="grid_SoldStats" class="lw-table" style="margin-bottom: 0;">
-                            <!-- FIRST LEVEL -->
-                            <thead>
-                              <tr>
-                                <th class="expander"></th>
-                                <th>Source</th>
-                                <th style="width:100px">Quantity</th>
-                                <th style="width:100px">Total</th>
-                                <th style="width:100px">Cost</th>
-                                <th style="width:100px">Profit margin</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <!---->
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div class="tab-pane position-relative" data-index="6">
+                <div style="height:260px;">
+                  <table lw-tst="grid_SoldStats" class="lw-table" style="margin-bottom: 0;">
+                    <!-- FIRST LEVEL -->
+                    <thead>
+                      <tr>
+                        <th class="expander"></th>
+                        <th>Source</th>
+                        <th style="width:100px">Quantity</th>
+                        <th style="width:100px">Total</th>
+                        <th style="width:100px">Cost</th>
+                        <th style="width:100px">Profit margin</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!---->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
 
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <lw-tab-set lw-tst="tab_set" modern-layout="" tab-loaded="tabLoaded">
-              <lw-tab class="active" data-index="0">
-
-
-              </lw-tab>
-
-              <lw-tab data-index="1">
-
-
-              </lw-tab>
-
-              <lw-tab data-index="2">
-
-
-              </lw-tab>
-
-              <lw-tab data-index="3">
-
-
-              </lw-tab>
-
-              <lw-tab data-index="4">
-
-
-              </lw-tab>
-
-              <lw-tab data-index="5">
-
-
-              </lw-tab>
-
-              <lw-tab data-index="6">
-
-
-              </lw-tab>
-            </lw-tab-set>
-
-      </div>
-    </lw-control>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 
 
