@@ -24,11 +24,7 @@ var PlaceHolder = function ($scope, $element) {
             title: "Pay with Payoneer - " + $scope.purchaseOrder.ExternalInvoiceNumber,
             closeOnEscape: false,
             closeOnBackDrop: false,
-            data: {
-                pkPurchaseId: $scope.purchaseOrder.pkPurchaseID,
-                items: $scope.gridScope.getItems(),
-                externalInvoiceNumber: $scope.purchaseOrder.ExternalInvoiceNumber
-            },
+            data: {},
             ngScope: $scope
 
         });
