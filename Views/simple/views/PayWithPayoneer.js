@@ -97,21 +97,23 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         dataView.setItems(data);
         dataView.endUpdate();
         grid.render();
+        grid.updateRowCount();
+        grid.render();
         // grid.resizeCanvas();
         // grid.invalidate();
         // $('#pwpByItemGrid').on('shown', grid.resizeCanvas);
 
         $scope.selectedToPay = $scope.sumSelected($scope.poItems, 'Price', 'ToPayQuantity');
 
-        setTimeout(function () {
-            dataView.beginUpdate();
-            grid.invalidateAllRows();
-            dataView.setItems(data);
-            dataView.endUpdate();
-            grid.render();
+        // setTimeout(function () {
+        //     dataView.beginUpdate();
+        //     grid.invalidateAllRows();
+        //     dataView.setItems(data);
+        //     dataView.endUpdate();
+        //     grid.render();
 
-            console.log("grid re-rendered after timeout")
-        }, 3000);
+        //     console.log("grid re-rendered after timeout")
+        // }, 3000);
     };
 
     $scope.init();
