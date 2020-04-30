@@ -39,7 +39,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 160 },
         { id: "column3", name: "Paid Quantity", field: "PaidQuantity", width: 140 },
         { id: "column4", name: "Price", field: "Price", width: 100 },
-        { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: Slick.Editors.Text }
+        { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: Slick.Editors.Text, cssClass: "slickgrid-text-editor-icon slickgrid-align-center selected" }
     ];
 
     var options = {
@@ -74,7 +74,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.payByItems = function () {
         console.log("button works");
-        $scope.init();
+        grid.invalidate();
+        grid.render();
     }
 
     $scope.sumSelected = function (items, propA, propB) {
