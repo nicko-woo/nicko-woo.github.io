@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works149!')
+    console.log('pay with payoneer works150!')
 
     $scope = $scope.$parent;
     $scope.items = $scope.$parent.gridScope.getItems();
@@ -53,7 +53,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     //Create columns
     var columns = [
-        { id: "column1", name: "SKU", field: "SKU" },
+        { id: "column1", name: "SKU", field: "SKU", width: 120 },
         { id: "column2", name: "Ordered Quantity", field: "Quantity" },
         { id: "column3", name: "Paid Quantity", field: "Quantity" },
         { id: "column4", name: "Price", field: "UnitCost" },
@@ -93,11 +93,16 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         grid.render();
     };
 
+    $scope.payByItems = function () {
+        console.log("button works");
+        $scope.init();
+    }
+
     $scope.init();
 
-    var grid = $element.find(".slickgrid.pwpGrid");
-    gridScope = grid.scope();
-    $scope.gridScope = gridScope;
+    // var grid = $element.find(".slickgrid.pwpGrid");
+    // gridScope = grid.scope();
+    // $scope.gridScope = gridScope;
     // $scope.gridScope.setItems($scope.items);
 
 };
