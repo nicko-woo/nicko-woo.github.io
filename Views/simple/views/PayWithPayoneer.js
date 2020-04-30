@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works150!')
+    console.log('pay with payoneer works151!')
 
     $scope = $scope.$parent;
     $scope.items = $scope.$parent.gridScope.getItems();
@@ -53,11 +53,11 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     //Create columns
     var columns = [
-        { id: "column1", name: "SKU", field: "SKU", width: 120 },
-        { id: "column2", name: "Ordered Quantity", field: "Quantity" },
-        { id: "column3", name: "Paid Quantity", field: "Quantity" },
-        { id: "column4", name: "Price", field: "UnitCost" },
-        { id: "column5", name: "Quantity To Pay", field: "Quantity" }
+        { id: "column1", name: "SKU", field: "SKU", width: 180 },
+        { id: "column2", name: "Ordered Quantity", field: "Quantity", width: 100 },
+        { id: "column3", name: "Paid Quantity", field: "Quantity", width: 100 },
+        { id: "column4", name: "Price", field: "UnitCost", width: 100 },
+        { id: "column5", name: "Quantity To Pay", field: "Quantity", width: 100 }
     ];
 
     var options = {
@@ -86,11 +86,14 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     dataView.setItems(data);
 
     $scope.init = function () {
+        grid.resetActiveCell();
         dataView.beginUpdate();
         grid.invalidateAllRows();
         dataView.setItems(data);
         dataView.endUpdate();
         grid.render();
+        grid.resizeCanvas();
+        grid.invalidate();
     };
 
     $scope.payByItems = function () {
