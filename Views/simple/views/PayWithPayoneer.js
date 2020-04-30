@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works191!')
+    console.log('pay with payoneer works192!')
 
     $scope = $scope.$parent;
     $scope.orderItems = $scope.$parent.gridScope.getItems();
@@ -53,7 +53,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     for (var i in columns) {
         if (i == 0) {
             columns[i].cssClass = "slick-header-column slickgrid-align-center";
-            columns[i].formatter = defaultFormatter;
         }
         else {
             if (!columns[i].editor) {
