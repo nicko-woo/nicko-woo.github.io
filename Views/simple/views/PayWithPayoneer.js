@@ -73,6 +73,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         grid.render();
         // grid.resizeCanvas();
         // grid.invalidate();
+
+        $scope.selectedToPay = $scope.sumSelected($scope.orderItems, 'UnitCost');
     };
 
     $scope.payByItems = function () {
@@ -92,10 +94,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         function (e,args) {
             console.log('row: ' + args.row + ' cell: ' + args.cell);
             $scope.selectedToPay = $scope.sumSelected($scope.orderItems, 'UnitCost');
-
-            $scope.apply();
-
-
         });
 
     // var grid = $element.find(".slickgrid.pwpGrid");
