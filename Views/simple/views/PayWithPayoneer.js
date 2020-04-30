@@ -91,6 +91,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                 
             }
 
+            $scope.apply();
+
 
         });
 
