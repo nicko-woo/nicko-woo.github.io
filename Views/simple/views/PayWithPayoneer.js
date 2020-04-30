@@ -31,7 +31,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             PaidQuantity: null,
             Price: orderItem.UnitCost
         }
-        $scope.poItems(poItem);
+        $scope.poItems.push(poItem);
       })
 
     // // pay by orderItems data grid
