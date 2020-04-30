@@ -1,0 +1,12 @@
+.totals {
+  margin: 0;
+  padding: 0;
+  overflow: auto; 
+}
+.totals li {
+  clear: both;
+}
+.totals span {
+  float: right;
+  white-space: nowrap; 
+}

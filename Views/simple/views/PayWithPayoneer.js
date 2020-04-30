@@ -35,7 +35,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     // Create columns
     var columns = [
-        { id: "column1", name: "SKU", field: "SKU", width: 160, cssClass: "slick-cell slickgrid-align-center" },
+        { id: "column1", name: "SKU", field: "SKU", width: 260, cssClass: "slick-cell slickgrid-align-center" },
         { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 160, cssClass: "slick-cell slickgrid-align-center" },
         { id: "column3", name: "Paid Quantity", field: "PaidQuantity", width: 140, cssClass: "slick-cell slickgrid-align-center" },
         { id: "column4", name: "Price", field: "Price", width: 100, cssClass: "slick-cell slickgrid-align-center" },
@@ -140,6 +140,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         // $('#pwpByItemGrid').on('shown', grid.resizeCanvas);
         $('#pwpByItemGrid').on('shown', grid.resizeCanvas());
         $("#pwpByItemGrid").children(".slick-viewport").css( "height", "300px" );
+
+        grid = new Slick.Grid(containerEl, dataView, columns, options);
 
         $scope.selectedToPay = $scope.sumSelected($scope.poItems, 'Price', 'ToPayQuantity');
 
