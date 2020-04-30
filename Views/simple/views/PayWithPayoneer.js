@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works194!')
+    console.log('pay with payoneer works195!')
 
     $scope = $scope.$parent;
     $scope.orderItems = $scope.$parent.gridScope.getItems();
@@ -76,7 +76,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     // Pass it as a data provider to SlickGrid.
     var grid = new Slick.Grid(containerEl, dataView, columns, options);
 
-    grid.setSelectionModel(new Slick.CellSelectionModel());
+    // grid.setSelectionModel(new Slick.CellSelectionModel());
 
     // Make the grid respond to DataView change events.
     dataView.onRowCountChanged.subscribe(function (e, args) {
