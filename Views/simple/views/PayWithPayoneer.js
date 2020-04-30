@@ -1,8 +1,8 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works162!')
+    console.log('pay with payoneer works163!')
 
     $scope = $scope.$parent;
-    $scope.items = $scope.$parent.gridScope.getItems();
+    $scope.orderItems = $scope.$parent.gridScope.getItems();
 
     $scope.testVar = $scope.$parent.purchaseOrder.pkPurchaseID;
     $scope.payments = [];
@@ -12,33 +12,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.balance = null;
     $scope.orderCurrency = '$';
 
-    // // pay by items data grid
-
-    // var pwpByItemsGrid;
-    // var columns = [
-    //     { id: "column1", name: "SKU", field: "SKU" },
-    //     { id: "column2", name: "Ordered Quantity", field: "Quantity" },
-    //     { id: "column3", name: "Paid Quantity", field: "Quantity" },
-    //     { id: "column4", name: "Price", field: "UnitCost" },
-    //     { id: "column5", name: "Quantity To Pay", field: "Quantity" }
-    // ];
-
-    // var options = {
-    //     enableCellNavigation: true,
-    //     enableColumnReorder: false,
-    //     enableAutoResize: true,
-
-    // };
-
-    // $(function () {
-    //     var data = $scope.items;
-    //     pwpByItemsGrid = new Slick.Grid("#pwpByItemGrid", data, columns, options);
-    //     // $(".l0").addClass("slick-header-column")
-
-    //     // pwpByItemsGrid.onScroll.subscribe(function () {
-    //     //     $(".l0").addClass("slick-header-column")
-    //     // })
-    // })
+    // // pay by orderItems data grid
 
     //   $scope.onInit = function () {
     //     pwpByItemsGrid.invalidateAllRows();
@@ -85,7 +59,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         grid.render();
     });
 
-    var data = $scope.items;
+    var data = $scope.orderItems;
 
     // This will fire the change events and update the grid.
     dataView.setItems(data);
@@ -110,12 +84,18 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     grid.onCellChange.subscribe(
         function (e,args) {
-            console.log('row: ' + args.row + ' cell: ' + args.cell)
+            console.log('row: ' + args.row + ' cell: ' + args.cell);
+            for (let i = 0; i <= $scope.orderItems.length; i++) {
+                $scope.selectedToPay += $scope.orderItems[i].UnitCost * $scope.orderItems[i].Quantity;
+                
+            }
+
+
         });
 
     // var grid = $element.find(".slickgrid.pwpGrid");
     // gridScope = grid.scope();
     // $scope.gridScope = gridScope;
-    // $scope.gridScope.setItems($scope.items);
+    // $scope.gridScope.setItems($scope.orderItems);
 
 };
