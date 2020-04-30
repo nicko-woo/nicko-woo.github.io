@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works152!')
+    console.log('pay with payoneer works153!')
 
     $scope = $scope.$parent;
     $scope.items = $scope.$parent.gridScope.getItems();
@@ -57,13 +57,18 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         { id: "column2", name: "Ordered Quantity", field: "Quantity", width: 100 },
         { id: "column3", name: "Paid Quantity", field: "Quantity", width: 100 },
         { id: "column4", name: "Price", field: "UnitCost", width: 100 },
-        { id: "column5", name: "Quantity To Pay", field: "Quantity", width: 100 }
+        { id: "column5", name: "Quantity To Pay", field: "Quantity", width: 100, editor: Slick.Editors.Text }
     ];
 
     var options = {
         enableCellNavigation: true,
         enableColumnReorder: false,
-        enableAutoResize: true
+        // enableAutoResize: true,
+        editable: true,
+        enableAddRow: true,
+        enableCellNavigation: true,
+        asyncEditorLoading: false,
+        autoEdit: false
     };
 
     // Pass it as a data provider to SlickGrid.
