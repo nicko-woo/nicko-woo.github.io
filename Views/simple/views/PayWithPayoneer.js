@@ -35,11 +35,11 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     //Create columns
     var columns = [
-        { id: "column1", name: "SKU", field: "SKU", width: 160 },
-        { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 160 },
-        { id: "column3", name: "Paid Quantity", field: "PaidQuantity", width: 140 },
-        { id: "column4", name: "Price", field: "Price", width: 100 },
-        { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: Slick.Editors.Text, cssClass: "slickgrid-text-editor-icon slickgrid-align-center selected" }
+        { id: "column1", name: "SKU", field: "SKU", width: 160, cssClass: "slick-cell slickgrid-align-center" },
+        { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 160, cssClass: "slick-cell slickgrid-align-center" },
+        { id: "column3", name: "Paid Quantity", field: "PaidQuantity", width: 140, cssClass: "slick-cell slickgrid-align-center" },
+        { id: "column4", name: "Price", field: "Price", width: 100, cssClass: "slick-cell slickgrid-align-center" },
+        { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: Slick.Editors.Text, cssClass: "slick-cell slickgrid-text-editor-icon slickgrid-align-center" }
     ];
 
     var options = {
