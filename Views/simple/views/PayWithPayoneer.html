@@ -38,7 +38,7 @@
                         <div class="linngrid" id="pwpByItemGrid"
                           style="width: 100%; height: 240px; outline: 0px; position: relative;"></div>
 
-                        <table align="right">
+                        <table>
                           <tr>
                             <p>Paid: {{ orderCurrency }} {{ paid }}</p>
                           </tr>
@@ -46,7 +46,7 @@
                             <p>Outstanding: {{ orderCurrency }} {{ outstanding }} </p>
                           </tr>
                           <tr>
-                            <p>Selected To Pay: {{ orderCurrency }} {{ selectedToPay }} </p>
+                            <h4>Selected To Pay: {{ orderCurrency }} {{ selectedToPay }} </h4>
                           </tr>
                           <tr>
                             <p>Your balance is: {{ orderCurrency }} {{ paid }} </p>
@@ -64,6 +64,8 @@
                     <tr>
                       <td class="flexible-content">
                         <p>By Amount Content</p>
+                        <div class="linngrid" id="pwpByItemGrid"
+                          style="width: 100%; height: 240px; outline: 0px; position: relative;"></div>
 
                         <button class="btn btn-primary" ng-click="payByAmount()">Pay</button>
                       </td>
