@@ -27,7 +27,30 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         $scope.poItems.push(poItem);
     })
 
-    // pay by orderItems data grid
+    
+
+    $scope.payByItems = function () {
+        console.log("button works");
+        $scope.init();
+    }
+
+    $scope.sumSelected = function (items, propA, propB) {
+        return items.reduce(function (a, b) {
+            return (a + b[propA]) * b[propB];
+        }, 0);
+    };
+
+    grid.onCellChange.subscribe(
+        function (e, args) {
+            var tempSelectedToPay = 0;
+            console.log('row: ' + args.row + ' cell: ' + args.cell);
+            tempSelectedToPay = $scope.sumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
+            $scope.selectedToPay = tempSelectedToPay;
+        });
+
+    $scope.init = function () {
+
+        // pay by orderItems data grid
 
     var dataView = new Slick.Data.DataView();
     var containerEl = "#pwpByItemGrid";
@@ -70,27 +93,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     // This will fire the change events and update the grid.
     dataView.setItems(data);
-
-    $scope.payByItems = function () {
-        console.log("button works");
-        $scope.init();
-    }
-
-    $scope.sumSelected = function (items, propA, propB) {
-        return items.reduce(function (a, b) {
-            return (a + b[propA]) * b[propB];
-        }, 0);
-    };
-
-    grid.onCellChange.subscribe(
-        function (e, args) {
-            var tempSelectedToPay = 0;
-            console.log('row: ' + args.row + ' cell: ' + args.cell);
-            tempSelectedToPay = $scope.sumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
-            $scope.selectedToPay = tempSelectedToPay;
-        });
-
-    $scope.init = function () {
         // grid.resetActiveCell();
         dataView.beginUpdate();
         grid.invalidateAllRows();
