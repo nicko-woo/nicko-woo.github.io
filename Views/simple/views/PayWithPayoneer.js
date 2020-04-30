@@ -101,7 +101,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         // grid.invalidate();
         // $('#pwpByItemGrid').on('shown', grid.resizeCanvas);
 
-        $scope.selectedToPay = $scope.sumSelected;
+        $scope.selectedToPay = $scope.sumSelected();
     };
 
     $scope.init();
