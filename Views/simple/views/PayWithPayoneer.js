@@ -1,25 +1,40 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works169!')
+    console.log('pay with payoneer works170!')
 
     $scope = $scope.$parent;
     $scope.orderItems = $scope.$parent.gridScope.getItems();
 
-    $scope.testVar = $scope.$parent.purchaseOrder.pkPurchaseID;
+    $scope.purchaseOrder = $scope.$parent.purchaseOrder;
     $scope.payments = [];
     $scope.outstanding = "0.00";
     $scope.paid = "0.00";
     $scope.selectedToPay = "0.00";
     $scope.balance = null;
-    $scope.orderCurrency = '$';
+    $scope.orderCurrency = $scope.purchaseOrder.Currency;
+    $scope.userId = $scope.$parent.$root.session.userId;
+
+    $scope.poItems = [];
+
+    var poItem = {
+        id: null,
+        SKU: null,
+        OrderedQuantity: null,
+        PaidQuantity: null,
+        Price: null
+    }
+
+    $scope.orderItems.forEach(function(orderItem){
+        var poItem = {
+            id: orderItem.fkStockItemId,
+            SKU: orderItem.SKU,
+            OrderedQuantity: null,
+            PaidQuantity: null,
+            Price: orderItem.UnitCost
+        }
+        $scope.poItems(poItem);
+      })
 
     // // pay by orderItems data grid
-
-    //   $scope.onInit = function () {
-    //     pwpByItemsGrid.invalidateAllRows();
-    //     pwpByItemsGrid.render();
-    //   };
-
-    //   $scope.onInit();
 
     var dataView = new Slick.Data.DataView();
 
@@ -84,14 +99,14 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.sumSelected = function(items, propA, propB){
         return items.reduce( function(a, b){
-            return (a + b[propA]) * propB;
+            return (a + b[propA]) * b[propB];
         }, 0);
     };
 
     grid.onCellChange.subscribe(
         function (e,args) {
             console.log('row: ' + args.row + ' cell: ' + args.cell);
-            $scope.selectedToPay = $scope.sumSelected($scope.orderItems, 'UnitCost');
+        $scope.selectedToPay = $scope.sumSelected($scope.orderItems, 'UnitCost', 'Quantity').toFixed(2);
         });
 
     // var grid = $element.find(".slickgrid.pwpGrid");
