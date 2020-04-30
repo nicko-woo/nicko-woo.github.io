@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works199!')
+    console.log('pay with payoneer works200!')
 
     $scope = $scope.$parent;
     $scope.orderItems = $scope.$parent.gridScope.getItems();
@@ -94,8 +94,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         grid.render();
     });
 
-    
-
     // setTimeout(function () {
     //         dataView.beginUpdate();
     //         grid.invalidateAllRows();
@@ -162,6 +160,5 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     // gridScope = grid.scope();
     // $scope.gridScope = gridScope;
     // $scope.gridScope.setItems($scope.orderItems);
-    
 
 };
