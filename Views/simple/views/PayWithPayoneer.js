@@ -82,14 +82,16 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.init();
 
+    $scope.sumSelected = function(items, prop){
+        return items.reduce( function(a, b){
+            return a + b[prop];
+        }, 0);
+    };
+
     grid.onCellChange.subscribe(
         function (e,args) {
             console.log('row: ' + args.row + ' cell: ' + args.cell);
-            var tempUnits = $scope.orderItems.slice();
-            for (let i = 0; i <= tempUnits.length; i++) {
-                $scope.selectedToPay += tempUnits[i].Cost * tempUnits[i].Quantity;
-                
-            }
+            $scope.sum($scope.orderItems, 'UnitCost');
 
             $scope.apply();
 
