@@ -123,5 +123,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     // gridScope = grid.scope();
     // $scope.gridScope = gridScope;
     // $scope.gridScope.setItems($scope.orderItems);
+    $('#pwpByItemGrid').on('shown', grid.render());
 
 };
