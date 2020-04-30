@@ -4,7 +4,7 @@
   <script src="https://cdn.jsdelivr.net/npm/slickgrid@2.4.21/slick.editors.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/slickgrid@2.4.21/slick.formatters.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/slickgrid@2.4.21/slick.dataview.js"></script>
-  
+
   <section>
     <table class="generic-module-layout tabset" lw-tst="tab_set" modern-layout="" tab-loaded="tabLoaded">
       <tbody>
@@ -31,7 +31,8 @@
                       <td class="flexible-content">
                         <p>By Item Content</p>
 
-                        <div class="linngrid" id="pwpByItemGrid" style="width: 100%; min-height: 100px; outline: 0px; position: relative;"></div>
+                        <div class="linngrid" id="pwpByItemGrid"
+                          style="width: 100%; min-height: 100px; outline: 0px; position: relative;"></div>
 
                         <p>Paid: {{ orderCurrency }}{{ paid }}</p>
                         <p>Outstanding: {{ orderCurrency }}{{ paid }} </p>
@@ -76,8 +77,8 @@
 
 
   <h2>Payment History</h2>
-
-  <div ng-transclude class="slickgrid pwpGrid"></div>
+  <div class="linngrid">
+    <div class="slickgrid pwpGrid"></div>
+  </div>
 
 </div>
-
