@@ -9,6 +9,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.outstanding = "0.00";
     $scope.paid = "0.00";
     $scope.selectedToPay = "0.00";
+    $scope.amountToPay = 0;
     $scope.balance = null;
     $scope.orderCurrency = $scope.purchaseOrder.Currency;
     $scope.userId = $scope.$parent.$root.session.userId;
