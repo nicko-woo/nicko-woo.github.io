@@ -102,6 +102,16 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         // $('#pwpByItemGrid').on('shown', grid.resizeCanvas);
 
         $scope.selectedToPay = $scope.sumSelected($scope.poItems, 'Price', 'ToPayQuantity');
+
+        setTimeout(function () {
+            dataView.beginUpdate();
+            grid.invalidateAllRows();
+            dataView.setItems(data);
+            dataView.endUpdate();
+            grid.render();
+
+            console.log("grid re-rendered after timeout")
+        }, 3000);
     };
 
     $scope.init();
