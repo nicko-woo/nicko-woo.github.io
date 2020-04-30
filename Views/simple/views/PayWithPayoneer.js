@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works197!')
+    console.log('pay with payoneer works198!')
 
     $scope = $scope.$parent;
     $scope.orderItems = $scope.$parent.gridScope.getItems();
@@ -33,33 +33,33 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     var dataView = new Slick.Data.DataView();
     var containerEl = "#pwpByItemGrid";
 
-    //Create columns
-    // var columns = [
-    //     { id: "column1", name: "SKU", field: "SKU", width: 160, cssClass: "slick-cell slickgrid-align-center" },
-    //     { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 160, cssClass: "slick-cell slickgrid-align-center" },
-    //     { id: "column3", name: "Paid Quantity", field: "PaidQuantity", width: 140, cssClass: "slick-cell slickgrid-align-center" },
-    //     { id: "column4", name: "Price", field: "Price", width: 100, cssClass: "slick-cell slickgrid-align-center" },
-    //     { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: Slick.Editors.Text, cssClass: "slick-cell slickgrid-text-editor-icon slickgrid-align-center" }
-    // ];
-
+    // Create columns
     var columns = [
-        { id: "column1", name: "SKU", field: "SKU", width: 160 },
-        { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 160 },
-        { id: "column3", name: "Paid Quantity", field: "PaidQuantity", width: 140 },
-        { id: "column4", name: "Price", field: "Price", width: 100 },
+        { id: "column1", name: "SKU", field: "SKU", width: 160, cssClass: "slick-cell slickgrid-align-center" },
+        { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 160, cssClass: "slick-cell slickgrid-align-center" },
+        { id: "column3", name: "Paid Quantity", field: "PaidQuantity", width: 140, cssClass: "slick-cell slickgrid-align-center" },
+        { id: "column4", name: "Price", field: "Price", width: 100, cssClass: "slick-cell slickgrid-align-center" },
         { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: Slick.Editors.Text, cssClass: "slick-cell slickgrid-text-editor-icon slickgrid-align-center" }
     ];
 
-    for (var i in columns) {
-        if (i == 0) {
-            columns[i].cssClass = "slick-header-column slickgrid-align-center";
-        }
-        else {
-            if (!columns[i].editor) {
-                columns[i].cssClass = "slick-cell slickgrid-align-center";
-            }
-        }
-    }
+    // var columns = [
+    //     { id: "column1", name: "SKU", field: "SKU", width: 160 },
+    //     { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 160 },
+    //     { id: "column3", name: "Paid Quantity", field: "PaidQuantity", width: 140 },
+    //     { id: "column4", name: "Price", field: "Price", width: 100 },
+    //     { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: Slick.Editors.Text, cssClass: "slick-cell slickgrid-text-editor-icon slickgrid-align-center" }
+    // ];
+
+    // for (var i in columns) {
+    //     if (i == 0) {
+    //         columns[i].cssClass = "slick-header-column slickgrid-align-center";
+    //     }
+    //     else {
+    //         if (!columns[i].editor) {
+    //             columns[i].cssClass = "slick-cell slickgrid-align-center";
+    //         }
+    //     }
+    // }
 
 
     var options = {
@@ -72,6 +72,11 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         asyncEditorLoading: false,
         autoEdit: false
     };
+
+    var data = $scope.poItems;
+
+    // This will fire the change events and update the grid.
+    dataView.setItems(data);
 
     // Pass it as a data provider to SlickGrid.
     var grid = new Slick.Grid(containerEl, dataView, columns, options);
@@ -89,10 +94,17 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         grid.render();
     });
 
-    var data = $scope.poItems;
+    
 
-    // This will fire the change events and update the grid.
-    dataView.setItems(data);
+    // setTimeout(function () {
+    //         dataView.beginUpdate();
+    //         grid.invalidateAllRows();
+    //         dataView.setItems(data);
+    //         dataView.endUpdate();
+    //         grid.render();
+
+    //         console.log("grid re-rendered after timeout")
+    //     }, 100);
 
     $scope.payByItems = function () {
         console.log("button works");
@@ -126,6 +138,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         // grid.resizeCanvas();
         // grid.invalidate();
         // $('#pwpByItemGrid').on('shown', grid.resizeCanvas);
+        $('#pwpByItemGrid').on('shown', grid.resizeCanvas());
+        $("#pwpByItemGrid").children(".slick-viewport").css( "height", "300px" );
 
         $scope.selectedToPay = $scope.sumSelected($scope.poItems, 'Price', 'ToPayQuantity');
 
@@ -146,7 +160,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     // gridScope = grid.scope();
     // $scope.gridScope = gridScope;
     // $scope.gridScope.setItems($scope.orderItems);
-    $('#pwpByItemGrid').on('shown', grid.resizeCanvas());
-    $("#pwpByItemGrid").children(".slick-viewport").css( "height", "300px" );
+    
 
 };
