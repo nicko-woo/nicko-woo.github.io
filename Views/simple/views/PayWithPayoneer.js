@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works177!')
+    console.log('pay with payoneer works178!')
 
     $scope = $scope.$parent;
     $scope.orderItems = $scope.$parent.gridScope.getItems();
@@ -88,8 +88,10 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     grid.onCellChange.subscribe(
         function (e, args) {
+            var tempSelectedToPay = 0;
             console.log('row: ' + args.row + ' cell: ' + args.cell);
-            $scope.selectedToPay = $scope.sumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
+            tempSelectedToPay = $scope.sumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
+            $scope.selectedToPay = tempSelectedToPay;
         });
 
     $scope.init = function () {
