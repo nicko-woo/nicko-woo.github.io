@@ -25,7 +25,7 @@ var PlaceHolder = function ($scope, $element) {
             closeOnEscape: false,
             closeOnBackDrop: false,
             data: {},
-            width: "800px",
+            width: "900px",
             ngScope: $scope
 
         });
