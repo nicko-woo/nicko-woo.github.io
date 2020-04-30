@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works165!')
+    console.log('pay with payoneer works166!')
 
     $scope = $scope.$parent;
     $scope.orderItems = $scope.$parent.gridScope.getItems();
@@ -91,7 +91,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     grid.onCellChange.subscribe(
         function (e,args) {
             console.log('row: ' + args.row + ' cell: ' + args.cell);
-            $scope.sum($scope.orderItems, 'UnitCost');
+            $scope.sumSelected($scope.orderItems, 'UnitCost');
 
             $scope.apply();
 
