@@ -27,10 +27,9 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         $scope.poItems.push(poItem);
     })
 
-    // // pay by orderItems data grid
+    // pay by orderItems data grid
 
     var dataView = new Slick.Data.DataView();
-
     var containerEl = "#pwpByItemGrid";
 
     //Create columns
@@ -72,13 +71,10 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     // This will fire the change events and update the grid.
     dataView.setItems(data);
 
-
     $scope.payByItems = function () {
         console.log("button works");
         $scope.init();
     }
-
-
 
     $scope.sumSelected = function (items, propA, propB) {
         return items.reduce(function (a, b) {
@@ -109,7 +105,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     };
 
     $scope.init();
-
 
     // var grid = $element.find(".slickgrid.pwpGrid");
     // gridScope = grid.scope();
