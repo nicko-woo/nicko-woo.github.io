@@ -110,6 +110,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         grid.render();
     }
 
+    grid = new Slick.Grid(containerEl, dataView, columns, options);
+
     $scope.sumSelected = function (items, propA, propB) {
         return items.reduce(function (a, b) {
             return (a + (b[propA] * b[propB]));
@@ -139,7 +141,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         $('#pwpByItemGrid').on('shown', grid.resizeCanvas());
         $("#pwpByItemGrid").children(".slick-viewport").css( "height", "300px" );
 
-        grid = new Slick.Grid(containerEl, dataView, columns, options);
+        
 
         $scope.selectedToPay = $scope.sumSelected($scope.poItems, 'Price', 'ToPayQuantity');
 
