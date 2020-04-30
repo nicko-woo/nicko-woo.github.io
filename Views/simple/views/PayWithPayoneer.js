@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works170!')
+    console.log('pay with payoneer works171!')
 
     $scope = $scope.$parent;
     $scope.orderItems = $scope.$parent.gridScope.getItems();
@@ -15,21 +15,14 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.poItems = [];
 
-    var poItem = {
-        id: null,
-        SKU: null,
-        OrderedQuantity: null,
-        PaidQuantity: null,
-        Price: null
-    }
-
     $scope.orderItems.forEach(function(orderItem){
         var poItem = {
             id: orderItem.fkStockItemId,
             SKU: orderItem.SKU,
             OrderedQuantity: null,
             PaidQuantity: null,
-            Price: orderItem.UnitCost
+            Price: orderItem.UnitCost,
+            ToPayQuantity: OrderedQuantity - PaidQuantity
         }
         $scope.poItems.push(poItem);
       })
@@ -43,10 +36,10 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     //Create columns
     var columns = [
         { id: "column1", name: "SKU", field: "SKU", width: 160 },
-        { id: "column2", name: "Ordered Quantity", field: "Quantity", width: 160 },
-        { id: "column3", name: "Paid Quantity", field: "Quantity", width: 140 },
+        { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 160 },
+        { id: "column3", name: "Paid Quantity", field: "PaidQuantity", width: 140 },
         { id: "column4", name: "Price", field: "UnitCost", width: 100 },
-        { id: "column5", name: "Quantity To Pay", field: "Quantity", width: 160, editor: Slick.Editors.Text }
+        { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: Slick.Editors.Text }
     ];
 
     var options = {
@@ -74,7 +67,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         grid.render();
     });
 
-    var data = $scope.orderItems;
+    var data = $scope.poItems;
 
     // This will fire the change events and update the grid.
     dataView.setItems(data);
