@@ -2,6 +2,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     console.log('pay with payoneer works181!')
 
     $scope = $scope.$parent;
+    $scope.grid = null;
     $scope.orderItems = $scope.$parent.gridScope.getItems();
 
     $scope.purchaseOrder = $scope.$parent.purchaseOrder;
@@ -40,7 +41,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         }, 0);
     };
 
-    grid.onCellChange.subscribe(
+    $scope.grid.onCellChange.subscribe(
         function (e, args) {
             var tempSelectedToPay = 0;
             console.log('row: ' + args.row + ' cell: ' + args.cell);
@@ -76,17 +77,17 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     };
 
     // Pass it as a data provider to SlickGrid.
-    var grid = new Slick.Grid(containerEl, dataView, columns, options);
+    $scope.grid = new Slick.Grid(containerEl, dataView, columns, options);
 
     // Make the grid respond to DataView change events.
     dataView.onRowCountChanged.subscribe(function (e, args) {
-        grid.updateRowCount();
-        grid.render();
+        $scope.grid.updateRowCount();
+        $scope.grid.render();
     });
 
     dataView.onRowsChanged.subscribe(function (e, args) {
-        grid.invalidateRows(args.rows);
-        grid.render();
+        $scope.grid.invalidateRows(args.rows);
+        $scope.grid.render();
     });
 
     var data = $scope.poItems;
@@ -95,10 +96,10 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     dataView.setItems(data);
         // grid.resetActiveCell();
         dataView.beginUpdate();
-        grid.invalidateAllRows();
+        $scope.grid.invalidateAllRows();
         dataView.setItems(data);
         dataView.endUpdate();
-        grid.render();
+        $scope.grid.render();
         // grid.resizeCanvas();
         // grid.invalidate();
         // $('#pwpByItemGrid').on('shown', grid.resizeCanvas);
