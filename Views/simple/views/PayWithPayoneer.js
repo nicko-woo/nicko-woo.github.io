@@ -78,7 +78,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.sumSelected = function (items, propA, propB) {
         return items.reduce(function (a, b) {
-            return (a + b[propA]) * b[propB];
+            return (a + (b[propA] * b[propB]));
         }, 0);
     };
 

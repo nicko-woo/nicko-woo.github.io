@@ -40,18 +40,18 @@
 
                         <table align="right">
                           <tr>
-                            <p>Paid: {{ orderCurrency }} {{ paid }}</p>
+                            <p style="float: right">Paid: {{ orderCurrency }} {{ paid }}</p>
                           </tr>
                           <tr>
-                            <p>Outstanding: {{ orderCurrency }} {{ outstanding }} </p>
+                            <p style="float: right">Outstanding: {{ orderCurrency }} {{ outstanding }} </p>
                           </tr>
                           <tr>
-                            <p>Selected To Pay: {{ orderCurrency }} {{ selectedToPay }} </p>
+                            <p style="float: right">Selected To Pay: {{ orderCurrency }} {{ selectedToPay }} </p>
                           </tr>
                           <tr>
-                            <p>Your balance is: {{ orderCurrency }} {{ paid }} </p>
+                            <p style="float: right">Your balance is: {{ orderCurrency }} {{ paid }} </p>
                           </tr>
-                          <tr><button class="btn btn-primary" ng-click="payByItems()">Pay</button></tr>
+                          <tr style="float: right"><button class="btn btn-primary" ng-click="payByItems()">Pay</button></tr>
                         </table>
                       </td>
                     </tr>
