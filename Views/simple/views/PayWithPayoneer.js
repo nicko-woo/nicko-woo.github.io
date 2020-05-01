@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works 205!')
+    console.log('pay with payoneer works 206!')
 
     $scope = $scope.$parent;
     $scope.orderItems = $scope.$parent.gridScope.getItems();
@@ -137,6 +137,13 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.init();
 
+    setTimeout(function () {
+        dataView.refresh();
+        grid = new Slick.Grid(containerEl, dataView, columns, options);
+
+        console.log("dataview refreshed after timeout")
+    }, 1000);
+
     // var grid = $element.find(".slickgrid.pwpGrid");
     // gridScope = grid.scope();
     // $scope.gridScope = gridScope;
@@ -181,10 +188,16 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
           d["finish"] = "01/05/2009";
           d["effortDriven"] = (i % 5 == 0);
         }
+
+        setTimeout(function () {
+            testGrid = new Slick.Grid("#byAmountGrid", testData, testColumns, testOptions);
+
+            console.log("grid re-rendered after timeout")
+        }, 500);
     
-        testGrid = new Slick.Grid("#byAmountGrid", testData, testColumns, testOptions);
+        // testGrid = new Slick.Grid("#byAmountGrid", testData, testColumns, testOptions);
     
-        testGrid.setSelectionModel(new Slick.CellSelectionModel());
+        // testGrid.setSelectionModel(new Slick.CellSelectionModel());
     
         testGrid.onAddNewRow.subscribe(function (e, args) {
           var item = args.item;
@@ -193,6 +206,20 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
           testGrid.updateRowCount();
           testGrid.render();
         });
+
+        setTimeout(function () {
+            testGrid = new Slick.Grid("#byAmountGrid", testData, testColumns, testOptions);
+
+            console.log("grid re-rendered after timeout")
+        }, 500);
+
+        setTimeout(function () {
+            testGrid.invalidate();
+
+            console.log("grid refreshed after timeout")
+        }, 500);
+
+
       })
 
 };
