@@ -45,7 +45,7 @@
                         <div class="linngrid" id="pwpByItemGrid"
                           style="width: 100%; height: 240px; outline: 0px; position: relative;"></div>
                           
-                        <table style="width: 100%;">
+                        <table style="width: 100%; margin-right: 20px;">
                           <tr>
                             <td>
                               <div style="display: inline-block; width: 100%; justify-content: flex-end; text-align: right;">
@@ -82,41 +82,6 @@
                             </td>
                           </tr>
                         </table>
-                        <style type="text/css">
-                          .tg  {border-collapse:collapse;border-spacing:0;}
-                          .tg td{
-                            overflow:hidden;padding:10px 5px;word-break:normal;}
-                          .tg th{
-                            font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-                          .tg .tg-baqh{text-align:center;vertical-align:top}
-                          .tg .tg-lqy6{text-align:right;vertical-align:top}
-                          .tg .tg-0lax{text-align:left;vertical-align:top}
-                          </style>
-                          <table class="tg" style="undefined;table-layout: fixed; width: 840px">
-                          <colgroup>
-                          <col style="width: 700px">
-                          <col style="width: 140px">
-                          </colgroup>
-                            <tr>
-                              <th class="tg-lqy6"><h5>Paid: </h5></th>
-                              <th class="tg-baqh"><h5>{{ orderCurrency }} {{ paid }}</h5></th>
-                            </tr>
-                            <tr>
-                              <td class="tg-lqy6"><h5>Outstanding: </h5></td>
-                              <td class="tg-baqh"><h5>{{ orderCurrency }} {{ outstanding }}</h5></td>
-                            </tr>
-                            <tr>
-                              <td class="tg-lqy6"><h4>Selected To Pay: </h4></td>
-                              <td class="tg-baqh"><h4>{{ orderCurrency }} {{ selectedToPay }}</h4></td>
-                            </tr>
-                            <tr>
-                              <td class="tg-lqy6" colspan="2"><h5>Your balance is: {{ orderCurrency }} {{ paid }} </h5></td>
-                            </tr>
-                            <tr>
-                              <td class="tg-0lax"></td>
-                              <td class="tg-baqh"><br><button class="btn btn-primary" ng-click="payByItems()">Pay</button></td>
-                            </tr>
-                          </table>
                       </td>
                     </tr>
                   </tbody>
