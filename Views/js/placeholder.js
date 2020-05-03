@@ -16,7 +16,6 @@ var PlaceHolder = function ($scope, $element) {
     const wind = require('core/Window');
 
     this.onClick = function () {
-        var gridScope = $element.find(".itemsGrid").scope();
 
         var win = new wind({
             moduleName: "PayWithPayoneer",
@@ -25,6 +24,7 @@ var PlaceHolder = function ($scope, $element) {
             closeOnEscape: false,
             closeOnBackDrop: false,
             data: {},
+            onWindowClosed: function (event) {},
             width: "900px",
             ngScope: $scope
 
