@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works 230!')
+    console.log('pay with payoneer works 231!')
 
     $scope = $scope.$parent;
     $scope.orderItems = $scope.$parent.gridScope.getItems();
@@ -152,6 +152,14 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
         console.log("dataview refreshed after timeout")
     }, 300);
+
+    gridByItems.onCellChange.subscribe(
+        function (e, args) {
+            var tempSelectedToPay = 0;
+            console.log('row: ' + args.row + ' cell: ' + args.cell);
+            tempSelectedToPay = $scope.sumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
+            $scope.selectedToPay = tempSelectedToPay;
+        });
 
     // function requiredFieldValidator(value) {
     //     if (value == null || value == undefined || !value.length) {
