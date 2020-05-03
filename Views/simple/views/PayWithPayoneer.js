@@ -103,9 +103,9 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     var columnsByAmount = [
         { id: "column1", name: "SKU", field: "SKU", width: 220, cssClass: "slick-cell slickgrid-align-center" },
-        { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 220, cssClass: "slick-cell slickgrid-align-center" },
-        { id: "column3", name: "Price", field: "Price", width: 220, cssClass: "slick-cell slickgrid-align-center" },
-        { id: "column4", name: "Total", field: "ToPayQuantity", width: 220, cssClass: "slick-cell slickgrid-align-center" }
+        { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 200, cssClass: "slick-cell slickgrid-align-center" },
+        { id: "column3", name: "Price", field: "Price", width: 200, cssClass: "slick-cell slickgrid-align-center" },
+        { id: "column4", name: "Total", field: "Total", width: 200, cssClass: "slick-cell slickgrid-align-center" }
     ];
 
     var optionsByAmount = {
