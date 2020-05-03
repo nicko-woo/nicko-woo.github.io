@@ -101,23 +101,23 @@
                           <col style="width: 140px">
                           </colgroup>
                             <tr>
-                              <th class="tg-lqy6">1</th>
-                              <th class="tg-baqh"></th>
+                              <th class="tg-lqy6"><h5>Paid: </h5></th>
+                              <th class="tg-baqh">{{ orderCurrency }} {{ paid }}</th>
                             </tr>
                             <tr>
-                              <td class="tg-lqy6">2</td>
-                              <td class="tg-baqh"></td>
+                              <td class="tg-lqy6"><h5>Outstanding: </h5></td>
+                              <td class="tg-baqh">{{ orderCurrency }} {{ outstanding }}</td>
                             </tr>
                             <tr>
-                              <td class="tg-lqy6">3</td>
-                              <td class="tg-baqh"></td>
+                              <td class="tg-lqy6"><h4>Selected To Pay: </h4></td>
+                              <td class="tg-baqh">{{ orderCurrency }} {{ selectedToPay }}</td>
                             </tr>
                             <tr>
-                              <td class="tg-baqh" colspan="2"></td>
+                              <td class="tg-baqh" colspan="2"><h5>Your balance is: {{ orderCurrency }} {{ paid }} </h5></td>
                             </tr>
                             <tr>
                               <td class="tg-0lax"></td>
-                              <td class="tg-baqh"><br>Pay</td>
+                              <td class="tg-baqh"><br><button class="btn btn-primary" ng-click="payByItems()">Pay</button></td>
                             </tr>
                           </table>
                       </td>
