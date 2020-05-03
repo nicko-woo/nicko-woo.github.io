@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works 208!')
+    console.log('pay with payoneer works 209!')
 
     $scope = $scope.$parent;
     $scope.orderItems = $scope.$parent.gridScope.getItems();
@@ -142,7 +142,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         grid = new Slick.Grid(containerEl, dataView, columns, options);
 
         console.log("dataview refreshed after timeout")
-    }, 1000);
+    }, 300);
 
     // var grid = $element.find(".slickgrid.pwpGrid");
     // gridScope = grid.scope();
