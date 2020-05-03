@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works 223!')
+    console.log('pay with payoneer works 224!')
 
     $scope = $scope.$parent;
     $scope.orderItems = $scope.$parent.gridScope.getItems();
@@ -76,21 +76,35 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     // grid.setSelectionModel(new Slick.CellSelectionModel());
 
-    dataView.onRowCountChanged.subscribe(function (e, args) {
-        grid.updateRowCount();
-        grid.render();
-    });
+    // dataView.onRowCountChanged.subscribe(function (e, args) {
+    //     grid.updateRowCount();
+    //     grid.render();
+    // });
 
-    dataView.onRowsChanged.subscribe(function (e, args) {
-        grid.invalidateRows(args.rows);
-        grid.render();
-    });
+    // dataView.onRowsChanged.subscribe(function (e, args) {
+    //     grid.invalidateRows(args.rows);
+    //     grid.render();
+    // });
 
     $scope.payByItems = function () {
         console.log("button works");
         grid.invalidate();
         grid.render();
     }
+
+    $scope.sumSelected = function (items, propA, propB) {
+        return items.reduce(function (a, b) {
+            return (a + (b[propA] * b[propB]));
+        }, 0);
+    };
+
+    grid.onCellChange.subscribe(
+        function (e, args) {
+            var tempSelectedToPay = 0;
+            console.log('row: ' + args.row + ' cell: ' + args.cell);
+            tempSelectedToPay = $scope.sumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
+            $scope.selectedToPay = tempSelectedToPay;
+        });
 
     $scope.init = function () {
         grid.resetActiveCell();
@@ -130,19 +144,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         console.log("dataview refreshed after timeout")
     }, 300);
 
-    $scope.sumSelected = function (items, propA, propB) {
-        return items.reduce(function (a, b) {
-            return (a + (b[propA] * b[propB]));
-        }, 0);
-    };
-
-    grid.onCellChange.subscribe(
-        function (e, args) {
-            var tempSelectedToPay = 0;
-            console.log('row: ' + args.row + ' cell: ' + args.cell);
-            tempSelectedToPay = $scope.sumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
-            $scope.selectedToPay = tempSelectedToPay;
-        });
+    
 
     // var grid = $element.find(".slickgrid.pwpGrid");
     // gridScope = grid.scope();
