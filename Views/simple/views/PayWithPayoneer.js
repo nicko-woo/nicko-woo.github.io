@@ -1,5 +1,5 @@
-var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works 263!')
+var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
+    console.log('pay with payoneer works 264!')
 
     $scope = $scope.$parent;
 
