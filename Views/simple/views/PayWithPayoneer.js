@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works 253!')
+    console.log('pay with payoneer works 254!')
 
     $scope = $scope.$parent;
     $scope.orderItems = $scope.$parent.gridScope.getItems();
@@ -147,12 +147,22 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         // $scope.gridByItems.render();
         // $scope.gridByItems.updateRowCount();
         // $scope.gridByItems.render();
-        $scope.gridByItems.resizeCanvas();
+        // $scope.gridByItems.resizeCanvas();
         // $scope.gridByItems.invalidate();
         // $('#pwpByItemGrid').on('shown', $scope.gridByItems.resizeCanvas());
         // $("#pwpByItemGrid").children(".slick-viewport").css("height", "300px");
 
         $scope.selectedToPay = $scope.GetSumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
+
+
+        setTimeout(function () {
+            $scope.gridByItems.resizeCanvas();
+            // dataViewByItems.refresh();
+    
+            // $scope.gridByItems = new Slick.Grid("#pwpByItemGrid", dataViewByItems, columnsByItems, optionsByItems);
+    
+            console.log("dataview refreshed after timeout")
+        }, 200);
 
         // gridByAmount.resetActiveCell();
         // dataViewByAmount.beginUpdate();
@@ -172,7 +182,12 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.init();
 
     $scope.showTabByAmount = function () {
-        // $scope.gridByAmount.resizeCanvas();
+
+        setTimeout(function () {
+
+            $scope.gridByAmount.resizeCanvas();
+
+        }, 200);
     };
 
     setTimeout(function () {
@@ -182,7 +197,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         // $scope.gridByItems = new Slick.Grid("#pwpByItemGrid", dataViewByItems, columnsByItems, optionsByItems);
 
         console.log("dataview refreshed after timeout")
-    }, 500);
+    }, 300);
 
     setTimeout(function () {
         // dataViewByAmount.refresh();
