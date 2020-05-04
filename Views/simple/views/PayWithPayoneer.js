@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works 237!')
+    console.log('pay with payoneer works 238!')
 
     $scope = $scope.$parent;
     $scope.orderItems = $scope.$parent.gridScope.getItems();
@@ -124,17 +124,17 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     var gridByAmount = new Slick.Grid("#pwpByAmountGrid", dataViewByAmount, columnsByAmount, optionsByAmount);
 
     $scope.init = function () {
-        gridByItems.resetActiveCell();
+        $scope.gridByItems.resetActiveCell();
         dataViewByItems.beginUpdate();
-        gridByItems.invalidateAllRows();
+        $scope.gridByItems.invalidateAllRows();
         dataViewByItems.setItems($scope.dataByItems);
         dataViewByItems.endUpdate();
-        gridByItems.render();
-        gridByItems.updateRowCount();
-        gridByItems.render();
-        gridByItems.resizeCanvas();
-        gridByItems.invalidate();
-        $('#pwpByItemGrid').on('shown', gridByItems.resizeCanvas());
+        $scope.gridByItems.render();
+        $scope.gridByItems.updateRowCount();
+        $scope.gridByItems.render();
+        $scope.gridByItems.resizeCanvas();
+        vgridByItems.invalidate();
+        $('#pwpByItemGrid').on('shown', $scope.gridByItems.resizeCanvas());
         $("#pwpByItemGrid").children(".slick-viewport").css("height", "300px");
 
         gridByAmount.resetActiveCell();
@@ -157,7 +157,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     setTimeout(function () {
         dataViewByItems.refresh();
 
-        gridByItems = new Slick.Grid("#pwpByItemGrid", dataViewByItems, columnsByItems, optionsByItems);
+        $scope.gridByItems = new Slick.Grid("#pwpByItemGrid", dataViewByItems, columnsByItems, optionsByItems);
 
         console.log("dataview refreshed after timeout")
     }, 300);
@@ -170,7 +170,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         console.log("dataview ByAmount refreshed after timeout")
     }, 300);
 
-    gridByItems.onCellChange.subscribe(
+    $scope.gridByItems.onCellChange.subscribe(
         function (e, args) {
             var tempSelectedToPay = 0;
             console.log('row: ' + args.row + ' cell: ' + args.cell);
