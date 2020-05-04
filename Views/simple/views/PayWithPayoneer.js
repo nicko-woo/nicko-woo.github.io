@@ -1,12 +1,13 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 274!')
+    console.log('pay with payoneer works 276!')
 
     var self = this;
     self.onMessage = function(msg) {
         switch (msg.key) {
             case Core.Messenger.MESSAGE_TYPES.INITIALIZE:
                 Core.Dialogs.BusyWorker.showBusy($element);
-                $scope.PurchaseOrder = msg.data.data.PurchaseOrder;
+                $scope.purchaseOrder = msg.data.data.PurchaseOrder;
+                $scope.orderItems = msg.data.data.OrderItems;
                 $scope.Initialize();
         }
     };
@@ -15,21 +16,24 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.Initialize = function()
     {
 
-        // var promises = [];
-        // promises.push($scope.GetStockLevels());
+        var promises = [];
+        promises.push($scope.GetUserId);
         
-        // $q.all(promises).then(function (resolved) {
+        $q.all(promises).then(function (resolved) {
             Core.Dialogs.BusyWorker.hideBusy($element);
-        //     $scope.Loaded = true;
-        //     $scope.$apply();
-        //     $scope.LoadCharts();
-        // }, function (reason) {
-        //     Core.Dialogs.BusyWorker.hideBusy($element);
-        //     $scope.ShowError = true;
-        // });        
+            $scope.Loaded = true;
+            $scope.$apply();
+        }, function (reason) {
+            Core.Dialogs.BusyWorker.hideBusy($element);
+            $scope.ShowError = true;
+        });        
     }
 
     // $scope = $scope.$parent;
+
+    $scope.GetUserId = function () {
+        $scope.userI = $scope.$parent.$parent.$root.session.userId;
+    }
 
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
@@ -43,7 +47,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.selectedToPay = "0.00";
     $scope.amountToPay = 0;
     $scope.balance = null;
-    // $scope.orderCurrency = $scope.purchaseOrder.Currency;
+    $scope.orderCurrency = $scope.purchaseOrder.Currency;
     // $scope.userId = $scope.$parent.$root.session.userId;
 
     $scope.poItems = [];
