@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 284!')
+    console.log('pay with payoneer works 285!')
 
     // const SlickGridExtended = require("./SlickGridExtended");
 
