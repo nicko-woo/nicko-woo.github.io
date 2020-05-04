@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works 243!')
+    console.log('pay with payoneer works 244!')
 
     $scope = $scope.$parent;
     $scope.orderItems = $scope.$parent.gridScope.getItems();
@@ -136,6 +136,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         $scope.gridByItems.invalidate();
         $('#pwpByItemGrid').on('shown', $scope.gridByItems.resizeCanvas());
         $("#pwpByItemGrid").children(".slick-viewport").css("height", "300px");
+
+        $scope.selectedToPay = $scope.sumSelected();
 
         gridByAmount.resetActiveCell();
         dataViewByAmount.beginUpdate();
