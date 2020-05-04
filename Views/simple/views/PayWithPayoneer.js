@@ -1,7 +1,9 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 265!')
+    console.log('pay with payoneer works 266!')
 
     $scope = $scope.$parent;
+
+    var self = this;
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -152,6 +154,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
         $scope.gridByItems = $scope.GetGridByItems();
 
+        $scope.$apply();
+
         $scope.gridByItems.resizeCanvas();
 
         $scope.gridByAmount.resizeCanvas();
@@ -174,8 +178,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     
     $scope.Close = function()
     {
-        $scope.gridByItems.onCellChange.unsubscribe();
-        $scope.close();
+        self.close();
     }
 
 };
