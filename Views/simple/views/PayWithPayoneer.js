@@ -1,5 +1,7 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 279!')
+    console.log('pay with payoneer works 280!')
+
+    const SlickGridExtended = require("./SlickGridExtended");
 
     var self = this;
     self.onMessage = function(msg) {
@@ -24,6 +26,16 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             Core.Dialogs.BusyWorker.hideBusy($element);
             $scope.Loaded = true;
             $scope.$apply();
+
+
+            //
+            $scope.poItems = $scope.GetDataForGrid();
+            $scope.gridByItems = $scope.GetGridByItems();
+            $scope.gridByAmount = $scope.GetGridByAmount();
+
+
+
+
         }, function (reason) {
             Core.Dialogs.BusyWorker.hideBusy($element);
             $scope.ShowError = true;
@@ -175,29 +187,30 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.gridByAmount = $scope.GetGridByAmount();
 
-    $scope.init = function () {
-        // $scope.gridByItems.resetActiveCell();
-        // dataViewByItems.beginUpdate();
-        // $scope.gridByItems.invalidateAllRows();
-        // dataViewByItems.setItems($scope.dataByItems);
-        // dataViewByItems.endUpdate();
-        // $scope.gridByItems.render();
-        // $scope.gridByItems.updateRowCount();
-        // $scope.gridByItems.resizeCanvas();
-        // $scope.gridByItems.invalidate();
-        // $("#pwpByItemGrid").children(".slick-viewport").css("height", "300px");
+    //
+    // $scope.init = function () {
+    //     // $scope.gridByItems.resetActiveCell();
+    //     // dataViewByItems.beginUpdate();
+    //     // $scope.gridByItems.invalidateAllRows();
+    //     // dataViewByItems.setItems($scope.dataByItems);
+    //     // dataViewByItems.endUpdate();
+    //     // $scope.gridByItems.render();
+    //     // $scope.gridByItems.updateRowCount();
+    //     // $scope.gridByItems.resizeCanvas();
+    //     // $scope.gridByItems.invalidate();
+    //     // $("#pwpByItemGrid").children(".slick-viewport").css("height", "300px");
 
-        $scope.selectedToPay = $scope.GetSumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
+    //     $scope.selectedToPay = $scope.GetSumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
 
-        $scope.$apply();
+    //     $scope.$apply();
 
-        $scope.gridByItems.resizeCanvas();
+    //     $scope.gridByItems.resizeCanvas();
 
-        $scope.gridByAmount.resizeCanvas();
+    //     $scope.gridByAmount.resizeCanvas();
         
-    };
+    // };
 
-    $scope.init();
+    // $scope.init();
 
     $scope.showTabByAmount = function () {
         setTimeout(function () {
