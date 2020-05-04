@@ -1,10 +1,10 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 281!')
+    console.log('pay with payoneer works 282!')
 
     // const SlickGridExtended = require("./SlickGridExtended");
 
     var self = this;
-    self.onMessage = function(msg) {
+    self.onMessage = function (msg) {
         switch (msg.key) {
             case Core.Messenger.MESSAGE_TYPES.INITIALIZE:
                 Core.Dialogs.BusyWorker.showBusy($element);
@@ -15,39 +15,34 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         }
     };
 
-
-    $scope.Initialize = function()
-    {
-
+    $scope.Initialize = function () {
         var promises = [];
-        promises.push($scope.GetUserId());
-        
+
         $q.all(promises).then(function (resolved) {
             Core.Dialogs.BusyWorker.hideBusy($element);
-            $scope.Loaded = true;
-            $scope.$apply();
 
-
-            //
             $scope.poItems = $scope.GetDataForGrid();
             $scope.gridByItems = $scope.GetGridByItems();
             $scope.gridByAmount = $scope.GetGridByAmount();
 
+            $scope.gridByItems.onCellChange.subscribe(
+                function (e, args) {
+                    var tempSelectedToPay = 0;
+                    console.log('row: ' + args.row + ' cell: ' + args.cell);
+                    tempSelectedToPay = $scope.GetSumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
+                    $scope.selectedToPay = tempSelectedToPay;
+                });
 
-
+            $scope.Loaded = true;
+            // $scope.$apply();
 
         }, function (reason) {
             Core.Dialogs.BusyWorker.hideBusy($element);
             $scope.ShowError = true;
-        });        
+        });
     }
 
     // $scope = $scope.$parent;
-
-    $scope.GetUserId = function () {
-        $scope.userId = $scope.$parent.$parent.$root.session.userId;
-    }
-
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -74,7 +69,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         $http({
             method: 'GET',
             url: apiUrl + '/api/Linnworks/Payments/getPayments/' + $scope.purchaseOrder.pkPurchaseID,
-            params: { }
+            params: {}
         }).then(function (response) {
             $scope.payments = response.data;
         });
@@ -84,7 +79,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         $http({
             method: 'GET',
             url: apiUrl + '/api/Payoneer/Balance/getBalance/' + $scope.userId,
-            params: { }
+            params: {}
         }).then(function (response) {
             $scope.balance = response.data;
         });
@@ -92,7 +87,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.GetDataForGrid = function () {
         let data = [];
-        if ($scope.orderItems && $scope.orderItems.length){
+        if ($scope.orderItems && $scope.orderItems.length) {
             $scope.orderItems.forEach(function (orderItem) {
                 var poItem = {
                     id: orderItem.fkStockItemId,
@@ -105,9 +100,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                 }
                 data.push(poItem);
             })
-
         }
-        
+
         return data;
     }
     $scope.poItems = $scope.GetDataForGrid();
@@ -151,13 +145,13 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         }, 0);
     };
 
-    // $scope.gridByItems.onCellChange.subscribe(
-    //     function (e, args) {
-    //         var tempSelectedToPay = 0;
-    //         console.log('row: ' + args.row + ' cell: ' + args.cell);
-    //         tempSelectedToPay = $scope.GetSumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
-    //         $scope.selectedToPay = tempSelectedToPay;
-    //     });
+    $scope.gridByItems.onCellChange.subscribe(
+        function (e, args) {
+            var tempSelectedToPay = 0;
+            console.log('row: ' + args.row + ' cell: ' + args.cell);
+            tempSelectedToPay = $scope.GetSumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
+            $scope.selectedToPay = tempSelectedToPay;
+        });
 
 
     $scope.GetGridByAmount = function () {
@@ -207,7 +201,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     //     $scope.gridByItems.resizeCanvas();
 
     //     $scope.gridByAmount.resizeCanvas();
-        
+
     // };
 
     // $scope.init();
@@ -223,9 +217,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         console.log("dataview refreshed after timeout")
     }, 500));
 
-    
-    $scope.Close = function()
-    {
+
+    $scope.Close = function () {
         self.close();
     }
 
