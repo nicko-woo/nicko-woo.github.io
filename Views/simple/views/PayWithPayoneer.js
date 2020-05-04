@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 277!')
+    console.log('pay with payoneer works 278!')
 
     var self = this;
     self.onMessage = function(msg) {
@@ -47,7 +47,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.selectedToPay = "0.00";
     $scope.amountToPay = 0;
     $scope.balance = null;
-    $scope.orderCurrency = $scope.purchaseOrder.Currency;
+    // $scope.orderCurrency = $scope.purchaseOrder.Currency;
+    $scope.orderCurrency = null;
     // $scope.userId = $scope.$parent.$root.session.userId;
 
     $scope.poItems = [];
