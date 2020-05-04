@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 264!')
+    console.log('pay with payoneer works 265!')
 
     $scope = $scope.$parent;
 
@@ -20,17 +20,27 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.poItems = [];
 
     $scope.gridByItems = null;
+    $scope.gridByAmount = null;
+    $scope.gridPayments = null;
 
-    $scope.LoadPayments = function () {
+    $scope.GetPayments = function () {
         $http({
             method: 'GET',
-            url: apiUrl + '/api/Payoneer/Payments',
+            url: apiUrl + '/api/Linnworks/Payments/getPayments/' + $scope.purchaseOrder.pkPurchaseID,
             params: { }
         }).then(function (response) {
-            const data = response.data;
-
+            $scope.payments = response.data;
         });
+    }
 
+    $scope.GetBalance = function () {
+        $http({
+            method: 'GET',
+            url: apiUrl + '/api/Payoneer/Balance/getBalance/' + $scope.userId,
+            params: { }
+        }).then(function (response) {
+            $scope.balance = response.data;
+        });
     }
 
     $scope.GetDataForGrid = function () {
@@ -126,33 +136,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.gridByAmount = $scope.GetGridByAmount();
 
-
-    // var columnsByItems = [
-    //     { id: "column1", name: "SKU", field: "SKU", width: 160 },
-    //     { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 160 },
-    //     { id: "column3", name: "Paid Quantity", field: "PaidQuantity", width: 140 },
-    //     { id: "column4", name: "Price", field: "Price", width: 100 },
-    //     { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: Slick.Editors.Text, cssClass: "slick-cell slickgrid-text-editor-icon slickgrid-align-center" }
-    // ];
-
-    // for (var i in columnsByItems) {
-    //     if (i == 0) {
-    //         columnsByItems[i].cssClass = "slick-header-column slickgrid-align-center";
-    //     }
-    //     else {
-    //         if (!columnsByItems[i].editor) {
-    //             columnsByItems[i].cssClass = "slick-cell slickgrid-align-center";
-    //         }
-    //     }
-    // }
-
-    // gridByItems.setSelectionModel(new Slick.CellSelectionModel());
-
-    // by amount tab
-    // slick-header-column slickgrid-align-center
-
-    // var gridByAmount = new Slick.Grid("#pwpByAmountGrid", dataViewByAmount, columnsByAmount, optionsByAmount);
-
     $scope.init = function () {
         // $scope.gridByItems.resetActiveCell();
         // dataViewByItems.beginUpdate();
@@ -161,146 +144,38 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         // dataViewByItems.endUpdate();
         // $scope.gridByItems.render();
         // $scope.gridByItems.updateRowCount();
-        // $scope.gridByItems.render();
         // $scope.gridByItems.resizeCanvas();
         // $scope.gridByItems.invalidate();
-        // $('#pwpByItemGrid').on('shown', $scope.gridByItems.resizeCanvas());
         // $("#pwpByItemGrid").children(".slick-viewport").css("height", "300px");
 
         $scope.selectedToPay = $scope.GetSumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
 
+        $scope.gridByItems = $scope.GetGridByItems();
+
         $scope.gridByItems.resizeCanvas();
 
-
-        // gridByAmount.resetActiveCell();
-        // dataViewByAmount.beginUpdate();
-        // gridByAmount.invalidateAllRows();
-        // dataViewByAmount.setItems($scope.dataByAmount);
-        // dataViewByAmount.endUpdate();
-        // gridByAmount.render();
-        // gridByAmount.updateRowCount();
-        // gridByAmount.render();
         $scope.gridByAmount.resizeCanvas();
-        // gridByAmount.invalidate();
-        // $('#pwpByAmountGrid').on('shown', gridByAmount.resizeCanvas());
-        // $("#pwpByAmountGrid").children(".slick-viewport").css("height", "200px");
-
+        
     };
 
-    // $scope.init();
-
-    setTimeout(function () {
-        $scope.init();
-
-    }, 500);
+    $scope.init();
 
     $scope.showTabByAmount = function () {
-
         setTimeout(function () {
-
             $scope.gridByAmount.resizeCanvas();
-
         }, 200);
     };
-
-    // setTimeout(function () {
-    //     $scope.gridByItems.resizeCanvas();
-    //     // dataViewByItems.refresh();
-
-    //     // $scope.gridByItems = new Slick.Grid("#pwpByItemGrid", dataViewByItems, columnsByItems, optionsByItems);
-
-    //     console.log("dataview refreshed after timeout")
-    // }, 300);
-
-    // setTimeout(function () {
-    //     // dataViewByAmount.refresh();
-
-    //     $scope.gridByAmount.resizeCanvas();
-
-    //     console.log("dataview ByAmount refreshed after timeout")
-    // }, 600);
 
     $('#pwpByItemGrid').on('shown', setTimeout(function () {
         $scope.gridByItems.resizeCanvas();
         console.log("dataview refreshed after timeout")
     }, 500));
 
-    // $scope.gridByItems.onCellChange.subscribe(
-    //     function (e, args) {
-    //         var tempSelectedToPay = 0;
-    //         console.log('row: ' + args.row + ' cell: ' + args.cell);
-    //         tempSelectedToPay = $scope.sumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
-    //         $scope.selectedToPay = tempSelectedToPay;
-    //     });
-
-    // setTimeout(function () {
-
-    // })
-
-    // function requiredFieldValidator(value) {
-    //     if (value == null || value == undefined || !value.length) {
-    //       return {valid: false, msg: "This is a required field"};
-    //     } else {
-    //       return {valid: true, msg: null};
-    //     }
-    //   }
-
-    //   var testGrid;
-    //   var testData = [];
-    //   var testColumns = [
-    //     {id: "title", name: "Title", field: "title", width: 120, cssClass: "cell-title", editor: Slick.Editors.Text, validator: requiredFieldValidator},
-    //     {id: "desc", name: "Description", field: "description", width: 100, editor: Slick.Editors.LongText},
-    //     {id: "duration", name: "Duration", field: "duration", editor: Slick.Editors.Text},
-    //     {id: "%", name: "% Complete", field: "percentComplete", width: 80, resizable: false, formatter: Slick.Formatters.PercentCompleteBar, editor: Slick.Editors.PercentComplete},
-    //     {id: "start", name: "Start", field: "start", minWidth: 60, editor: Slick.Editors.Date},
-    //     {id: "finish", name: "Finish", field: "finish", minWidth: 60, editor: Slick.Editors.Date},
-    //     {id: "effort-driven", name: "Effort Driven", width: 80, minWidth: 20, maxWidth: 80, cssClass: "cell-effort-driven", field: "effortDriven", formatter: Slick.Formatters.Checkmark, editor: Slick.Editors.Checkbox}
-    //   ];
-    //   var testOptions = {
-    //     editable: true,
-    //     enableAddRow: true,
-    //     enableCellNavigation: true,
-    //     asyncEditorLoading: false,
-    //     autoEdit: false
-    //   };
-
-    //   $(function () {
-    //     for (var i = 0; i < 500; i++) {
-    //       var d = (testData[i] = {});
-
-    //       d["title"] = "Task " + i;
-    //       d["description"] = "This is a sample task description.\n  It can be multiline";
-    //       d["duration"] = "5 days";
-    //       d["percentComplete"] = Math.round(Math.random() * 100);
-    //       d["start"] = "01/01/2009";
-    //       d["finish"] = "01/05/2009";
-    //       d["effortDriven"] = (i % 5 == 0);
-    //     }
-
-    //     setTimeout(function () {
-    //         testGrid = new Slick.Grid("#byAmountGrid", testData, testColumns, testOptions);
-
-    //         console.log("gridByItems re-rendered after timeout")
-    //     }, 500);
-
-    //     setTimeout(function () {
-    //         testGrid = new Slick.Grid("#byAmountGrid", testData, testColumns, testOptions);
-
-    //         console.log("gridByItems re-rendered after timeout")
-    //     }, 500);
-
-    //     setTimeout(function () {
-    //         testGrid.invalidate();
-
-    //         console.log("gridByItems refreshed after timeout")
-    //     }, 500);
-
-
-    //   })
-
-    // $scope.Close = function()
-    // {
-    //     $scope.close();
-    // }
+    
+    $scope.Close = function()
+    {
+        $scope.gridByItems.onCellChange.unsubscribe();
+        $scope.close();
+    }
 
 };
