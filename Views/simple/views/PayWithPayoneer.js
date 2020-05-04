@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works 262!')
+    console.log('pay with payoneer works 263!')
 
     $scope = $scope.$parent;
 
@@ -22,15 +22,15 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.gridByItems = null;
 
     $scope.LoadPayments = function () {
-        $.ajax({
+        $http({
+            method: 'GET',
             url: apiUrl + '/api/Payoneer/Payments',
-            type: 'GET',
-            success: function (payments) {
-                $.each(payments, function (index, payment) {
-                    $scope.payments.push(payment);
-                })
-            }
+            params: { }
+        }).then(function (response) {
+            const data = response.data;
+
         });
+
     }
 
     $scope.GetDataForGrid = function () {
