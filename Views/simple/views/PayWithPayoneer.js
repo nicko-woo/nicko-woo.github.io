@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works 260!')
+    console.log('pay with payoneer works 261!')
 
     $scope = $scope.$parent;
     $scope.orderItems = $scope.$parent.gridScope.getItems();
@@ -188,24 +188,27 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         }, 200);
     };
 
-    setTimeout(function () {
+    // setTimeout(function () {
+    //     $scope.gridByItems.resizeCanvas();
+    //     // dataViewByItems.refresh();
+
+    //     // $scope.gridByItems = new Slick.Grid("#pwpByItemGrid", dataViewByItems, columnsByItems, optionsByItems);
+
+    //     console.log("dataview refreshed after timeout")
+    // }, 300);
+
+    // setTimeout(function () {
+    //     // dataViewByAmount.refresh();
+
+    //     $scope.gridByAmount.resizeCanvas();
+
+    //     console.log("dataview ByAmount refreshed after timeout")
+    // }, 600);
+
+    $('#pwpByItemGrid').on('shown', setTimeout(function () {
         $scope.gridByItems.resizeCanvas();
-        // dataViewByItems.refresh();
-
-        // $scope.gridByItems = new Slick.Grid("#pwpByItemGrid", dataViewByItems, columnsByItems, optionsByItems);
-
         console.log("dataview refreshed after timeout")
-    }, 300);
-
-    setTimeout(function () {
-        // dataViewByAmount.refresh();
-
-        $scope.gridByAmount.resizeCanvas();
-
-        console.log("dataview ByAmount refreshed after timeout")
-    }, 600);
-
-    $('#pwpByItemGrid').on('shown', $scope.gridByItems.resizeCanvas());
+    }, 500));
 
     // $scope.gridByItems.onCellChange.subscribe(
     //     function (e, args) {
