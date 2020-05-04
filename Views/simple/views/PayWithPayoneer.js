@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 270!')
+    console.log('pay with payoneer works 271!')
 
     var self = this;
     self.onMessage = function(msg) {
@@ -34,17 +34,17 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
-    $scope.orderItems = $scope.$parent.gridScope.getItems();
+    // $scope.orderItems = $scope.$parent.gridScope.getItems();
 
-    $scope.purchaseOrder = $scope.$parent.purchaseOrder;
+    // $scope.purchaseOrder = $scope.$parent.purchaseOrder;
     $scope.payments = [];
     $scope.outstanding = "0.00";
     $scope.paid = "0.00";
     $scope.selectedToPay = "0.00";
     $scope.amountToPay = 0;
     $scope.balance = null;
-    $scope.orderCurrency = $scope.purchaseOrder.Currency;
-    $scope.userId = $scope.$parent.$root.session.userId;
+    // $scope.orderCurrency = $scope.purchaseOrder.Currency;
+    // $scope.userId = $scope.$parent.$root.session.userId;
 
     $scope.poItems = [];
 
