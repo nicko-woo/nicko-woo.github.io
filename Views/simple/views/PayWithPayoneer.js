@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 271!')
+    console.log('pay with payoneer works 272!')
 
     var self = this;
     self.onMessage = function(msg) {
@@ -74,18 +74,22 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.GetDataForGrid = function () {
         let data = [];
-        $scope.orderItems.forEach(function (orderItem) {
-            var poItem = {
-                id: orderItem.fkStockItemId,
-                SKU: orderItem.SKU,
-                OrderedQuantity: orderItem.Quantity,
-                PaidQuantity: 0,
-                Price: orderItem.UnitCost,
-                ToPayQuantity: 0,
-                Total: orderItem.Quantity * orderItem.UnitCost
-            }
-            data.push(poItem);
-        })
+        if ($scope.orderItems && $scope.orderItems.length){
+            $scope.orderItems.forEach(function (orderItem) {
+                var poItem = {
+                    id: orderItem.fkStockItemId,
+                    SKU: orderItem.SKU,
+                    OrderedQuantity: orderItem.Quantity,
+                    PaidQuantity: 0,
+                    Price: orderItem.UnitCost,
+                    ToPayQuantity: 0,
+                    Total: orderItem.Quantity * orderItem.UnitCost
+                }
+                data.push(poItem);
+            })
+
+        }
+        
         return data;
     }
     $scope.poItems = $scope.GetDataForGrid();
