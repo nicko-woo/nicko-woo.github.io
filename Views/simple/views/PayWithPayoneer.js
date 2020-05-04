@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 278!')
+    console.log('pay with payoneer works 279!')
 
     var self = this;
     self.onMessage = function(msg) {
@@ -8,6 +8,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                 Core.Dialogs.BusyWorker.showBusy($element);
                 $scope.purchaseOrder = msg.data.data.PurchaseOrder;
                 $scope.orderItems = msg.data.data.OrderItems;
+                $scope.userId = msg.data.session.userId;
                 $scope.Initialize();
         }
     };
@@ -17,7 +18,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     {
 
         var promises = [];
-        promises.push($scope.GetUserId);
+        promises.push($scope.GetUserId());
         
         $q.all(promises).then(function (resolved) {
             Core.Dialogs.BusyWorker.hideBusy($element);
@@ -32,7 +33,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     // $scope = $scope.$parent;
 
     $scope.GetUserId = function () {
-        $scope.userI = $scope.$parent.$parent.$root.session.userId;
+        $scope.userId = $scope.$parent.$parent.$root.session.userId;
     }
 
 
@@ -138,13 +139,13 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         }, 0);
     };
 
-    $scope.gridByItems.onCellChange.subscribe(
-        function (e, args) {
-            var tempSelectedToPay = 0;
-            console.log('row: ' + args.row + ' cell: ' + args.cell);
-            tempSelectedToPay = $scope.GetSumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
-            $scope.selectedToPay = tempSelectedToPay;
-        });
+    // $scope.gridByItems.onCellChange.subscribe(
+    //     function (e, args) {
+    //         var tempSelectedToPay = 0;
+    //         console.log('row: ' + args.row + ' cell: ' + args.cell);
+    //         tempSelectedToPay = $scope.GetSumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
+    //         $scope.selectedToPay = tempSelectedToPay;
+    //     });
 
 
     $scope.GetGridByAmount = function () {
