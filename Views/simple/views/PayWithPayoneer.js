@@ -1,5 +1,32 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 266!')
+    console.log('pay with payoneer works 267!')
+
+    self.onMessage = function(msg) {
+        switch (msg.key) {
+            case Core.Messenger.MESSAGE_TYPES.INITIALIZE:
+                Core.Dialogs.BusyWorker.showBusy($element);
+                $scope.PurchaseOrder = msg.data.data.PurchaseOrder;
+                // $scope.Initialize();
+        }
+    };
+
+
+    $scope.Initialize = function()
+    {
+
+        // var promises = [];
+        // promises.push($scope.GetStockLevels());
+        
+        // $q.all(promises).then(function (resolved) {
+        //     Core.Dialogs.BusyWorker.hideBusy($element);
+        //     $scope.Loaded = true;
+        //     $scope.$apply();
+        //     $scope.LoadCharts();
+        // }, function (reason) {
+        //     Core.Dialogs.BusyWorker.hideBusy($element);
+        //     $scope.ShowError = true;
+        // });        
+    }
 
     $scope = $scope.$parent;
 
