@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works 244!')
+    console.log('pay with payoneer works 245!')
 
     $scope = $scope.$parent;
     $scope.orderItems = $scope.$parent.gridScope.getItems();
@@ -155,6 +155,10 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     };
 
     $scope.init();
+
+    $scope.showTabByAmount = function () {
+        gridByAmount.resizeCanvas();
+    };
 
     setTimeout(function () {
         dataViewByItems.refresh();
