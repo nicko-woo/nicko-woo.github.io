@@ -173,7 +173,14 @@
 
   <div>
     <h2>Payment History</h2>
-    <h5>No payments found</h5>
+    <div ng-if="payments">
+
+    </div>
+
+    <div ng-if="!payments">
+      <h5>No payments found for this PO.</h5>
+    </div>
+
   </div>
   
 

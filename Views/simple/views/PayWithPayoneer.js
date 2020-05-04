@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works 255!')
+    console.log('pay with payoneer works 256!')
 
     $scope = $scope.$parent;
     $scope.orderItems = $scope.$parent.gridScope.getItems();
@@ -93,7 +93,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             { id: "column3", name: "Price", field: "Price", width: 200, cssClass: "slick-cell slickgrid-align-center" },
             { id: "column4", name: "Total", field: "Total", width: 200, cssClass: "slick-cell slickgrid-align-center" }
         ];
-    
+
         let optionsByAmount = {
             enableCellNavigation: true,
             enableColumnReorder: false,
@@ -102,7 +102,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             asyncEditorLoading: false,
             autoEdit: false
         };
-    
+
         dataViewByAmount.setItems($scope.poItems);
 
         return new Slick.Grid("#pwpByAmountGrid", dataViewByAmount, columnsByAmount, optionsByAmount);
@@ -135,7 +135,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     // by amount tab
     // slick-header-column slickgrid-align-center
-    
+
     // var gridByAmount = new Slick.Grid("#pwpByAmountGrid", dataViewByAmount, columnsByAmount, optionsByAmount);
 
     $scope.init = function () {
@@ -154,15 +154,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
         $scope.selectedToPay = $scope.GetSumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
 
+        $scope.gridByItems.resizeCanvas();
 
-        setTimeout(function () {
-            $scope.gridByItems.resizeCanvas();
-            // dataViewByItems.refresh();
-    
-            // $scope.gridByItems = new Slick.Grid("#pwpByItemGrid", dataViewByItems, columnsByItems, optionsByItems);
-    
-            console.log("dataview refreshed after timeout")
-        }, 500);
 
         // gridByAmount.resetActiveCell();
         // dataViewByAmount.beginUpdate();
@@ -179,7 +172,12 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     };
 
-    $scope.init();
+    // $scope.init();
+
+    setTimeout(function () {
+        $scope.init();
+
+    }, 500);
 
     $scope.showTabByAmount = function () {
 
