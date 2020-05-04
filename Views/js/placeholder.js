@@ -25,7 +25,8 @@ var PlaceHolder = function ($scope, $element) {
             closeOnBackDrop: false,
             data: {
                 PurchaseOrder: $scope.purchaseOrder,
-                OrderItems: $scope.$parent.gridScope.getItems()
+                OrderItems: $scope.$parent.gridScope.getItems(),
+                Grid: $scope.$parent.gridScope
             },
             onWindowClosed: function (event) {},
             width: "900px"
