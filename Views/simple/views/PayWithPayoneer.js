@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 267!')
+    console.log('pay with payoneer works 268!')
 
     self.onMessage = function(msg) {
         switch (msg.key) {
@@ -178,8 +178,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         // $("#pwpByItemGrid").children(".slick-viewport").css("height", "300px");
 
         $scope.selectedToPay = $scope.GetSumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
-
-        $scope.gridByItems = $scope.GetGridByItems();
 
         $scope.$apply();
 
