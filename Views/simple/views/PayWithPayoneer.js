@@ -1,6 +1,7 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 268!')
+    console.log('pay with payoneer works 269!')
 
+    var self = this;
     self.onMessage = function(msg) {
         switch (msg.key) {
             case Core.Messenger.MESSAGE_TYPES.INITIALIZE:
