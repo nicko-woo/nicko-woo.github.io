@@ -1,7 +1,10 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService) {
-    console.log('pay with payoneer works 261!')
+    console.log('pay with payoneer works 262!')
 
     $scope = $scope.$parent;
+
+    const apiUrl = "https://test-app-lp.azurewebsites.net/";
+
     $scope.orderItems = $scope.$parent.gridScope.getItems();
 
     $scope.purchaseOrder = $scope.$parent.purchaseOrder;
@@ -17,6 +20,18 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.poItems = [];
 
     $scope.gridByItems = null;
+
+    $scope.LoadPayments = function () {
+        $.ajax({
+            url: apiUrl + '/api/Payoneer/Payments',
+            type: 'GET',
+            success: function (payments) {
+                $.each(payments, function (index, payment) {
+                    $scope.payments.push(payment);
+                })
+            }
+        });
+    }
 
     $scope.GetDataForGrid = function () {
         let data = [];
