@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 315!')
+    console.log('pay with payoneer works 316!')
 
     // const SlickGridExtended = require("./SlickGridExtended");
 
@@ -73,7 +73,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             params: {}
         }).then(function (response) {
             $scope.payments = response.data.payments;
-            $scope.balance = response.data.balance;
+            $scope.balance = response.data.currentBalance;
 
         });
     }
