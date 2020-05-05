@@ -1,7 +1,9 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 314!')
+    console.log('pay with payoneer works 315!')
 
     // const SlickGridExtended = require("./SlickGridExtended");
+
+    const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
     var self = this;
     self.onMessage = function (msg) {
@@ -25,7 +27,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
         $q.all(promises).then(function (resolved) {
             Core.Dialogs.BusyWorker.hideBusy($element);
-            const apiUrl = "https://test-app-lp.azurewebsites.net/";
+            
 
             $scope.outstanding = "0.00";
             $scope.paid = "0.00";
