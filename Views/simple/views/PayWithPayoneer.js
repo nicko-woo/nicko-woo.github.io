@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 290!')
+    console.log('pay with payoneer works 291!')
 
     // const SlickGridExtended = require("./SlickGridExtended");
 
@@ -27,6 +27,29 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             $scope.poItems = $scope.GetDataForGrid();
             $scope.gridByItems = $scope.GetGridByItems();
             $scope.gridByAmount = $scope.GetGridByAmount();
+
+            $scope.gridByItems.resizeCanvas();
+
+
+
+            let columns = [
+                { id: "column1", name: "SKU", field: "SKU", width: 220, cssClass: "slick-cell slickgrid-align-center" },
+                { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 160, cssClass: "slick-cell slickgrid-align-center" },
+                { id: "column3", name: "Paid Quantity", field: "PaidQuantity", width: 140, cssClass: "slick-cell slickgrid-align-center" },
+                { id: "column4", name: "Price", field: "Price", width: 100, cssClass: "slick-cell slickgrid-align-center" },
+                { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: Slick.Editors.Text, cssClass: "slick-cell slickgrid-text-editor-icon slickgrid-align-center" }
+            ];
+
+            $scope.gridByItems.setColumns(columns);
+
+            gridObject = $element.find('[name="pwpByAmountGrid"]');
+            gridScope = gridObject.scope();
+
+
+            var grid = $element.find(".slickgrid.pwpamountgrid");
+            gridScope = grid.scope();
+            $scope.gridScope = gridScope;
+
 
 
 
@@ -66,8 +89,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.poItems = [];
 
-    $scope.gridByItems = null;
-    $scope.gridByAmount = null;
+    //$scope.gridByItems = null;
+    //$scope.gridByAmount = null;
     $scope.gridPayments = null;
 
     $scope.GetPayments = function () {
@@ -224,8 +247,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
 
     $scope.Close = function () {
-        $scope.$destroy();
-        self.close();
+        //$scope.$destroy();
+        //self.close();
     }
 
 };
