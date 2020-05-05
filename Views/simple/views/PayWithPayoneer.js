@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 299!')
+    console.log('pay with payoneer works 300!')
 
     // const SlickGridExtended = require("./SlickGridExtended");
 
@@ -9,6 +9,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             case Core.Messenger.MESSAGE_TYPES.INITIALIZE:
                 Core.Dialogs.BusyWorker.showBusy($element);
                 $scope.purchaseOrder = msg.data.data.PurchaseOrder;
+                $scope.orderCurrency = $scope.purchaseOrder.currency;
                 $scope.orderItems = msg.data.data.OrderItems;
                 $scope.grid = msg.data.data.Grid;
                 $scope.userId = msg.data.session.userId;
@@ -89,9 +90,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.paid = "0.00";
     $scope.selectedToPay = "0.00";
     $scope.amountToPay = 0;
-    $scope.balance = null;
-    // $scope.orderCurrency = $scope.purchaseOrder.Currency;
-    $scope.orderCurrency = null;
     // $scope.userId = $scope.$parent.$root.session.userId;
 
     $scope.poItems = [];
