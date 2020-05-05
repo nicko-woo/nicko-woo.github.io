@@ -22,8 +22,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.Initialize = function () {
         var promises = [];
-        promises.push($scope.GetBalance("UAH"));
-        promises.push($scope.GetPayments($scope.purchaseOrder.pkPurchaseID));
+        promises.push($scope.GetPayments());
 
         $q.all(promises).then(function (resolved) {
             Core.Dialogs.BusyWorker.hideBusy($element);
@@ -74,6 +73,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             params: {}
         }).then(function (response) {
             $scope.payments = response.data.payments;
+            $scope.balance = response.data.balance;
+
         });
     }
 
