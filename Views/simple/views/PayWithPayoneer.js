@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 307!')
+    console.log('pay with payoneer works 308!')
 
     // const SlickGridExtended = require("./SlickGridExtended");
 
@@ -26,7 +26,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         promises.push($scope.GetGridPayments());
 
         $q.all(promises).then(function (resolved) {
-            // Core.Dialogs.BusyWorker.hideBusy($element);
+            Core.Dialogs.BusyWorker.hideBusy($element);
 
             $scope.payments = $scope.GetPayments($scope.purchaseOrder.pkPurchaseID);
 
@@ -71,8 +71,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                 });
 
             $scope.Loaded = true;
-            Core.Dialogs.BusyWorker.hideBusy($element);
-            // $scope.$apply();
+            Core.Dialogs.BusyWorker.hideBusy($element);            // $scope.$apply();
 
         }, function (reason) {
             Core.Dialogs.BusyWorker.hideBusy($element);
@@ -181,7 +180,9 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
         let data = $scope.payments;
 
-        dataViewPayments.setItems(data);
+        if (data && data.length) {
+            dataViewPayments.setItems(data);
+        }
 
         return new Slick.Grid("#pwpPaymentsGrid", dataViewPayments, columnsPayments, optionsPayments);
     }
