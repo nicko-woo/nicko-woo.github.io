@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 292!')
+    console.log('pay with payoneer works 293!')
 
     // const SlickGridExtended = require("./SlickGridExtended");
 
@@ -32,7 +32,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
 
 
-            let columns = [
+            let columnsByItems = [
                 { id: "column1", name: "SKU", field: "SKU", width: 220, cssClass: "slick-cell slickgrid-align-center" },
                 { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 160, cssClass: "slick-cell slickgrid-align-center" },
                 { id: "column3", name: "Paid Quantity", field: "PaidQuantity", width: 140, cssClass: "slick-cell slickgrid-align-center" },
@@ -40,18 +40,23 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                 { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: Slick.Editors.Text, cssClass: "slick-cell slickgrid-text-editor-icon slickgrid-align-center" }
             ];
 
-            $scope.gridByItems.setColumns(columns);
+            $scope.gridByItems.setColumns(columnsByItems);
+
+            let columnsByAmount = [
+                { id: "column1", name: "SKU", field: "SKU", width: 220, cssClass: "slick-cell slickgrid-align-center" },
+                { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 200, cssClass: "slick-cell slickgrid-align-center" },
+                { id: "column3", name: "Price", field: "Price", width: 200, cssClass: "slick-cell slickgrid-align-center" },
+                { id: "column4", name: "Total", field: "Total", width: 200, cssClass: "slick-cell slickgrid-align-center" }
+            ];
+
+            $scope.gridByAmount.setColumns(columnsByAmount);
 
             gridObject = $element.find('[name="pwpByAmountGrid"]');
             gridScope = gridObject.scope();
 
-
             var grid = $element.find(".slickgrid.pwpamountgrid");
             gridScope = grid.scope();
             $scope.gridScope = gridScope;
-
-
-
 
             $scope.gridByItems.onCellChange.subscribe(
                 function (e, args) {
