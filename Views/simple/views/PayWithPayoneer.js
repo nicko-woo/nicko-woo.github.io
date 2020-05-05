@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 294!')
+    console.log('pay with payoneer works 295!')
 
     // const SlickGridExtended = require("./SlickGridExtended");
 
@@ -20,15 +20,15 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         var promises = [];
         promises.push($scope.GetBalance("UAH"));
 
-        // promises.push($scope.GetGridByItems());
-        // promises.push($scope.GetGridByAmount());
+        promises.push($scope.GetGridByItems());
+        promises.push($scope.GetGridByAmount());
 
         $q.all(promises).then(function (resolved) {
             Core.Dialogs.BusyWorker.hideBusy($element);
 
             $scope.poItems = $scope.GetDataForGrid();
-            // $scope.gridByItems = $scope.GetGridByItems();
-            // $scope.gridByAmount = $scope.GetGridByAmount();
+            $scope.gridByItems = $scope.GetGridByItems();
+            $scope.gridByAmount = $scope.GetGridByAmount();
 
             // $scope.gridByItems.resizeCanvas();
 
@@ -103,8 +103,12 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.GetPayments = function () {
         $http({
             method: 'GET',
-            url: apiUrl + '/api/Linnworks/Payments/getPayments/' + $scope.purchaseOrder.pkPurchaseID,
-            params: {}
+            url: apiUrl + '/api/Linnworks/getPayments/' + $scope.purchaseOrder.pkPurchaseID,
+            params: {},
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': $scope.userId
+              }
         }).then(function (response) {
             $scope.payments = response.data;
         });
@@ -113,7 +117,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.GetBalance = function () {
         $http({
             method: 'GET',
-            url: apiUrl + '/api/Payoneer/Balance/getBalance/' + $scope.userId,
+            url: apiUrl + '/api/Payoneer/getBalance/' + $scope.userId,
             params: {}
         }).then(function (response) {
             $scope.balance = response.data;
