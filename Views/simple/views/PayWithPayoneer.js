@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 295!')
+    console.log('pay with payoneer works 296!')
 
     // const SlickGridExtended = require("./SlickGridExtended");
 
@@ -53,12 +53,12 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
             $scope.gridByAmount.setColumns(columnsByAmount);
 
-            gridObject = $element.find('[name="pwpByAmountGrid"]');
-            gridScope = gridObject.scope();
+            // gridObject = $element.find('[name="pwpByAmountGrid"]');
+            // gridScope = gridObject.scope();
 
-            var grid = $element.find(".slickgrid.pwpamountgrid");
-            gridScope = grid.scope();
-            $scope.gridScope = gridScope;
+            // var grid = $element.find(".slickgrid.pwpamountgrid");
+            // gridScope = grid.scope();
+            // $scope.gridScope = gridScope;
 
             $scope.gridByItems.onCellChange.subscribe(
                 function (e, args) {
@@ -218,7 +218,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     }
 
-    $scope.gridByAmount = $scope.GetGridByAmount();
+    // $scope.gridByAmount = $scope.GetGridByAmount();
 
 
     //     $scope.selectedToPay = $scope.GetSumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
