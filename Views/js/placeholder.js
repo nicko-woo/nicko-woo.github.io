@@ -28,7 +28,24 @@ var PlaceHolder = function ($scope, $element) {
                 OrderItems: $scope.$parent.gridScope.getItems(),
                 Grid: $scope.$parent.gridScope
             },
-            onWindowClosed: function (event) {},
+            onWindowClosed: function (event) {
+                switch (event.action) {
+                    case "OK":
+                        $scope.CheckHasChanged();
+                        if (!$scope.$$phase) {
+                            $scope.$apply();
+                        }
+                        break;
+                    case "CLOSE":
+                        if (event.result) {
+                            $scope.CheckHasChanged();
+                            if (!$scope.$$phase) {
+                                $scope.$apply();
+                            }
+                        }
+                        break;
+                }
+            },
             width: "900px"
             // ngScope: $scope
 
