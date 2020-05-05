@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 312!')
+    console.log('pay with payoneer works 313!')
 
     // const SlickGridExtended = require("./SlickGridExtended");
 
@@ -132,6 +132,14 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         $scope.gridByItems = new Slick.Grid("#pwpByItemGrid", dataViewByItems, columnsByItems, optionsByItems);
 
         $scope.gridByItems.setColumns(columnsByItems);
+
+        $scope.gridByItems.onCellChange.subscribe(
+            function (e, args) {
+                var tempSelectedToPay = 0;
+                console.log('row: ' + args.row + ' cell: ' + args.cell);
+                tempSelectedToPay = $scope.GetSumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
+                $scope.selectedToPay = tempSelectedToPay;
+            });
     }
 
 
@@ -173,13 +181,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         }, 0);
     };
 
-    $scope.gridByItems.onCellChange.subscribe(
-        function (e, args) {
-            var tempSelectedToPay = 0;
-            console.log('row: ' + args.row + ' cell: ' + args.cell);
-            tempSelectedToPay = $scope.GetSumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
-            $scope.selectedToPay = tempSelectedToPay;
-        });
+    
 
 
     $scope.GetGridByAmount = function () {
