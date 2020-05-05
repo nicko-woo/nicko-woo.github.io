@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 293!')
+    console.log('pay with payoneer works 294!')
 
     // const SlickGridExtended = require("./SlickGridExtended");
 
@@ -18,17 +18,19 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.Initialize = function () {
         var promises = [];
-        promises.push($scope.GetGridByItems());
-        promises.push($scope.GetGridByAmount());
+        promises.push($scope.GetBalance("UAH"));
+
+        // promises.push($scope.GetGridByItems());
+        // promises.push($scope.GetGridByAmount());
 
         $q.all(promises).then(function (resolved) {
             Core.Dialogs.BusyWorker.hideBusy($element);
 
             $scope.poItems = $scope.GetDataForGrid();
-            $scope.gridByItems = $scope.GetGridByItems();
-            $scope.gridByAmount = $scope.GetGridByAmount();
+            // $scope.gridByItems = $scope.GetGridByItems();
+            // $scope.gridByAmount = $scope.GetGridByAmount();
 
-            $scope.gridByItems.resizeCanvas();
+            // $scope.gridByItems.resizeCanvas();
 
 
 
@@ -214,41 +216,20 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.gridByAmount = $scope.GetGridByAmount();
 
-    //
-    // $scope.init = function () {
-    //     // $scope.gridByItems.resetActiveCell();
-    //     // dataViewByItems.beginUpdate();
-    //     // $scope.gridByItems.invalidateAllRows();
-    //     // dataViewByItems.setItems($scope.dataByItems);
-    //     // dataViewByItems.endUpdate();
-    //     // $scope.gridByItems.render();
-    //     // $scope.gridByItems.updateRowCount();
-    //     // $scope.gridByItems.resizeCanvas();
-    //     // $scope.gridByItems.invalidate();
-    //     // $("#pwpByItemGrid").children(".slick-viewport").css("height", "300px");
 
     //     $scope.selectedToPay = $scope.GetSumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
 
-    //     $scope.$apply();
 
-    //     $scope.gridByItems.resizeCanvas();
-
-    //     $scope.gridByAmount.resizeCanvas();
-
+    // $scope.showTabByAmount = function () {
+    //     setTimeout(function () {
+    //         $scope.gridByAmount.resizeCanvas();
+    //     }, 200);
     // };
 
-    // $scope.init();
-
-    $scope.showTabByAmount = function () {
-        setTimeout(function () {
-            $scope.gridByAmount.resizeCanvas();
-        }, 200);
-    };
-
-    $('#pwpByItemGrid').on('shown', setTimeout(function () {
-        $scope.gridByItems.resizeCanvas();
-        console.log("dataview refreshed after timeout")
-    }, 500));
+    // $('#pwpByItemGrid').on('shown', setTimeout(function () {
+    //     $scope.gridByItems.resizeCanvas();
+    //     console.log("dataview refreshed after timeout")
+    // }, 500));
 
 
     $scope.Close = function () {
