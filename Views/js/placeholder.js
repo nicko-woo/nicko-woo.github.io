@@ -46,8 +46,8 @@ var PlaceHolder = function ($scope, $element) {
                         break;
                 }
             },
-            width: "900px"
-            // ngScope: $scope
+            width: "900px",
+            ngScope: $scope
 
         });
         

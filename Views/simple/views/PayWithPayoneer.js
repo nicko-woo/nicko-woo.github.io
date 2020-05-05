@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 309!')
+    console.log('pay with payoneer works 310!')
 
     // const SlickGridExtended = require("./SlickGridExtended");
 
@@ -19,7 +19,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.Initialize = function () {
         var promises = [];
         promises.push($scope.GetBalance("UAH"));
-        promises.push($scope.GetPayments($scope.purchaseOrder.pkPurchaseID));
+        // promises.push($scope.GetPayments($scope.purchaseOrder.pkPurchaseID));
 
         promises.push($scope.GetGridByItems());
         promises.push($scope.GetGridByAmount());
@@ -28,7 +28,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         $q.all(promises).then(function (resolved) {
             Core.Dialogs.BusyWorker.hideBusy($element);
 
-            $scope.payments = $scope.GetPayments($scope.purchaseOrder.pkPurchaseID);
+            // $scope.payments = $scope.GetPayments($scope.purchaseOrder.pkPurchaseID);
 
             $scope.poItems = $scope.GetDataForGrid();
             $scope.gridByItems = $scope.GetGridByItems();
@@ -178,7 +178,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             autoEdit: false
         };
 
-        let data = $scope.GetPayments($scope.purchaseOrder.pkPurchaseID);
+        let data = $scope.payments;
 
         if (data && data.length) {
             dataViewPayments.setItems(data);
