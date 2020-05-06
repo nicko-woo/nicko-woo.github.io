@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 320!')
+    console.log('pay with payoneer works 321!')
 
     // const SlickGridExtended = require("./SlickGridExtended");
 
@@ -22,7 +22,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.Initialize = function () {
         var promises = [];
-        promises.push($scope.GetPayments());
+        promises.push($scope.GetPayments($scope.GetGridPayments));
 
         $q.all(promises).then(function (resolved) {
             Core.Dialogs.BusyWorker.hideBusy($element);
@@ -66,7 +66,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         });
     }
 
-    $scope.GetPayments = function () {
+    $scope.GetPayments = function (callback) {
         $http({
             method: 'GET',
             url: apiUrl + 'api/Linnworks/getPayments/' + $scope.purchaseOrder.pkPurchaseID,
@@ -74,10 +74,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         }).then(function (response) {
             $scope.payments = response.data.payments;
             $scope.balance = response.data.currentBalance;
-            $scope.GetGridPayments();
-            setTimeout(() => $scope.gridPayments.resizeCanvas(), 300);
-            
-
+            callback();
         });
     }
 
@@ -171,8 +168,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             { id: "123", pDate: "30 Apr 2020", PaidAmount: 250, PaidItemsQuantity: 12 },
             { id: "124", pDate: "28 Apr 2020", PaidAmount: 100, PaidItemsQuantity: 5 }
         ];
-        let data = testData;
-        // let data = $scope.payments;
+        // let data = testData;
+        let data = $scope.payments;
 
         if (data && data.length) {
             dataViewPayments.setItems(data);
