@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 316!')
+    console.log('pay with payoneer works 317!')
 
     // const SlickGridExtended = require("./SlickGridExtended");
 
@@ -74,6 +74,9 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         }).then(function (response) {
             $scope.payments = response.data.payments;
             $scope.balance = response.data.currentBalance;
+            $scope.GetGridPayments();
+            setTimeout(() => $scope.gridPayments.resizeCanvas(), 300);
+            
 
         });
     }
@@ -150,7 +153,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         let dataViewPayments = new Slick.Data.DataView();
 
         let columnsPayments = [
-            { id: "column1", name: "Date", field: "Date", width: 220, cssClass: "slick-cell slickgrid-align-center" },
+            { id: "column1", name: "Date", field: "Id", width: 220, cssClass: "slick-cell slickgrid-align-center" },
             { id: "column2", name: "Paid", field: "PaidAmount", width: 220, cssClass: "slick-cell slickgrid-align-center" },
             { id: "column3", name: "Items paid", field: "PaidItemsQuantity", width: 220, cssClass: "slick-cell slickgrid-align-center" }
         ];
@@ -164,7 +167,11 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             autoEdit: false
         };
 
-        let data = $scope.payments;
+        let testData = [
+            { id: "123", Date: "30 Apr 2020", PaidAmount: 250, PaidItemsQuantity: 12 }
+        ];
+        let data = testData;
+        // let data = $scope.payments;
 
         if (data && data.length) {
             dataViewPayments.setItems(data);
@@ -183,8 +190,11 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             return (a + (b[propA] * b[propB]));
         }, 0);
     };
-
-    
+ 
+    $scope.showTabByAmount = function () {
+        setTimeout(() => $scope.gridByAmount.resizeCanvas(), 200);
+        // $scope.gridByAmount.resizeCanvas();
+    }
 
 
     $scope.GetGridByAmount = function () {
