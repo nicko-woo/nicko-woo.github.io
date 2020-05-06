@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 323!')
+    console.log('pay with payoneer works 324!')
 
     // const SlickGridExtended = require("./SlickGridExtended");
 
@@ -117,8 +117,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         let dataViewByItems = new Slick.Data.DataView();
 
         let columnsByItems = [
-            { id: "column1", name: "SKU", field: "SKU", width: 220, cssClass: "slick-cell slickgrid-align-center" },
-            { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 160, cssClass: "slick-cell slickgrid-align-center" },
+            { id: "column1", name: "SKU", field: "SKU", width: 220, cssClass: "slick-cell slickgrid-align-center", align: "center" },
+            { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 160, cssClass: "slick-cell slickgrid-align-center", align: "center" },
             { id: "column3", name: "Paid Quantity", field: "PaidQuantity", width: 140, cssClass: "slick-cell slickgrid-align-center" },
             { id: "column4", name: "Price", field: "Price", width: 100, cssClass: "slick-cell slickgrid-align-center" },
             { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: Slick.Editors.Text, cssClass: "slick-cell slickgrid-text-editor-icon slickgrid-align-center" }
@@ -140,6 +140,9 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         $scope.gridByItems = new Slick.Grid("#pwpByItemGrid", dataViewByItems, columnsByItems, optionsByItems);
 
         $scope.gridByItems.setColumns(columnsByItems);
+
+        //
+        $scope.gridByItems.setSelectionModel(new Slick.RowSelectionModel({ selectActiveRow: true }));
 
         $scope.gridByItems.onCellChange.subscribe(
             function (e, args) {
