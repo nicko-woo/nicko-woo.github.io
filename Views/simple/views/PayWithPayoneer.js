@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 321!')
+    console.log('pay with payoneer works 322!')
 
     // const SlickGridExtended = require("./SlickGridExtended");
 
@@ -72,8 +72,12 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             url: apiUrl + 'api/Linnworks/getPayments/' + $scope.purchaseOrder.pkPurchaseID,
             params: {}
         }).then(function (response) {
-            $scope.payments = response.data.payments;
+            // $scope.payments = response.data.payments;
             $scope.balance = response.data.currentBalance;
+            response.data.payments.forEach(function(payment){
+                $scope.payments.push(payment);
+            })
+
             callback();
         });
     }
@@ -85,6 +89,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             params: {}
         }).then(function (response) {
             $scope.balance = response.data.balance;
+
         });
     }
 
