@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 322!')
+    console.log('pay with payoneer works 323!')
 
     // const SlickGridExtended = require("./SlickGridExtended");
 
@@ -72,11 +72,11 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             url: apiUrl + 'api/Linnworks/getPayments/' + $scope.purchaseOrder.pkPurchaseID,
             params: {}
         }).then(function (response) {
-            // $scope.payments = response.data.payments;
+            $scope.payments = response.data.payments;
             $scope.balance = response.data.currentBalance;
-            response.data.payments.forEach(function(payment){
-                $scope.payments.push(payment);
-            })
+            // response.data.payments.forEach(function(payment){
+            //     $scope.payments.push(payment);
+            // })
 
             callback();
         });
@@ -156,8 +156,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
         let columnsPayments = [
             { id: "column1", name: "Date", field: "pDate", width: 220, cssClass: "slick-cell slickgrid-align-center" },
-            { id: "column2", name: "Paid", field: "PaidAmount", width: 220, cssClass: "slick-cell slickgrid-align-center" },
-            { id: "column3", name: "Items paid", field: "PaidItemsQuantity", width: 220, cssClass: "slick-cell slickgrid-align-center" }
+            { id: "column2", name: "Paid", field: "paidAmount", width: 220, cssClass: "slick-cell slickgrid-align-center" },
+            { id: "column3", name: "Items paid", field: "paidItemsQuantity", width: 220, cssClass: "slick-cell slickgrid-align-center" }
         ];
 
         let optionsPayments = {
