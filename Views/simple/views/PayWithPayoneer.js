@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 318!')
+    console.log('pay with payoneer works 319!')
 
     // const SlickGridExtended = require("./SlickGridExtended");
 
@@ -168,7 +168,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         };
 
         let testData = [
-            { id: "123", pDate: "30 Apr 2020", PaidAmount: 250, PaidItemsQuantity: 12 }
+            { id: "123", pDate: "30 Apr 2020", PaidAmount: 250, PaidItemsQuantity: 12 },
+            { id: "124", pDate: "28 Apr 2020", PaidAmount: 100, PaidItemsQuantity: 5 }
         ];
         let data = testData;
         // let data = $scope.payments;
