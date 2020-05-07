@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 325!')
+    console.log('pay with payoneer works 326!')
 
     // const SlickGridExtended = require("./SlickGridExtended");
 
@@ -121,7 +121,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 160, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
             { id: "column3", name: "Paid Quantity", field: "PaidQuantity", width: 140, cssClass: "slick-cell slickgrid-align-center" },
             { id: "column4", name: "Price", field: "Price", width: 100, cssClass: "slick-cell slickgrid-align-center" },
-            { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: Slick.Editors.Float, cssFormatter: null, cssClass: "slick-cell slickgrid-text-editor-icon slickgrid-align-center" }
+            { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: Slick.Editors.Float, cssClass: "slick-cell slickgrid-text-editor-icon slickgrid-align-center active selected" }
         ];
 
         let optionsByItems = {
@@ -130,7 +130,9 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             enableAutoResize: true,
             editable: true,
             asyncEditorLoading: false,
-            autoEdit: false
+            autoEdit: false,
+            forceFitColumns: true,
+            cssFormatter: null
         };
 
         let data = $scope.poItems;
