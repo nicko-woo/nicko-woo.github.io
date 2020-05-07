@@ -1,5 +1,6 @@
 .amountInput {
-    width: 40px;
+    vertical-align: bottom;
+    width: 80px;
     height: 18px;
     margin-left: 10px;
     text-align: center;

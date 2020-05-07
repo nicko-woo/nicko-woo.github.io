@@ -1,7 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 335!')
-
-    // const SlickGridExtended = require("./SlickGridExtended");
+    console.log('pay with payoneer works 338!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -27,7 +25,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         $q.all(promises).then(function (resolved) {
             Core.Dialogs.BusyWorker.hideBusy($element);
             
-
             $scope.outstanding = "0.00";
             $scope.paid = "0.00";
             $scope.selectedToPay = "0.00";
@@ -94,6 +91,33 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     }
 
     $scope.GetDataForGrid = function () {
+
+        const people = [{ id: 1, name: "John" }, { id: 2, name: "Alice" }];
+        const address = [{ id: 1, peopleId: 1, address: 'Some street 1' }, { id: 2, peopleId: 2, address: 'Some street 2' }]
+
+        let op = people.map((e, i) => {
+            let temp = address.find(element => element.id === e.id)
+            if (temp.address) {
+                e.address = temp.address;
+            }
+            return e;
+        })
+        
+        const tempPayments = $scope.payments;
+        const tempItems = $scope.orderItems;
+
+        let gridData = tempPayments.map((e, i) => {
+            let temp = tempItems.find(item => item.id === e.id)
+            e.SKU = temp.SKU;
+            e.OrderedQuantity = temp.Quantity;
+            e.UnitCost = temp.UnitCost;
+            e.ItemTitle = temp.ItemTitle;
+            e.ToPayQuantity = 0;
+
+            return e;
+        })
+
+
         let data = [];
         if ($scope.orderItems && $scope.orderItems.length) {
             $scope.orderItems.forEach(function (orderItem) {
@@ -142,7 +166,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
         $scope.gridByItems.setColumns(columnsByItems);
 
-        //
         $scope.gridByItems.setSelectionModel(new Slick.RowSelectionModel({ selectActiveRow: true }));
 
         $scope.gridByItems.onCellChange.subscribe(
@@ -173,11 +196,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             autoEdit: false
         };
 
-        let testData = [
-            { id: "123", pDate: "30 Apr 2020", PaidAmount: 250, PaidItemsQuantity: 12 },
-            { id: "124", pDate: "28 Apr 2020", PaidAmount: 100, PaidItemsQuantity: 5 }
-        ];
-        // let data = testData;
         let data = $scope.payments;
 
         if (data && data.length) {
@@ -199,7 +217,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     };
  
     $scope.showTabByAmount = function () {
-        setTimeout(() => $scope.gridByAmount.resizeCanvas(), 200);
+        setTimeout(() => $scope.gridByAmount.resizeCanvas(), 300);
         // $scope.gridByAmount.resizeCanvas();
     }
 
