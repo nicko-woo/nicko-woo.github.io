@@ -1,24 +1,5 @@
 <div ng-controller="PayWithPayoneerView">
 
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/6pac-slickgrid/2.4.21/lib/firebugx.min.js"></script>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/6pac-slickgrid/2.4.21/lib/jquery.event.drag-2.3.0.min.js"></script>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/6pac-slickgrid/2.4.21/lib/jquery.event.drop-2.3.0.min.js"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/slickgrid@2.4.21/slick.core.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slickgrid@2.4.21/slick.grid.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slickgrid@2.4.21/slick.editors.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slickgrid@2.4.21/slick.formatters.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slickgrid@2.4.21/slick.dataview.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slickgrid@2.4.21/plugins/slick.cellrangedecorator.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slickgrid@2.4.21/plugins/slick.cellrangeselector.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slickgrid@2.4.21/plugins/slick.cellselectionmodel.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slickgrid@2.4.21/plugins/slick.resizer.js"></script>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/6pac-slickgrid/2.4.21/plugins/slick.cellselectionmodel.min.js"></script>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/6pac-slickgrid/2.4.21/plugins/slick.cellselectionmodel.min.js"></script> -->
 
   <div ng-if="ShowError">
     <div class="alert alert-warning">
@@ -95,27 +76,38 @@
                         </table>
 
                         <table class="pull-right" style="min-width:300px;">
-                          <tbody><tr>
-                              <td class="totalsLabel">Subtotal:</td>
-                              <td style="text-align: right"> 808.25 UAH</td>
-                          </tr>
-                          <tr>
-                              <td class="totalsLabel">Tax:</td>
-                              <td style="text-align: right"> 0.00 UAH</td>
-                          </tr>
-                          <tr>
-                              <td class="totalsLabel"><b>Total: </b></td>
-                              <td style="text-align: right"><b> 808.25 UAH</b></td>
-                          </tr>
+                          <tbody>
+                            <tr>
+                              <td class="totalsLabel">Paid:</td>
+                              <td style="text-align: right"> {{ paid }} </td>
+                            </tr>
+                            <tr>
+                              <td class="totalsLabel">Outstanding:</td>
+                              <td style="text-align: right"> {{ outstanding }} {{ orderCurrency }}</td>
+                            </tr>
+                            <tr>
+                              <td class="totalsLabel"><b>Selected To Pay:</b></td>
+                              <td style="text-align: right"><b> {{ selectedToPay }} {{ orderCurrency }}</b></td>
+                            </tr>
+                            <tr>
+                              <td class="totalsLabel">Your balance is:</td>
+                              <td style="text-align: right"> {{ balance }} {{ orderCurrency }}</td>
+                            </tr>
 
-                          <tr><td colspan="2" style="border-top: solid 1px #000"></td></tr>
+                            <tr>
+                              <td colspan="2" style="border-top: solid 1px #000"></td>
+                            </tr>
 
-                          <tr>
-                              <td class="totalsLabel">Shipping: </td>
-                              <td style="text-align: right" title="">0.00 UAH</td>
-                          </tr>
-                          
-                      </tbody></table>
+                            <tr>
+                              <td>
+                                <div style="display: flex; justify-content: flex-end">
+                                  <button class="btn btn-primary" ng-click="payByItems()">Pay</button>
+                                </div>
+                              </td>
+                            </tr>
+
+                          </tbody>
+                        </table>
 
 
 
@@ -176,21 +168,40 @@
                           </tr>
                         </table>
 
-                        <!-- <table>
-                          <tr>
-                            <h5>Paid: {{ orderCurrency }} {{ paid }} </h5>
-                          </tr>
-                          <tr>
-                            <h5>Outstanding: {{ orderCurrency }} {{ outstanding }} </h5>
-                          </tr>
-                          <tr>
-                            <row><h4>Amount To Pay: {{ orderCurrency }} </h4><input type="number" ng-model="amountToPay"/></row>
-                          </tr>
-                          <tr>
-                            <h5>Your balance is: {{ orderCurrency }} {{ paid }} </h5>
-                          </tr>
-                          <tr><button class="btn btn-primary" ng-click="payByAmount()">Pay</button></tr>
-                        </table> -->
+                        <table class="pull-right" style="min-width:300px;">
+                          <tbody>
+                            <tr>
+                              <td class="totalsLabel">Paid:</td>
+                              <td style="text-align: right"> {{ paid }} </td>
+                            </tr>
+                            <tr>
+                              <td class="totalsLabel">Outstanding:</td>
+                              <td style="text-align: right"> {{ outstanding }} {{ orderCurrency }}</td>
+                            </tr>
+                            <tr>
+                              <td class="totalsLabel"><b>Amount To Pay:</b></td>
+                              <td style="text-align: right"><b> <input class="amountInput" type="number"
+                                    ng-model="amountToPay" /> {{ orderCurrency }}</b></td>
+                            </tr>
+                            <tr>
+                              <td class="totalsLabel">Your balance is:</td>
+                              <td style="text-align: right"> {{ balance }} {{ orderCurrency }}</td>
+                            </tr>
+
+                            <tr>
+                              <td colspan="2" style="border-top: solid 1px #000"></td>
+                            </tr>
+
+                            <tr>
+                              <td>
+                                <div style="display: flex; justify-content: flex-end">
+                                  <button class="btn btn-primary" ng-click="payByAmount()">Pay</button>
+                                </div>
+                              </td>
+                            </tr>
+
+                          </tbody>
+                        </table>
                       </td>
                     </tr>
                   </tbody>
@@ -215,8 +226,8 @@
 
   <div>
     <h2>Payment History</h2>
-      <div class="linngrid" id="pwpPaymentsGrid" style="width: 100%; height: 200px; outline: 0px; position: relative;">
-      </div>
+    <div class="linngrid" id="pwpPaymentsGrid" style="width: 100%; height: 200px; outline: 0px; position: relative;">
+    </div>
 
 
     <div ng-if="!payments">
