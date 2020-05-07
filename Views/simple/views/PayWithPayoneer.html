@@ -1,6 +1,5 @@
 <div ng-controller="PayWithPayoneerView">
 
-
   <div ng-if="ShowError">
     <div class="alert alert-warning">
       <strong>Error</strong> There was an error loading some of the data required for this page. Please try again later.
@@ -36,45 +35,6 @@
                         <div class="linngrid" id="pwpByItemGrid"
                           style="width: 100%; height: 240px; outline: 0px; position: relative;"></div>
 
-                        <table style="width: 99%;">
-                          <tr>
-                            <td>
-                              <div
-                                style="display: inline-block; width: 100%; justify-content: flex-end; text-align: right;">
-                                <h5>Paid: {{ orderCurrency }} {{ paid }} </h5>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div style="display: flex; justify-content: flex-end">
-                                <h5>Outstanding: {{ orderCurrency }} {{ outstanding }} </h5>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div style="display: flex; justify-content: flex-end">
-                                <h4>Selected To Pay: {{ orderCurrency }} {{ selectedToPay }} </h4>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div style="display: flex; justify-content: flex-end">
-                                <h5>Your balance is: {{ orderCurrency }} {{ balance }} </h5>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div style="display: flex; justify-content: flex-end">
-                                <button class="btn btn-primary" ng-click="payByItems()">Pay</button>
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
-
                         <table class="pull-right" style="min-width:300px;">
                           <tbody>
                             <tr>
@@ -105,12 +65,8 @@
                                 </div>
                               </td>
                             </tr>
-
                           </tbody>
                         </table>
-
-
-
 
                       </td>
                     </tr>
@@ -125,48 +81,6 @@
                         <p>By Amount Content</p>
                         <div class="linngrid" id="pwpByAmountGrid"
                           style="width: 100%; height: 240px; outline: 0px; position: relative;"></div>
-
-
-
-                        <table style="width: 99%;">
-                          <tr>
-                            <td>
-                              <div
-                                style="display: inline-block; width: 100%; justify-content: flex-end; text-align: right;">
-                                <h5>Paid: {{ orderCurrency }} {{ paid }} </h5>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div style="display: flex; justify-content: flex-end">
-                                <h5>Outstanding: {{ orderCurrency }} {{ outstanding }} </h5>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div style="display: flex; justify-content: flex-end">
-                                <h4>Amount To Pay: {{ orderCurrency }} </h4><input class="amountInput" type="number"
-                                  ng-model="amountToPay" />
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div style="display: flex; justify-content: flex-end">
-                                <h5>Your balance is: {{ orderCurrency }} {{ paid }} </h5>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div style="display: flex; justify-content: flex-end">
-                                <button class="btn btn-primary" ng-click="payByAmount()">Pay</button>
-                              </div>
-                            </td>
-                          </tr>
-                        </table>
 
                         <table class="pull-right" style="min-width:300px;">
                           <tbody>
@@ -223,18 +137,15 @@
     </lw-tab-set>
   </section>
 
-
   <div>
     <h2>Payment History</h2>
     <div class="linngrid" id="pwpPaymentsGrid" style="width: 100%; height: 200px; outline: 0px; position: relative;">
     </div>
-
 
     <div ng-if="!payments">
       <h5>No payments found for this PO.</h5>
     </div>
 
   </div>
-
 
 </div>
