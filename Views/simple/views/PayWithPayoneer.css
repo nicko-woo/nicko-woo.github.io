@@ -1,43 +1,81 @@
 .amountInput {
-    width: 80px;
-    height: 20px;
+    width: 40px;
+    height: 18px;
     margin-left: 10px;
     text-align: center;
     font-size: 14px;
 }
 
-.slick-cell.editable {
-    z-index: 11;
-    overflow: visible;
-    background: white;
-  }
+.slick-cell.selected a {
+    color: #fff !important;
+    text-shadow: none;
+    border-right: 1px solid #93b1c9;
+    background-color: #93b1c9
+}
 
-  .slick-cell.input {
-      height: 18px;
-      width: 40px;
-  }
-  
-  .slick-cell:focus {
-    outline: none;
-  }
-  
-  .slick-reorder-proxy {
-    display: inline-block;
-    background: blue;
-    opacity: 0.15;
-    filter: alpha(opacity = 15);
-    cursor: move;
-  }
-  
-  .slick-reorder-guide {
-    display: inline-block;
-    height: 2px;
-    background: blue;
-    opacity: 0.7;
-    filter: alpha(opacity = 70);
-  }
-  
-  .slick-selection {
-    z-index: 10;
+.slickgrid-long-text-editor {
+    z-index: 10000;
     position: absolute;
-  }
+    background-color: #fff;
+    padding: 8px;
+    top: 3040px;
+    left: 999px;
+    -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+    border-bottom: 1px solid #dbdbde;
+    border-left: 1px solid #dbdbde;
+    border-right: 1px solid #dbdbde;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -khtml-border-radius: 0;
+    -webkit-border-radius: 0;
+    background: #f3f3f4
+}
+
+.slickgrid-long-text-editor textarea {
+    min-height: 64px;
+    border: 1px;
+    box-shadow: none
+}
+
+.slickgrid-long-text-editor button {
+    margin-left: 5px
+}
+
+.slickgrid .editor-text {
+    height: 28px;
+    width: 100%;
+    margin-left: -5px;
+    margin-top: -5px
+}
+
+.slickgrid .editor-yesno {
+    height: 28px;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0
+}
+
+.slickgrid input.editor-text {
+    vertical-align: bottom;
+    color: #f9f9f9;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: none;
+    box-shadow: none;
+    height: 100%;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+    width: 100%
+}
+
+.slickgrid input.editor-text::-ms-clear {
+    display: none
+}
+
+.slickgrid select.editor-text {
+    padding: 2px;
+    margin-left: 0;
+    margin-top: 0
+}
+
