@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 327!')
+    console.log('pay with payoneer works 328!')
 
     // const SlickGridExtended = require("./SlickGridExtended");
 
@@ -119,9 +119,9 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         let columnsByItems = [
             { id: "column1", name: "SKU", field: "SKU", width: 220, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
             { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 160, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
-            { id: "column3", name: "Paid Quantity", field: "PaidQuantity", width: 140, cssClass: "slick-cell slickgrid-align-center" },
-            { id: "column4", name: "Price", field: "Price", width: 100, cssClass: "slick-cell slickgrid-align-center" },
-            { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: Slick.Editors.Float, cssClass: "slick-cell slickgrid-text-editor-icon slickgrid-align-center editable" }
+            { id: "column3", name: "Paid Quantity", field: "PaidQuantity", width: 140, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
+            { id: "column4", name: "Price", field: "Price", width: 100, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
+            { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: Slick.Editors.Float, cssClass: "slick-cell slickgrid-text-editor-icon slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" }
         ];
 
         let optionsByItems = {
@@ -160,16 +160,16 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         let dataViewPayments = new Slick.Data.DataView();
 
         let columnsPayments = [
-            { id: "column1", name: "Date", field: "pDate", width: 220, cssClass: "slick-cell slickgrid-align-center" },
-            { id: "column2", name: "Paid", field: "paidAmount", width: 220, cssClass: "slick-cell slickgrid-align-center" },
-            { id: "column3", name: "Items paid", field: "paidItemsQuantity", width: 220, cssClass: "slick-cell slickgrid-align-center" }
+            { id: "column1", name: "Date", field: "pDate", width: 220, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
+            { id: "column2", name: "Paid", field: "paidAmount", width: 220, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
+            { id: "column3", name: "Items paid", field: "paidItemsQuantity", width: 220, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" }
         ];
 
         let optionsPayments = {
             enableCellNavigation: true,
             enableColumnReorder: false,
             enableAutoResize: true,
-            editable: true,
+            forceFitColumns: true,
             asyncEditorLoading: false,
             autoEdit: false
         };
@@ -209,17 +209,17 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         let dataViewByAmount = new Slick.Data.DataView();
 
         let columnsByAmount = [
-            { id: "column1", name: "SKU", field: "SKU", width: 220, cssClass: "slick-cell slickgrid-align-center" },
-            { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 200, cssClass: "slick-cell slickgrid-align-center" },
-            { id: "column3", name: "Price", field: "Price", width: 200, cssClass: "slick-cell slickgrid-align-center" },
-            { id: "column4", name: "Total", field: "Total", width: 200, cssClass: "slick-cell slickgrid-align-center" }
+            { id: "column1", name: "SKU", field: "SKU", width: 220, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
+            { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 200, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
+            { id: "column3", name: "Price", field: "Price", width: 200, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
+            { id: "column4", name: "Total", field: "Total", width: 200, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" }
         ];
 
         let optionsByAmount = {
             enableCellNavigation: true,
             enableColumnReorder: false,
             enableAutoResize: true,
-            editable: true,
+            forceFitColumns: true,
             asyncEditorLoading: false,
             autoEdit: false
         };
