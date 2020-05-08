@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 339!')
+    console.log('pay with payoneer works 341!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -90,17 +90,20 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             const tempItems = $scope.orderItems;
 
             let gridData = tempPayments.map((e, i) => {
-                let temp = tempItems.find(item => item.id === e.id)
-                e.SKU = temp.SKU;
+                let temp = tempItems.find(item => item.pkPurchaseItemId === e.id)
+
+                if (temp.id) {
+                    e.SKU = temp.SKU;
                 e.OrderedQuantity = temp.Quantity;
                 e.UnitCost = temp.UnitCost;
                 e.ItemTitle = temp.ItemTitle;
                 e.ToPayQuantity = 0;
 
+                }
+                
+
                 return e;
             })
-
-
 
             callback();
         });
@@ -167,7 +170,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
         $scope.gridByItems.setColumns(columnsByItems);
 
-        $scope.gridByItems.setSelectionModel(new Slick.RowSelectionModel({ selectActiveRow: true }));
+        // $scope.gridByItems.setSelectionModel(new Slick.RowSelectionModel({ selectActiveRow: true }));
 
         $scope.gridByItems.onCellChange.subscribe(
             function (e, args) {

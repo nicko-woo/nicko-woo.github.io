@@ -39,7 +39,7 @@
                           <tbody>
                             <tr>
                               <td class="totalsLabel">Paid:</td>
-                              <td style="text-align: right"> {{ paid }} </td>
+                              <td style="text-align: right"> {{ paid }} {{ orderCurrency }}</td>
                             </tr>
                             <tr>
                               <td class="totalsLabel">Outstanding:</td>
@@ -61,7 +61,7 @@
                             <tr>
                               <td></td>
                               <td>
-                                <div style="display: flex; justify-content: right">
+                                <div style="margin-left: auto">
                                   <button class="btn btn-primary" ng-click="payByItems()">Pay</button>
                                 </div>
                               </td>
