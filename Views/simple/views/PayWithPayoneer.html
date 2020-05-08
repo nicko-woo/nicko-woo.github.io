@@ -53,6 +53,9 @@
                               <td class="totalsLabel">Your balance is:</td>
                               <td style="text-align: right"> {{ balance }} {{ orderCurrency }}</td>
                             </tr>
+                            <tr>
+                              <td ng-if="topupAccount" class="totalsLabel">Click here to top-up your account</td>
+                            </tr>
 
                             <tr>
                               <td colspan="2" style="border-top: solid 1px #000"></td>
@@ -102,6 +105,9 @@
                               <td class="totalsLabel">Your balance is:</td>
                               <td style="text-align: right"> {{ balance }} {{ orderCurrency }}</td>
                             </tr>
+                            <tr>
+                              <td ng-if="topupAccount" class="totalsLabel">Click here to top-up your account</td>
+                            </tr>
 
                             <tr>
                               <td colspan="2" style="border-top: solid 1px #000"></td>
@@ -109,7 +115,7 @@
 
                             <tr>
                               <td>
-                                <div style="display: flex; justify-content: right">
+                                <div class="pull-right">
                                   <button class="btn btn-primary" ng-click="payByAmount()">Pay</button>
                                 </div>
                               </td>
