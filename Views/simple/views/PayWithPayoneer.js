@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 349!')
+    console.log('pay with payoneer works 350!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -67,15 +67,43 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             method: 'GET',
             url: apiUrl + 'api/Linnworks/getPayments/' + $scope.purchaseOrder.pkPurchaseID,
             params: {}
-        }, function (event){
-            if (event.hasErrors() === true) {
-                deferred.reject(event.error);
-            } else {
-                $scope.dataTest = event.result;
-                deferred.resolve();
-            }
+        }).then(function success(response) {
+            $scope.payments = response.data.payments;
+            $scope.balance = response.data.currentBalance;
 
-        })
+            
+            const people = [{ id: 1, name: "John" }, { id: 2, name: "Alice" }];
+            const address = [{ id: 1, peopleId: 1, address: 'Some street 1' }, { id: 2, peopleId: 2, address: 'Some street 2' }]
+
+            let op = people.map((e, i) => {
+                let temp = address.find(element => element.id === e.id)
+                if (temp.address) {
+                    e.address = temp.address;
+                }
+                return e;
+            })
+
+            const tempPayments = $scope.payments;
+            const tempItems = $scope.orderItems;
+
+            let gridData = tempPayments.map((e, i) => {
+                let temp = tempItems.find(item => item.pkPurchaseItemId === e.id)
+
+                if (temp.id) {
+                    e.SKU = temp.SKU;
+                    e.OrderedQuantity = temp.Quantity;
+                    e.UnitCost = temp.UnitCost;
+                    e.ItemTitle = temp.ItemTitle;
+                }
+                
+                return e;
+            })
+
+            deferred.resolve();
+
+        }, function error (response){
+            deferred.reject();
+        });
 
         return deferred.promise;
     }
