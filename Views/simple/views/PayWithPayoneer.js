@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 346!')
+    console.log('pay with payoneer works 347!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -21,6 +21,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.Initialize = function () {
         var promises = [];
         promises.push($scope.GetPayments($scope.GetGridPayments));
+        promises.push($scope.GetBalance());
 
         $q.all(promises).then(function (resolved) {
             Core.Dialogs.BusyWorker.hideBusy($element);
@@ -29,19 +30,12 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             $scope.paid = "0.00";
             $scope.selectedToPay = "0.00";
             $scope.amountToPay = 0;
-            $scope.topupAccount = true;
-            // $scope.userId = $scope.$parent.$root.session.userId;
+            $scope.topupAccount = false;
 
             $scope.poItems = [];
             $scope.payments = [];
 
-
-            // $scope.payments = $scope.GetPayments($scope.purchaseOrder.pkPurchaseID);
-
             $scope.poItems = $scope.GetDataForGrid();
-            // $scope.gridByItems = $scope.GetGridByItems();
-            // $scope.gridByAmount = $scope.GetGridByAmount();
-            // $scope.gridPayments = $scope.GetGridPayments();
 
             $scope.GetGridByItems();
             $scope.GetGridByAmount();
@@ -64,6 +58,28 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         });
     }
 
+
+    // Test promise function
+    $scope.GetBalance = function()
+    {
+        var deferred = $q.defer();
+        $http({
+            method: 'GET',
+            url: apiUrl + 'api/Payoneer/getBalance/' + $scope.userId,
+            params: {}
+        }, function (event){
+            if (event.hasErrors() === true) {
+                deferred.reject(event.error);
+            } else {
+                $scope.balanceTest = event.result;
+                deferred.resolve();
+            }
+
+        })
+
+        return deferred.promise;
+    }
+
     $scope.GetPayments = function (callback) {
         $http({
             method: 'GET',
@@ -72,9 +88,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         }).then(function (response) {
             $scope.payments = response.data.payments;
             $scope.balance = response.data.currentBalance;
-            // response.data.payments.forEach(function(payment){
-            //     $scope.payments.push(payment);
-            // })
             
             const people = [{ id: 1, name: "John" }, { id: 2, name: "Alice" }];
             const address = [{ id: 1, peopleId: 1, address: 'Some street 1' }, { id: 2, peopleId: 2, address: 'Some street 2' }]
