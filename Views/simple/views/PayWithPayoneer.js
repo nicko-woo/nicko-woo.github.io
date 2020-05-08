@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 347!')
+    console.log('pay with payoneer works 348!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -21,7 +21,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.Initialize = function () {
         var promises = [];
         promises.push($scope.GetPayments($scope.GetGridPayments));
-        promises.push($scope.GetBalance());
+        promises.push($scope.GetPaymentsTest());
 
         $q.all(promises).then(function (resolved) {
             Core.Dialogs.BusyWorker.hideBusy($element);
@@ -60,18 +60,18 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
 
     // Test promise function
-    $scope.GetBalance = function()
+    $scope.GetPaymentsTest = function()
     {
         var deferred = $q.defer();
         $http({
             method: 'GET',
-            url: apiUrl + 'api/Payoneer/getBalance/' + $scope.userId,
+            url: apiUrl + 'api/Linnworks/getPayments/' + $scope.purchaseOrder.pkPurchaseID,
             params: {}
         }, function (event){
             if (event.hasErrors() === true) {
                 deferred.reject(event.error);
             } else {
-                $scope.balanceTest = event.result;
+                $scope.dataTest = event.result;
                 deferred.resolve();
             }
 
