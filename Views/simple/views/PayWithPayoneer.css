@@ -8,7 +8,7 @@
 }
 
 .slick-cell.selected a {
-    color: #000000 !important;
+    color: #fff !important;
     text-shadow: none;
     border-right: 1px solid #93b1c9;
     background-color: #93b1c9
