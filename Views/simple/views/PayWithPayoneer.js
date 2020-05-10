@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 352!')
+    console.log('pay with payoneer works 353!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -50,7 +50,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
             $scope.Loaded = true;
             Core.Dialogs.BusyWorker.hideBusy($element);
-            $scope.$apply();
+            // $scope.$apply();
 
         }, function (reason) {
             Core.Dialogs.BusyWorker.hideBusy($element);
@@ -70,18 +70,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         }).then(function success(response) {
             $scope.payments = response.data.payments;
             $scope.balance = response.data.currentBalance;
-
-            
-            const people = [{ id: 1, name: "John" }, { id: 2, name: "Alice" }];
-            const address = [{ id: 1, peopleId: 1, address: 'Some street 1' }, { id: 2, peopleId: 2, address: 'Some street 2' }]
-
-            let op = people.map((e, i) => {
-                let temp = address.find(element => element.id === e.id)
-                if (temp.address) {
-                    e.address = temp.address;
-                }
-                return e;
-            })
 
             const tempPayments = $scope.payments;
             const tempItems = $scope.orderItems;
@@ -261,7 +249,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.showTabByAmount = function () {
         setTimeout(() => $scope.gridByAmount.resizeCanvas(), 300);
-        // $scope.gridByAmount.resizeCanvas();
     }
 
 
