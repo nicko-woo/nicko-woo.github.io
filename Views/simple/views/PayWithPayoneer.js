@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 350!')
+    console.log('pay with payoneer works 351!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -20,7 +20,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.Initialize = function () {
         var promises = [];
-        promises.push($scope.GetPayments($scope.GetGridPayments));
+        // promises.push($scope.GetPayments($scope.GetGridPayments));
         promises.push($scope.GetPaymentsTest());
 
         $q.all(promises).then(function (resolved) {
