@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 353!')
+    console.log('pay with payoneer works 354!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -19,6 +19,13 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     };
 
     $scope.Initialize = function () {
+
+        Core.Dialogs.warning({
+            message: "Test Message 123",
+            title: "Test Warning"
+        }, self.options);
+
+
         var promises = [];
         // promises.push($scope.GetPayments($scope.GetGridPayments));
         promises.push($scope.GetPaymentsTest());
@@ -60,8 +67,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
 
     // Test promise function
-    $scope.GetPaymentsTest = function()
-    {
+    $scope.GetPaymentsTest = function () {
         var deferred = $q.defer();
         $http({
             method: 'GET',
@@ -83,13 +89,13 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                     e.UnitCost = temp.UnitCost;
                     e.ItemTitle = temp.ItemTitle;
                 }
-                
+
                 return e;
             })
 
             deferred.resolve();
 
-        }, function error (response){
+        }, function error(response) {
             deferred.reject();
         });
 
@@ -104,7 +110,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         }).then(function (response) {
             $scope.payments = response.data.payments;
             $scope.balance = response.data.currentBalance;
-            
+
             const people = [{ id: 1, name: "John" }, { id: 2, name: "Alice" }];
             const address = [{ id: 1, peopleId: 1, address: 'Some street 1' }, { id: 2, peopleId: 2, address: 'Some street 2' }]
 
@@ -128,7 +134,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                     e.UnitCost = temp.UnitCost;
                     e.ItemTitle = temp.ItemTitle;
                 }
-                
+
                 return e;
             })
 
