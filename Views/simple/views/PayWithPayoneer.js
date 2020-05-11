@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 354!')
+    console.log('pay with payoneer works 355!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -20,15 +20,16 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.Initialize = function () {
 
-        Core.Dialogs.warning({
-            message: "Test Message 123",
-            title: "Test Warning"
-        }, self.options);
+        // Core.Dialogs.warning({
+        //     message: "Test Message 123",
+        //     title: "Test Warning"
+        // }, self.options);
 
 
         var promises = [];
         // promises.push($scope.GetPayments($scope.GetGridPayments));
         promises.push($scope.GetPaymentsTest());
+        promises.push($scope.GetBalance());
 
         $q.all(promises).then(function (resolved) {
             Core.Dialogs.BusyWorker.hideBusy($element);
@@ -75,7 +76,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             params: {}
         }).then(function success(response) {
             $scope.payments = response.data.payments;
-            $scope.balance = response.data.currentBalance;
+            // $scope.balance = response.data.currentBalance;
 
             const tempPayments = $scope.payments;
             const tempItems = $scope.orderItems;
