@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 360!')
+    console.log('pay with payoneer works 361!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -187,7 +187,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
         let columnsPayments = [
             { id: "column1", name: "Date", field: "PaymentDate", width: 220, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
-            { id: "column2", name: "Paid", field: "paidAmount", width: 220, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" }
+            { id: "column2", name: "Paid " + $scope.orderCurrency, field: "paidAmount", width: 220, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" }
             // { id: "column3", name: "Items paid", field: "paidItemsQuantity", width: 220, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" }
         ];
 
