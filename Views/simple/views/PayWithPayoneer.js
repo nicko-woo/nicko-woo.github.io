@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 380!')
+    console.log('pay with payoneer works 381!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -20,13 +20,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.Initialize = function () {
 
-        // if (!sessionStorage.getItem("userToken")) {
-        //     Core.Dialogs.warning({
-        //         message: "Test Message 123",
-        //         title: "Test Warning"
-        //     }, self.options);
-        // }
-
         var promises = [];
         promises.push($scope.GetPayments());
         promises.push($scope.GetBalance());
@@ -40,20 +33,20 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             $scope.amountToPay = 0;
             $scope.topupAccount = false;
 
-            $scope.poItems = [];
-            $scope.poItems = $scope.GetDataForGrid();
+            $scope.gridItems = [];
+            $scope.gridItems = $scope.GetDataForGrid();
 
             $scope.GetGridByItems();
             $scope.GetGridByAmount();
             $scope.GetGridPayments();
 
-            $scope.paid = $scope.GetSumSelected($scope.poItems, 'PaidQuantity', 'Price').toFixed(2);
-            $scope.outstanding = $scope.GetSumOutstanding($scope.poItems, 'OrderedQuantity', 'PaidQuantity', 'Price').toFixed(2);
+            $scope.paid = $scope.GetSumSelected($scope.gridItems, 'PaidQuantity', 'Price').toFixed(2);
+            $scope.outstanding = $scope.GetSumOutstanding($scope.gridItems, 'OrderedQuantity', 'PaidQuantity', 'Price').toFixed(2);
 
             $scope.gridByItems.onCellChange.subscribe(
                 function (e, args) {
                     var tempSelectedToPay = 0;
-                    tempSelectedToPay = $scope.GetSumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
+                    tempSelectedToPay = $scope.GetSumSelected($scope.gridItems, 'Price', 'ToPayQuantity').toFixed(2);
                     $scope.selectedToPay = tempSelectedToPay;
                 });
 
@@ -75,20 +68,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             params: {}
         }).then(function success(response) {
             $scope.payments = response.data;
-
-            // const tempPayments = $scope.payments;
-            // const tempItems = $scope.orderItems;
-            // let gridData = tempPayments.map((e, i) => {
-            //     let temp = tempItems.find(item => item.pkPurchaseItemId === e.id)
-            //     if (temp.id) {
-            //         e.SKU = temp.SKU;
-            //         e.OrderedQuantity = temp.Quantity;
-            //         e.UnitCost = temp.UnitCost;
-            //         e.ItemTitle = temp.ItemTitle;
-            //     }
-            //     return e;
-            // })
-
             deferred.resolve();
 
         }, function error(response) {
@@ -134,7 +113,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                     totalPaidPerItem = 0;
                 }
 
-                var poItem = {
+                var gridItem = {
                     id: orderItem.fkStockItemId,
                     SKU: orderItem.SKU,
                     OrderedQuantity: orderItem.Quantity,
@@ -144,7 +123,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                     Total: orderItem.Quantity * orderItem.UnitCost
                 };
 
-                data.push(poItem);
+                data.push(gridItem);
             })
         }
 
@@ -172,7 +151,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             cssFormatter: null
         };
 
-        let data = $scope.poItems;
+        let data = $scope.gridItems;
 
         dataViewByItems.setItems(data);
 
@@ -216,8 +195,10 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.PayByItems = function () {
         console.log("pay by item");
 
+        Core.Dialogs.BusyWorker.showBusy($element);
+
         let paymentItems = [];
-        $scope.poItems.forEach(function (gridItem) {
+        $scope.gridItems.forEach(function (gridItem) {
             let paymentItem = {
                 Id: gridItem.id,
                 SKU: gridItem.SKU,
@@ -244,10 +225,16 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             params: {},
             data: payByItemRequest
         }).then(function (response) {
-            Core.Dialogs.addNotify("Congrats, your payment was handled successfully :)", "SUCCESS");
-            return;
-
+            $scope.GetPayments()
+                .then(function () {
+                    $scope.GetGridByItems();
+                    $scope.GetGridPayments();
+                    Core.Dialogs.BusyWorker.hideBusy($element);
+                    Core.Dialogs.addNotify("Congrats, your payment was handled successfully :)", "SUCCESS");
+                    return;
+                })
         }, function error(response) {
+            Core.Dialogs.BusyWorker.hideBusy($element);
             Core.Dialogs.addNotify("Sorry, but something went wrong :(", "ERROR");
             return;
         });
@@ -294,7 +281,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             autoEdit: false
         };
 
-        dataViewByAmount.setItems($scope.poItems);
+        dataViewByAmount.setItems($scope.gridItems);
 
         $scope.gridByAmount = new Slick.Grid("#pwpByAmountGrid", dataViewByAmount, columnsByAmount, optionsByAmount);
 
