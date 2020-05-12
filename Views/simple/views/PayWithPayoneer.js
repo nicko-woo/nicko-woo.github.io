@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 376!')
+    console.log('pay with payoneer works 377!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -78,18 +78,14 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
             // const tempPayments = $scope.payments;
             // const tempItems = $scope.orderItems;
-
             // let gridData = tempPayments.map((e, i) => {
             //     let temp = tempItems.find(item => item.pkPurchaseItemId === e.id)
-
             //     if (temp.id) {
             //         e.SKU = temp.SKU;
             //         e.OrderedQuantity = temp.Quantity;
             //         e.UnitCost = temp.UnitCost;
             //         e.ItemTitle = temp.ItemTitle;
-
             //     }
-
             //     return e;
             // })
 
@@ -120,21 +116,17 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     }
 
     $scope.GetDataForGrid = function () {
-
         let data = [];
         let tempPaidItems = [];
         if ($scope.orderItems && $scope.orderItems.length) {
             $scope.orderItems.forEach(function (orderItem) {
-                
                 var totalPaidPerItem = 0;
-                
                 var items = [];
                 $scope.payments.forEach(function (payment) {
                     var tempPaymentItem = payment.items.find(i => i.id === orderItem.pkPurchaseItemId);
                     if (tempPaymentItem) {
                         items.push(tempPaymentItem);
                     }
-                    
                 });
 
                 if (items && items.length > 0) {
@@ -144,7 +136,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                 }
 
                 var poItem = {
-
                     id: orderItem.fkStockItemId,
                     SKU: orderItem.SKU,
                     OrderedQuantity: orderItem.Quantity,
@@ -152,7 +143,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                     Price: orderItem.UnitCost,
                     ToPayQuantity: 0,
                     Total: orderItem.Quantity * orderItem.UnitCost
-                }
+                };
 
                 data.push(poItem);
             })
@@ -192,14 +183,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
         $scope.gridByItems.setSelectionModel(new Slick.RowSelectionModel({ selectActiveRow: true }));
 
-        // $scope.gridByItems.onCellChange.subscribe(
-        //     function (e, args) {
-        //         var tempSelectedToPay = 0;
-        //         console.log('row: ' + args.row + ' cell: ' + args.cell);
-        //         tempSelectedToPay = $scope.GetSumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
-        //         $scope.selectedToPay = tempSelectedToPay;
-        //     });
-    }
+    };
 
 
     $scope.GetGridPayments = function () {
@@ -228,11 +212,11 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
         $scope.gridPayments = new Slick.Grid("#pwpPaymentsGrid", dataViewPayments, columnsPayments, optionsPayments);
         $scope.gridPayments.setColumns(columnsPayments);
-    }
+    };
 
     $scope.PayByItems = function () {
         console.log("button works");
-    }
+    };
 
     $scope.GetSumSelected = function (items, propA, propB) {
         return items.reduce(function (a, b) {
