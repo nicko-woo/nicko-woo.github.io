@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 377!')
+    console.log('pay with payoneer works 378!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -117,7 +117,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.GetDataForGrid = function () {
         let data = [];
-        let tempPaidItems = [];
         if ($scope.orderItems && $scope.orderItems.length) {
             $scope.orderItems.forEach(function (orderItem) {
                 var totalPaidPerItem = 0;
@@ -215,7 +214,43 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     };
 
     $scope.PayByItems = function () {
-        console.log("button works");
+        console.log("pay by item");
+
+        let paymentItems = [];
+        $scope.poItems.forEach(function (gridItem) {
+            let paymentItem = {
+                id: gridItem.id,
+                SKU: gridItem.SKU,
+                Price: gridItem.Price,
+                PaidQuantity: gridItem.ToPayQuantity
+            }
+
+            paymentItems.push(paymentItem);
+        })
+
+        let payByItemRequest = {
+            userId: $scope.userId,
+            supplierId: $scope.purchaseOrder.fkSupplierId,
+            orderId: $scope.purchaseOrder.pkPurchaseID,
+            amount: $scope.selectedToPay,
+            type: 0,
+            currency: $scope.orderCurrency,
+            items: paymentItems
+        };
+
+        $http({
+            method: 'POST',
+            url: apiUrl + 'api/Payoneer/payByItem/',
+            params: {},
+            data: payByItemRequest
+        }).then(function (response) {
+            dialogs.addNotify("Congrats, your payment was handled successfully :)", "SUCCESS");
+            return;
+
+        }, function error(response) {
+                dialogs.addNotify("Sorry, but something went wrong :(", "WARNING");
+                return;
+        });
     };
 
     $scope.GetSumSelected = function (items, propA, propB) {
