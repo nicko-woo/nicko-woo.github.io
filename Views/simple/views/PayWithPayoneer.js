@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 379!')
+    console.log('pay with payoneer works 380!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -219,7 +219,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         let paymentItems = [];
         $scope.poItems.forEach(function (gridItem) {
             let paymentItem = {
-                id: gridItem.id,
+                Id: gridItem.id,
                 SKU: gridItem.SKU,
                 Price: gridItem.Price,
                 PaidQuantity: gridItem.ToPayQuantity
@@ -244,12 +244,12 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             params: {},
             data: payByItemRequest
         }).then(function (response) {
-            dialogs.addNotify("Congrats, your payment was handled successfully :)", "SUCCESS");
+            Core.Dialogs.addNotify("Congrats, your payment was handled successfully :)", "SUCCESS");
             return;
 
         }, function error(response) {
-                dialogs.addNotify("Sorry, but something went wrong :(", "WARNING");
-                return;
+            Core.Dialogs.addNotify("Sorry, but something went wrong :(", "ERROR");
+            return;
         });
     };
 
