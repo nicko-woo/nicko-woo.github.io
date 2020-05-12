@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 364!')
+    console.log('pay with payoneer works 365!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -129,7 +129,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                     id: orderItem.fkStockItemId,
                     SKU: orderItem.SKU,
                     OrderedQuantity: orderItem.Quantity,
-                    PaidQuantity: 0,
+                    PaidQuantity: $scope.payments.find(item => item.id === orderItem.fkStockItemId),
                     Price: orderItem.UnitCost,
                     ToPayQuantity: 0,
                     Total: orderItem.Quantity * orderItem.UnitCost
@@ -186,8 +186,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         let dataViewPayments = new Slick.Data.DataView();
 
         let columnsPayments = [
-            { id: "column1", name: "Date", field: "PaymentDate", cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
-            { id: "column2", name: "Paid " + $scope.orderCurrency, field: "PaidAmount", cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" }
+            { id: "column1", name: "Date", field: "paymentDate", cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
+            { id: "column2", name: "Paid " + $scope.orderCurrency, field: "paidAmount", cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" }
             // { id: "column3", name: "Items paid", field: "paidItemsQuantity", width: 220, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" }
         ];
 
