@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 356!')
+    console.log('pay with payoneer works 357!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -20,16 +20,12 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.Initialize = function () {
 
-        if (!sessionStorage.getItem("userToken")) {
-            Core.Dialogs.warning({
-                message: "Test Message 123",
-                title: "Test Warning"
-            }, self.options);
-            return;
-        }
-
-
-
+        // if (!sessionStorage.getItem("userToken")) {
+        //     Core.Dialogs.warning({
+        //         message: "Test Message 123",
+        //         title: "Test Warning"
+        //     }, self.options);
+        // }
 
         var promises = [];
         // promises.push($scope.GetPayments($scope.GetGridPayments));
@@ -260,7 +256,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.showTabByAmount = function () {
         setTimeout(() => $scope.gridByAmount.resizeCanvas(), 300);
     }
-
 
     $scope.GetGridByAmount = function () {
         let dataViewByAmount = new Slick.Data.DataView();
