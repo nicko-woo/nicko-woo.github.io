@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 357!')
+    console.log('pay with payoneer works 351!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -19,18 +19,9 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     };
 
     $scope.Initialize = function () {
-
-        // if (!sessionStorage.getItem("userToken")) {
-        //     Core.Dialogs.warning({
-        //         message: "Test Message 123",
-        //         title: "Test Warning"
-        //     }, self.options);
-        // }
-
         var promises = [];
         // promises.push($scope.GetPayments($scope.GetGridPayments));
         promises.push($scope.GetPaymentsTest());
-        promises.push($scope.GetBalance());
 
         $q.all(promises).then(function (resolved) {
             Core.Dialogs.BusyWorker.hideBusy($element);
@@ -42,6 +33,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             $scope.topupAccount = false;
 
             $scope.poItems = [];
+            $scope.payments = [];
 
             $scope.poItems = $scope.GetDataForGrid();
 
@@ -58,8 +50,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                 });
 
             $scope.Loaded = true;
-            Core.Dialogs.BusyWorker.hideBusy($element);
-            // $scope.$apply();
+            Core.Dialogs.BusyWorker.hideBusy($element);            // $scope.$apply();
 
         }, function (reason) {
             Core.Dialogs.BusyWorker.hideBusy($element);
@@ -67,7 +58,10 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         });
     }
 
-    $scope.GetPaymentsTest = function () {
+
+    // Test promise function
+    $scope.GetPaymentsTest = function()
+    {
         var deferred = $q.defer();
         $http({
             method: 'GET',
@@ -75,42 +69,9 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             params: {}
         }).then(function success(response) {
             $scope.payments = response.data.payments;
-            // $scope.balance = response.data.currentBalance;
-
-            const tempPayments = $scope.payments;
-            const tempItems = $scope.orderItems;
-
-            let gridData = tempPayments.map((e, i) => {
-                let temp = tempItems.find(item => item.pkPurchaseItemId === e.id)
-
-                if (temp.id) {
-                    e.SKU = temp.SKU;
-                    e.OrderedQuantity = temp.Quantity;
-                    e.UnitCost = temp.UnitCost;
-                    e.ItemTitle = temp.ItemTitle;
-                }
-
-                return e;
-            })
-
-            deferred.resolve();
-
-        }, function error(response) {
-            deferred.reject();
-        });
-
-        return deferred.promise;
-    }
-
-    $scope.GetPayments = function (callback) {
-        $http({
-            method: 'GET',
-            url: apiUrl + 'api/Linnworks/getPayments/' + $scope.purchaseOrder.pkPurchaseID,
-            params: {}
-        }).then(function (response) {
-            $scope.payments = response.data.payments;
             $scope.balance = response.data.currentBalance;
 
+            
             const people = [{ id: 1, name: "John" }, { id: 2, name: "Alice" }];
             const address = [{ id: 1, peopleId: 1, address: 'Some street 1' }, { id: 2, peopleId: 2, address: 'Some street 2' }]
 
@@ -134,7 +95,52 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                     e.UnitCost = temp.UnitCost;
                     e.ItemTitle = temp.ItemTitle;
                 }
+                
+                return e;
+            })
 
+            deferred.resolve();
+
+        }, function error (response){
+            deferred.reject();
+        });
+
+        return deferred.promise;
+    }
+
+    $scope.GetPayments = function (callback) {
+        $http({
+            method: 'GET',
+            url: apiUrl + 'api/Linnworks/getPayments/' + $scope.purchaseOrder.pkPurchaseID,
+            params: {}
+        }).then(function (response) {
+            $scope.payments = response.data.payments;
+            $scope.balance = response.data.currentBalance;
+            
+            const people = [{ id: 1, name: "John" }, { id: 2, name: "Alice" }];
+            const address = [{ id: 1, peopleId: 1, address: 'Some street 1' }, { id: 2, peopleId: 2, address: 'Some street 2' }]
+
+            let op = people.map((e, i) => {
+                let temp = address.find(element => element.id === e.id)
+                if (temp.address) {
+                    e.address = temp.address;
+                }
+                return e;
+            })
+
+            const tempPayments = $scope.payments;
+            const tempItems = $scope.orderItems;
+
+            let gridData = tempPayments.map((e, i) => {
+                let temp = tempItems.find(item => item.pkPurchaseItemId === e.id)
+
+                if (temp.id) {
+                    e.SKU = temp.SKU;
+                    e.OrderedQuantity = temp.Quantity;
+                    e.UnitCost = temp.UnitCost;
+                    e.ItemTitle = temp.ItemTitle;
+                }
+                
                 return e;
             })
 
@@ -255,7 +261,9 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.showTabByAmount = function () {
         setTimeout(() => $scope.gridByAmount.resizeCanvas(), 300);
+        // $scope.gridByAmount.resizeCanvas();
     }
+
 
     $scope.GetGridByAmount = function () {
         let dataViewByAmount = new Slick.Data.DataView();

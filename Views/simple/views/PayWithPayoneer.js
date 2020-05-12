@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 357!')
+    console.log('pay with payoneer works 358!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -42,7 +42,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             $scope.topupAccount = false;
 
             $scope.poItems = [];
-
             $scope.poItems = $scope.GetDataForGrid();
 
             $scope.GetGridByItems();
@@ -88,6 +87,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                     e.OrderedQuantity = temp.Quantity;
                     e.UnitCost = temp.UnitCost;
                     e.ItemTitle = temp.ItemTitle;
+
                 }
 
                 return e;
@@ -220,8 +220,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
         let columnsPayments = [
             { id: "column1", name: "Date", field: "pDate", width: 220, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
-            { id: "column2", name: "Paid", field: "paidAmount", width: 220, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
-            { id: "column3", name: "Items paid", field: "paidItemsQuantity", width: 220, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" }
+            { id: "column2", name: "Paid", field: "paidAmount", width: 220, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" }
+            // { id: "column3", name: "Items paid", field: "paidItemsQuantity", width: 220, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" }
         ];
 
         let optionsPayments = {
