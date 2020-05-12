@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 359!')
+    console.log('pay with payoneer works 360!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -47,13 +47,13 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             $scope.GetGridByAmount();
             $scope.GetGridPayments();
 
-            $scope.outstanding = $scope.GetSumOutstanding($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2)
+            $scope.outstanding = $scope.GetSumOutstanding($scope.poItems, 'OrderedQuantity', 'PaidQuantity', 'Price').toFixed(2)
 
             $scope.gridByItems.onCellChange.subscribe(
                 function (e, args) {
                     var tempSelectedToPay = 0;
                     console.log('row: ' + args.row + ' cell: ' + args.cell);
-                    tempSelectedToPay = $scope.GetSumSelected($scope.poItems, 'OrderedQuantity', 'PaidQuantity').toFixed(2);
+                    tempSelectedToPay = $scope.GetSumSelected($scope.poItems, 'Price', 'ToPayQuantity').toFixed(2);
                     $scope.selectedToPay = tempSelectedToPay;
                 });
 
@@ -220,9 +220,9 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         }, 0);
     };
 
-    $scope.GetSumOutstanding = function (items, propA, propB) {
+    $scope.GetSumOutstanding = function (items, propA, propB, propC) {
         return items.reduce(function (a, b) {
-            return (a + (b[propA] - b[propB]));
+            return (a + ((b[propA] - b[propB]) * b[propC]));
         }, 0);
     };
 
