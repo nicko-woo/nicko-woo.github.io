@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 387!')
+    console.log('pay with payoneer works 388!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -25,9 +25,9 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         $q.all(promises).then(function (resolved) {
             Core.Dialogs.BusyWorker.hideBusy($element);
 
-            $scope.outstanding = "0.00";
-            $scope.paid = "0.00";
-            $scope.selectedToPay = "0.00";
+            $scope.outstanding = 0;
+            $scope.paid = 0;
+            $scope.selectedToPay = 0;
             $scope.amountToPay = 0;
             $scope.topupAccount = false;
 
