@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 391!')
+    console.log('pay with payoneer works 392!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -202,7 +202,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         }
 
         if ($scope.selectedToPay > $scope.outstanding) {
-            Core.Dialogs.addNotify("You have selected more items than you need to pay for", "WARNING");
+            Core.Dialogs.addNotify("You have selected more items than you need to pay", "WARNING");
             return;
         }
 
@@ -244,6 +244,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                     $scope.GetGridByAmount();
                     $scope.GetGridPayments();
                     $scope.selectedToPay = 0;
+                    $scope.outstanding = $scope.GetSumOutstanding($scope.gridItems, 'OrderedQuantity', 'PaidQuantity', 'Price').toFixed(2);
                     Core.Dialogs.BusyWorker.hideBusy($element);
                     Core.Dialogs.addNotify("Congrats, your payment was handled successfully :)", "SUCCESS");
                     return;
