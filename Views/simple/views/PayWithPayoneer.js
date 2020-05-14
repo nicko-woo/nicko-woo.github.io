@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 392!')
+    console.log('pay with payoneer works 393!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -305,8 +305,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     }
 
     $scope.Close = function () {
-        //$scope.$destroy();
-        //self.close();
+        $scope.$destroy();
+        self.close();
     }
 
 };
