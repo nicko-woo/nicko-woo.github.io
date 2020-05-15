@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 395!')
+    console.log('pay with payoneer works 396!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -191,17 +191,17 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     $scope.PayByItems = function () {
         console.log("pay by item");
 
-        if ($scope.selectedToPay <= 0) {
+        if (parseFloat($scope.selectedToPay) <= 0) {
             Core.Dialogs.addNotify("You need to select at least one item to pay", "WARNING");
             return;
         };
 
-        if ($scope.selectedToPay > $scope.balance) {
+        if (parseFloat($scope.selectedToPay) > $scope.balance) {
             Core.Dialogs.addNotify("You need to top-up your balance before payment processing", "WARNING");
             return;
         }
 
-        if ($scope.selectedToPay > $scope.outstanding) {
+        if (parseFloat($scope.selectedToPay) > $scope.outstanding) {
             Core.Dialogs.addNotify("You have selected more items than you need to pay", "WARNING");
             return;
         }
