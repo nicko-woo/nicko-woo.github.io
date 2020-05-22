@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 400!')
+    console.log('pay with payoneer works 401!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -180,6 +180,10 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
         let data = $scope.payments;
 
+        data.forEach(function (payment){
+            payment.paymentDate = moment(payment.paymentDate).format('MM/DD/YYYY h:mm a');
+        })
+
         if (data && data.length) {
             dataViewPayments.setItems(data);
         }
@@ -265,6 +269,59 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             return;
         });
     };
+
+    $scope.payByAmount = function () {
+        if (parseFloat($scope.amountToPay) <= 0) {
+            Core.Dialogs.addNotify("The value of the amount cannot be less than zero", "WARNING");
+        }
+
+        Core.Dialogs.BusyWorker.showBusy($element);
+
+        let payByItemRequest = {
+            userId: $scope.userId,
+            supplierId: $scope.purchaseOrder.fkSupplierId,
+            orderId: $scope.purchaseOrder.pkPurchaseID,
+            paidAmount: parseFloat($scope.amountToPay),
+            type: 1,
+            currency: $scope.orderCurrency
+        };
+
+        $http({
+            method: 'POST',
+            url: apiUrl + 'api/Payoneer/payByAmount/',
+            // params: {},
+            headers: { 'Content-Type': 'application/json;charset=utf-8' },
+            data: payByItemRequest
+
+        }).then(function (response) {
+            $scope.GetPayments()
+                .then(function () {
+                    $scope.gridItems = $scope.GetDataForGrid();
+                    $scope.GetGridByItems();
+                    $scope.GetGridByAmount();
+                    $scope.GetGridPayments();
+                    $scope.paid = $scope.GetSumSelected($scope.gridItems, 'PaidQuantity', 'Price').toFixed(2);
+                    $scope.outstanding = $scope.GetSumOutstanding($scope.gridItems, 'OrderedQuantity', 'PaidQuantity', 'Price').toFixed(2);
+                    $scope.selectedToPay = $scope.GetSumSelected($scope.gridItems, 'Price', 'ToPayQuantity').toFixed(2);
+                    
+                    $scope.gridByItems.onCellChange.subscribe(
+                        function (e, args) {
+                            var tempSelectedToPay = 0;
+                            tempSelectedToPay = $scope.GetSumSelected($scope.gridItems, 'Price', 'ToPayQuantity').toFixed(2);
+                            $scope.selectedToPay = tempSelectedToPay;
+                        });
+
+                    Core.Dialogs.BusyWorker.hideBusy($element);
+                    Core.Dialogs.addNotify("Congrats, your payment was handled successfully :)", "SUCCESS");
+                    return;
+                })
+
+        }, function error(response) {
+            Core.Dialogs.BusyWorker.hideBusy($element);
+            Core.Dialogs.addNotify("Sorry, but something went wrong :(", "ERROR");
+            return;
+        });
+    }
 
     $scope.GetSumSelected = function (items, propA, propB) {
         return items.reduce(function (a, b) {
