@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 402!')
+    console.log('pay with payoneer works 403!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
     
@@ -183,7 +183,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         let data = $scope.payments;
 
         data.forEach(function (payment){
-            payment.paymentDate = moment(payment.paymentDate).format('MM/DD/YYYY HH:MM:SS');
+            payment.paymentDate = moment(payment.paymentDate).format('MM/DD/YYYY HH:mm:ss');
         })
 
         if (data && data.length) {
