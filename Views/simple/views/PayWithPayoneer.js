@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 406!')
+    console.log('pay with payoneer works 407!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
     
@@ -40,8 +40,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             $scope.GetGridByAmount();
             $scope.GetGridPayments();
 
-            $scope.paid = $scope.GetSumSelected($scope.gridItems, 'PaidQuantity', 'Price').toFixed(2);
-            $scope.outstanding = $scope.GetSumOutstanding($scope.gridItems, 'OrderedQuantity', 'PaidQuantity', 'Price').toFixed(2);
+            $scope.paid = $scope.GetSumSelected($scope.gridItems, 'Quantity', 'Price').toFixed(2);
+            $scope.outstanding = $scope.GetSumOutstanding($scope.gridItems, 'OrderedQuantity', 'Quantity', 'Price').toFixed(2);
 
             $scope.gridByItems.onCellChange.subscribe(
                 function (e, args) {
@@ -118,7 +118,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                     id: orderItem.fkStockItemId,
                     SKU: orderItem.SKU,
                     OrderedQuantity: orderItem.Quantity,
-                    PaidQuantity: totalPaidPerItem,
+                    Quantity: totalPaidPerItem,
                     Price: orderItem.UnitCost,
                     ToPayQuantity: 0,
                     Total: orderItem.Quantity * orderItem.UnitCost
@@ -137,7 +137,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         let columnsByItems = [
             { id: "column1", name: "SKU", field: "SKU", width: 220, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
             { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 160, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
-            { id: "column3", name: "Paid Quantity", field: "PaidQuantity", width: 140, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
+            { id: "column3", name: "Paid Quantity", field: "Quantity", width: 140, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
             { id: "column4", name: "Price", field: "Price", width: 100, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
             { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: Slick.Editors.Float, cssClass: "slick-cell slickgrid-text-editor-icon slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" }
         ];
@@ -222,7 +222,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                     Id: gridItem.id,
                     SKU: gridItem.SKU,
                     Price: gridItem.Price,
-                    PaidQuantity: gridItem.ToPayQuantity
+                    Quantity: gridItem.ToPayQuantity
                 }
                 paymentItems.push(paymentItem);
             }
@@ -243,7 +243,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             url: apiUrl + 'api/Payoneer/payByItem/',
             // params: {},
             headers: { 'Content-Type': 'application/json;charset=utf-8' },
-            data: payByItemRequest
+            data: { payByItemRequest, $scope.purchaseOrder.pkPurchaseID}
 
         }).then(function (response) {
             $scope.GetPayments()
@@ -252,8 +252,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                     $scope.GetGridByItems();
                     $scope.GetGridByAmount();
                     $scope.GetGridPayments();
-                    $scope.paid = $scope.GetSumSelected($scope.gridItems, 'PaidQuantity', 'Price').toFixed(2);
-                    $scope.outstanding = $scope.GetSumOutstanding($scope.gridItems, 'OrderedQuantity', 'PaidQuantity', 'Price').toFixed(2);
+                    $scope.paid = $scope.GetSumSelected($scope.gridItems, 'Quantity', 'Price').toFixed(2);
+                    $scope.outstanding = $scope.GetSumOutstanding($scope.gridItems, 'OrderedQuantity', 'Quantity', 'Price').toFixed(2);
                     $scope.selectedToPay = $scope.GetSumSelected($scope.gridItems, 'Price', 'ToPayQuantity').toFixed(2);
                     
                     $scope.gridByItems.onCellChange.subscribe(
@@ -306,8 +306,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                     $scope.GetGridByItems();
                     $scope.GetGridByAmount();
                     $scope.GetGridPayments();
-                    $scope.paid = $scope.GetSumSelected($scope.gridItems, 'PaidQuantity', 'Price').toFixed(2);
-                    $scope.outstanding = $scope.GetSumOutstanding($scope.gridItems, 'OrderedQuantity', 'PaidQuantity', 'Price').toFixed(2);
+                    $scope.paid = $scope.GetSumSelected($scope.gridItems, 'Quantity', 'Price').toFixed(2);
+                    $scope.outstanding = $scope.GetSumOutstanding($scope.gridItems, 'OrderedQuantity', 'Quantity', 'Price').toFixed(2);
                     $scope.selectedToPay = $scope.GetSumSelected($scope.gridItems, 'Price', 'ToPayQuantity').toFixed(2);
                     
                     $scope.gridByItems.onCellChange.subscribe(
