@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 407!')
+    console.log('pay with payoneer works 408!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
     
@@ -243,7 +243,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             url: apiUrl + 'api/Payoneer/payByItem/',
             // params: {},
             headers: { 'Content-Type': 'application/json;charset=utf-8' },
-            data: { payByItemRequest, $scope.purchaseOrder.pkPurchaseID}
+            data: payByItemRequest
 
         }).then(function (response) {
             $scope.GetPayments()
