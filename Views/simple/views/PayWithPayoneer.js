@@ -1,8 +1,8 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 408!')
+    console.log('pay with payoneer works 409!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
-    
+
     var moment = require('moment');
 
     var self = this;
@@ -182,7 +182,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
         let data = $scope.payments;
 
-        data.forEach(function (payment){
+        data.forEach(function (payment) {
             payment.paymentDate = moment(payment.paymentDate).format('MM/DD/YYYY, HH:mm:ss');
         })
 
@@ -229,9 +229,9 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         })
 
         let payByItemRequest = {
-            userId: $scope.userId,
-            supplierId: $scope.purchaseOrder.fkSupplierId,
-            orderId: $scope.purchaseOrder.pkPurchaseID,
+            // userId: $scope.userId,
+            // supplierId: $scope.purchaseOrder.fkSupplierId,
+            // orderId: $scope.purchaseOrder.pkPurchaseID,
             paidAmount: parseFloat($scope.selectedToPay),
             type: 0,
             currency: $scope.orderCurrency,
@@ -242,7 +242,12 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             method: 'POST',
             url: apiUrl + 'api/Payoneer/payByItem/',
             // params: {},
-            headers: { 'Content-Type': 'application/json;charset=utf-8' },
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                'Authorization': $scope.userId,
+                'PurchaseId': $scope.purchaseOrder.pkPurchaseID
+            },
+
             data: payByItemRequest
 
         }).then(function (response) {
@@ -255,7 +260,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                     $scope.paid = $scope.GetSumSelected($scope.gridItems, 'Quantity', 'Price').toFixed(2);
                     $scope.outstanding = $scope.GetSumOutstanding($scope.gridItems, 'OrderedQuantity', 'Quantity', 'Price').toFixed(2);
                     $scope.selectedToPay = $scope.GetSumSelected($scope.gridItems, 'Price', 'ToPayQuantity').toFixed(2);
-                    
+
                     $scope.gridByItems.onCellChange.subscribe(
                         function (e, args) {
                             var tempSelectedToPay = 0;
@@ -309,7 +314,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                     $scope.paid = $scope.GetSumSelected($scope.gridItems, 'Quantity', 'Price').toFixed(2);
                     $scope.outstanding = $scope.GetSumOutstanding($scope.gridItems, 'OrderedQuantity', 'Quantity', 'Price').toFixed(2);
                     $scope.selectedToPay = $scope.GetSumSelected($scope.gridItems, 'Price', 'ToPayQuantity').toFixed(2);
-                    
+
                     $scope.gridByItems.onCellChange.subscribe(
                         function (e, args) {
                             var tempSelectedToPay = 0;
