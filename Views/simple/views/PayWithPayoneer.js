@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 414!')
+    console.log('pay with payoneer works 415!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -298,10 +298,10 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
         Core.Dialogs.BusyWorker.showBusy($element);
 
-        let payByItemRequest = {
-            userId: $scope.userId,
-            supplierId: $scope.purchaseOrder.fkSupplierId,
-            orderId: $scope.purchaseOrder.pkPurchaseID,
+        let payByAmountRequest = {
+            // userId: $scope.userId,
+            // supplierId: $scope.purchaseOrder.fkSupplierId,
+            // orderId: $scope.purchaseOrder.pkPurchaseID,
             paidAmount: parseFloat($scope.amountToPay),
             type: 1,
             currency: $scope.orderCurrency
@@ -311,8 +311,12 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             method: 'POST',
             url: apiUrl + 'api/Payoneer/payByAmount/',
             // params: {},
-            headers: { 'Content-Type': 'application/json;charset=utf-8' },
-            data: payByItemRequest
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                'Authorization': $scope.userId,
+                'PurchaseId': $scope.purchaseOrder.pkPurchaseID
+            },
+            data: payByAmountRequest
 
         }).then(function (response) {
             $scope.GetPayments()
@@ -339,6 +343,12 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
         }, function error(response) {
             Core.Dialogs.BusyWorker.hideBusy($element);
+
+            if (response.status === 401) {
+                Core.Dialogs.addNotify("You need to log-in in Pay with Payoneer app before payment processing", "WARNING");
+                return;
+            };
+
             Core.Dialogs.addNotify("Sorry, but something went wrong :(", "ERROR");
             return;
         });
