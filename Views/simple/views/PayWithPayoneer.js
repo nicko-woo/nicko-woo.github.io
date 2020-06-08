@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 411!')
+    console.log('pay with payoneer works 412!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -64,7 +64,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         var deferred = $q.defer();
         $http({
             method: 'GET',
-            url: apiUrl + 'api/Linnworks/getPayments/' + $scope.purchaseOrder.pkPurchaseID,
+            url: apiUrl + 'api/Linnworks/getPayments',
             params: {},
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
