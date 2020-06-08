@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 413!')
+    console.log('pay with payoneer works 414!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -166,7 +166,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     };
 
-
     $scope.GetGridPayments = function () {
         let dataViewPayments = new Slick.Data.DataView();
 
@@ -280,6 +279,12 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
         }, function error(response) {
             Core.Dialogs.BusyWorker.hideBusy($element);
+
+            if (response.status === 401) {
+                Core.Dialogs.addNotify("You need to log-in in Pay with Payoneer app before payment processing", "WARNING");
+                return;
+            };
+
             Core.Dialogs.addNotify("Sorry, but something went wrong :(", "ERROR");
             return;
         });
