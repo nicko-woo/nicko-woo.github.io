@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 412!')
+    console.log('pay with payoneer works 413!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -114,7 +114,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                 });
 
                 if (items && items.length > 0) {
-                    totalPaidPerItem = $scope.GetPaidPerItem(items, "paidQuantity");
+                    totalPaidPerItem = $scope.GetPaidPerItem(items, "quantity");
                 } else {
                     totalPaidPerItem = 0;
                 }
