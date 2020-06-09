@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 425!')
+    console.log('pay with payoneer works 426!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -152,7 +152,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 160, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
             { id: "column3", name: "Paid Quantity", field: "Quantity", width: 140, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
             { id: "column4", name: "Price", field: "Price", width: 100, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
-            { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: Slick.Editors.Float, cssClass: "slick-cell slickgrid-text-editor-icon slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" }
+            { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: Slick.Editors.Float, cssClass: "slick-cell slickgrid-text-editor-icon slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center", formatter: roundOffValuesFormatter}
         ];
 
         let optionsByItems = {
@@ -414,17 +414,27 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     }
 
-    this.validate = function () {
-        // if (isNaN(parseInt($from.val(), 10)) || isNaN(parseInt($to.val(), 10))) {
-        //   return {valid: false, msg: "Please type in valid numbers."};
-        // }
+    // this.validate = function () {
+    //     // if (isNaN(parseInt($from.val(), 10)) || isNaN(parseInt($to.val(), 10))) {
+    //     //   return {valid: false, msg: "Please type in valid numbers."};
+    //     // }
   
-        // if (parseInt($from.val(), 10) > parseInt($to.val(), 10)) {
-        //   return {valid: false, msg: "'from' cannot be greater than 'to'"};
-        // }
+    //     // if (parseInt($from.val(), 10) > parseInt($to.val(), 10)) {
+    //     //   return {valid: false, msg: "'from' cannot be greater than 'to'"};
+    //     // }
   
-        return {valid: false, msg: null};
-      };
+    //     return {valid: false, msg: null};
+    //   };
+
+    function roundOffValuesFormatter(row, cell, value, columnDef, dataContext) {
+        // if (dataContext[cellID] || dataContext[cellID]) {
+        //     return Math.round(value * 100) / 100;
+        // }
+
+        if (value > 10) {
+            return 2;
+        }
+    }
 
     $scope.Close = function () {
         $scope.$destroy();
