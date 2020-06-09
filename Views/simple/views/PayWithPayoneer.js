@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 429!')
+    console.log('pay with payoneer works 430!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -415,31 +415,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     }
 
-    // this.validate = function () {
-    //     // if (isNaN(parseInt($from.val(), 10)) || isNaN(parseInt($to.val(), 10))) {
-    //     //   return {valid: false, msg: "Please type in valid numbers."};
-    //     // }
-  
-    //     // if (parseInt($from.val(), 10) > parseInt($to.val(), 10)) {
-    //     //   return {valid: false, msg: "'from' cannot be greater than 'to'"};
-    //     // }
-  
-    //     return {valid: false, msg: null};
-    //   };
-
-    function roundOffValuesFormatter(row, cell, value, columnDef, dataContext) {
-        // if (dataContext[cellID] || dataContext[cellID]) {
-        //     return Math.round(value * 100) / 100;
-        // }
-
-        if (value > 10) {
-            return 10;
-        }
-        else {
-            return value;
-        }
-    }
-
     function CustomFloatPositiveEditor(args) {
         var $element,
             defaultValue,
@@ -496,6 +471,12 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         };
 
         this.validate = function() {
+
+            var row = args.grid.getDataItem(args.row);
+            var fieldPaid = args.grid.getColumns()[2].field;
+            var fieldOrdered = args.grid.getColumns()[1].field;
+            var outstandingPerItem = row[fieldOrdered] - row[fieldPaid];
+
             if (isNaN($element.val())) {
                 return {
                     valid: false,
@@ -510,7 +491,11 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                 };
             }
 
-            if ($element.val() > 100) {
+            console.log('row: ' + args.row + ' cell: ' + args.cell);
+
+            totalPaidPerItem = $scope.GetPaidPerItem(items, "quantity");
+
+            if ($element.val() > outstandingPerItem) {
                 return {
                     valid: false,
                     msg: "Please enter a positive number"
