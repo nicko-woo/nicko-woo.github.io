@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 426!')
+    console.log('pay with payoneer works 427!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -433,6 +433,9 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
         if (value > 10) {
             return 2;
+        }
+        else {
+            return value;
         }
     }
 
