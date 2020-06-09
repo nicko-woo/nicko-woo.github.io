@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 430!')
+    console.log('pay with payoneer works 431!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -491,11 +491,10 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                 };
             }
 
-            console.log('row: ' + args.row + ' cell: ' + args.cell);
-
-            totalPaidPerItem = $scope.GetPaidPerItem(items, "quantity");
+            // console.log('row: ' + args.row + ' cell: ' + args.cell);
 
             if ($element.val() > outstandingPerItem) {
+                Core.Dialogs.addNotify("You cannot select more than you need to pay for this SKU", "WARNING");
                 return {
                     valid: false,
                     msg: "Please enter a positive number"
