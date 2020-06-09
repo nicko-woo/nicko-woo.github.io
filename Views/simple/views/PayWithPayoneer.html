@@ -100,7 +100,8 @@
                                 <!-- <b><input type="text" class="input-small ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-decimal-number="" ng-decimal-number-allow-negatives="false" ng-model="amountToPay"> {{ orderCurrency }}</b> -->
                                 <form name="form">
                                   <!-- <label for="input">Input field:</label> -->
-                                  <input type="number" name="input" min="{{min}}" max="{{outstanding}}" ng-model="amountToPay" required step="0.01" />
+                                  <input type="number" name="input" min="{{min}}" max="{{outstanding}}"
+                                    ng-model="amountToPay" required step="0.01" />
                                   <!-- <div ng-messages="form.input.$error" style="color: #ff0000" role="alert" ng-if="form.input.$dirty">
                                     <div ng-message="required">This field is required</div>
                                     <div ng-message="min">This field must be at least {{min}}.</div>
@@ -162,6 +163,34 @@
       <h5>No payments found for this PO.</h5>
     </div>
 
+  </div>
+
+  <div> <label>show first tab (ng-if): <input type=checkbox ng-model=$ctrl.firstTabShown
+        ng-init=\"$ctrl.firstTabShown=true;\" /> </label> <label>Disable first tab (ng-disabled): <input type=checkbox
+        ng-model=$ctrl.firstTabDisabled ng-init=\"$ctrl.firstTabDisabled=false;\" /> </label> <label>show second tab
+      (ng-if): <input type=checkbox ng-model=$ctrl.secondTabShown ng-init=\"$ctrl.secondTabShown=false;\" /> </label>
+    <label>show third tab (ng-show): <input type=checkbox ng-model=$ctrl.thirdTabShown
+        ng-init=\"$ctrl.thirdTabShown=true;\" /> </label> <label>Dynamic Title: <input ng-model=$ctrl.title /> </label>
+    <label>Dynamic Content: <input ng-model=$ctrl.content /> </label>
+    <div class=tabset-container>
+      <lw-tab-set>
+        <lw-tab ng-if=$ctrl.firstTabShown ng-disabled=$ctrl.firstTabDisabled>
+          <lw-tab-header> {{$ctrl.title}} </lw-tab-header>
+          <lw-tab-content>
+            <p> Tab content #1 </p> <strong>Dynamic content:</strong>
+            <div> {{$ctrl.content}} </div>
+          </lw-tab-content>
+        </lw-tab>
+        <lw-tab ng-if=$ctrl.secondTabShown>
+          <lw-tab-header> Tab #2 </lw-tab-header>
+          <lw-tab-content> Tab content #2 </lw-tab-content>
+        </lw-tab>
+        <lw-tab ng-show=$ctrl.thirdTabShown>
+          <lw-tab-header> Tab #3 </lw-tab-header>
+          <lw-tab-content> Content #3 </lw-tab-content>
+        </lw-tab>
+      </lw-tab-set>
+    </div>
   </div>
 
 </div>
