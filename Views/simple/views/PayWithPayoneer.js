@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 435!')
+    console.log('pay with payoneer works 436!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -34,8 +34,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             $scope.topupAccount = false;
             $scope.paymentsExist = false;
 
-            $scope.showTabByAmount = false;
             $scope.showTabByItems = true;
+            $scope.showTabByAmount = false;
 
 
             $scope.gridItems = [];
