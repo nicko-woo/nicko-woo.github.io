@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 424!')
+    console.log('pay with payoneer works 425!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -413,6 +413,18 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         $scope.gridByAmount.setColumns(columnsByAmount);
 
     }
+
+    this.validate = function () {
+        // if (isNaN(parseInt($from.val(), 10)) || isNaN(parseInt($to.val(), 10))) {
+        //   return {valid: false, msg: "Please type in valid numbers."};
+        // }
+  
+        // if (parseInt($from.val(), 10) > parseInt($to.val(), 10)) {
+        //   return {valid: false, msg: "'from' cannot be greater than 'to'"};
+        // }
+  
+        return {valid: false, msg: null};
+      };
 
     $scope.Close = function () {
         $scope.$destroy();
