@@ -150,16 +150,7 @@
 
 
 
-  <div>
-    <h2>Payment History</h2>
-    <div class="linngrid" id="pwpPaymentsGrid" style="width: 100%; height: 140px; outline: 0px; position: relative;">
-    </div>
-
-    <div ng-if="!paymentsExist">
-      <h5>No payments found for this PO.</h5>
-    </div>
-
-  </div>
+  
 
   <div>
     <div class=tabset-container>
@@ -286,6 +277,17 @@
         </lw-tab>
       </lw-tab-set>
     </div>
+  </div>
+
+  <div>
+    <h2>Payment History</h2>
+    <div class="linngrid" id="pwpPaymentsGrid" style="width: 100%; height: 140px; outline: 0px; position: relative;">
+    </div>
+
+    <div ng-if="!paymentsExist">
+      <h5>No payments found for this PO.</h5>
+    </div>
+
   </div>
 
 </div>
