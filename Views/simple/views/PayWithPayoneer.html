@@ -146,7 +146,44 @@
       </lw-tab>
     </lw-tab-set>
   </section> -->
-  <label>show first tab (ng-if): <input type=checkbox ng-model="showTabByItems"> </label>
+  <label>show first tab (ng-if): <input type=checkbox ng-model="showTabByItems"> </label><h2>Tabset example</h2>
+  <p> <strong>Common theory of using tabset:</strong> </p>
+  <p> <strong>lw-tab-set</strong> directive was has been reworked to make angularjs directives compatible with it. For example ng-if could work once tab is rendered but never deleted if <strong>ng-if</strong> state changed. Currently all attributes (directives)
+      applied to <strong>lw-tab</strong> element AND <strong>lw-tab-header</strong> element are copied to <strong>LI</strong> rendered to tabset. Then it is compiled to simulate as if you were put them there. Because of attributes are copied from both
+      places (lw-tab and lw-tab-header) it is preferred to always use only lw-tab to manipulate your render logic. </p>
+  <p> Tabset automatically activates first tab, you don't need to write class=\"active\" on lw-tab (or lw-tab-header) element. <strong>lazy-loading</strong> option is removed as placeholder, slickGrid, lwControl now can detect when their tab is being activated
+      and compile/load themselves properly. Manual setting is not needed in this case. </p>
+  <p> Tabset has some new callbacks like: </p>
+  <pre>\r\n        onShown: \"&\",\r\n        onBeforeShown: \"&\",\r\n        onTabSetReady: \"&\"\r\n    </pre>
+  <p> Use onTabSetReady when you want to access its controller in your code. <strong> So instead of using $('.tabset').scope().setActive(0) it is preferred and recommended to get tabset controller reference to your variable and use tabSetController.setActive();</strong>        You can access more properties and methods if you need through the controller. This should help us to get rid of <strong>.scope()</strong> usages as it is not invented to access internal scope API but only for debug purposes. Currently hack is
+      implemented to allow you still use this approach but whenever you see it in the code you should consider remove it and changes with example below. </p>
+  <pre>\r\n        //html template\r\n        &#60;lw-tab-set on-tab-set-ready='$ctrl.onTabSetReady(tabSet);'&#62;\r\n            &#60;lw-tab&#62;\r\n                &#60;lw-tab-header&#62;\r\n                    Tab Title\r\n                &#60;/lw-tab-header&#62;\r\n        \r\n                &#60;lw-tab-content&#62;\r\n                    Tab content\r\n                &#60;/lw-tab-content&#62;\r\n            &#60;/lw-tab&#62;\r\n        &#60;/lw-tab-set&#62;\r\n        \r\n        //in controller\r\n        let tabSet;\r\n        this.onTabSetReady = function (tabSetController) {tabSet = tabSetController;}\r\n        \r\n        //..... a few moments later ...\r\n        if (tabSet) {\r\n            //console.log(tabSet.tabs);\r\n            //console.log(tabSet.activeTabId);\r\n            //debug to see more public methods\r\n            tabSet.setActive(\"some known 'index'\");\r\n        }\r\n    </pre>
+  <p> This document may change in time if we find some more useful tips. </p>
+  <p> At this page is demonstrated basic usage of <strong>lw-tab-set</strong> directive with examples of ng directives in use. </p> <br/> <br/> <br/>
+  <div> <label>show first tab (ng-if): <input type=checkbox ng-model=$ctrl.firstTabShown ng-init=\"$ctrl.firstTabShown = true;\"/> </label> <label>Disable first tab (ng-disabled): <input type=checkbox ng-model=$ctrl.firstTabDisabled ng-init=\"$ctrl.firstTabDisabled = false;\"/> </label>        <label>show second tab (ng-if): <input type=checkbox ng-model=$ctrl.secondTabShown ng-init=\"$ctrl.secondTabShown = false;\"/> </label> <label>show third tab (ng-show): <input type=checkbox ng-model=$ctrl.thirdTabShown ng-init=\"$ctrl.thirdTabShown = true;\"/> </label>        <label>Dynamic Title: <input ng-model=$ctrl.title /> </label> <label>Dynamic Content: <input ng-model=$ctrl.content /> </label>
+      <div class=tabset-container>
+          <lw-tab-set>
+              <lw-tab ng-if=$ctrl.firstTabShown ng-disabled=$ctrl.firstTabDisabled>
+                  <lw-tab-header> {{$ctrl.title}} </lw-tab-header>
+                  <lw-tab-content>
+                      <p> Tab content #1 </p> <strong>Dynamic content:</strong>
+                      <div> {{$ctrl.content}} </div>
+                  </lw-tab-content>
+              </lw-tab>
+              <lw-tab ng-if=$ctrl.secondTabShown>
+                  <lw-tab-header> Tab #2 </lw-tab-header>
+                  <lw-tab-content> Tab content #2 </lw-tab-content>
+              </lw-tab>
+              <lw-tab ng-show=$ctrl.thirdTabShown>
+                  <lw-tab-header> Tab #3 </lw-tab-header>
+                  <lw-tab-content> Content #3 </lw-tab-content>
+              </lw-tab>
+          </lw-tab-set>
+      </div>
+  </div>
+
+
+
   <div>
     <h2>Payment History</h2>
     <div class="linngrid" id="pwpPaymentsGrid" style="width: 100%; height: 140px; outline: 0px; position: relative;">
