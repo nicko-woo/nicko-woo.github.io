@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 444!')
+    console.log('pay with payoneer works 445!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -34,8 +34,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             $scope.topupAccount = false;
             $scope.paymentsExist = false;
 
-            $scope.showTabByItems = true;
-            $scope.showTabByAmount = true;
+            $scope.hideTabByItems = false;
+            $scope.hideTabByAmount = false;
 
             $scope.paymentsType = 0;
 
@@ -49,24 +49,26 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
                 $scope.paymentsType = $scope.payments[0].type;
 
-                // $('.tabset').scope().setActive(0);
-
                 if ($scope.paymentsType == 0) {
-                    $scope.showTabByItems = true;
-                    $scope.showTabByAmount = false;
+                    $scope.hideTabByItems = false;
+                    $scope.hideTabByAmount = true;
+                    $('.tabset').scope().setActive(0);
                 }
 
                 if ($scope.paymentsType == 1) {
-                    $scope.showTabByItems = false;
-                    $scope.showTabByAmount = true;
+                    $scope.hideTabByItems = true;
+                    $scope.hideTabByAmount = false;
+                    $('.tabset').scope().setActive(1);
                 }
             };
 
-            if ($scope.showTabByItems) {
+            // $('.tabset').scope().setActive(0);
+
+            if (!$scope.hideTabByItems) {
                 $scope.GetGridByItems();
             }
 
-            if ($scope.showTabByAmount) {
+            if (!$scope.hideTabByAmount) {
                 $scope.GetGridByAmount();
             }
 
@@ -326,7 +328,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
     $scope.payByAmount = function () {
         if (parseFloat($scope.amountToPay) <= 0) {
-            Core.Dialogs.addNotify("The value of the amount cannot be less than zero", "WARNING");
+            Core.Dialogs.addNotify("The value of the amount cannot be less or equal zero", "WARNING");
             return;
         }
 
@@ -412,7 +414,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
     };
 
     $scope.showTabByAmount = function () {
-        setTimeout(() => $scope.gridByAmount.resizeCanvas(), 300);
+        setTimeout(() => $scope.gridByAmount.resizeCanvas(), 400);
     }
 
     $scope.GetGridByAmount = function () {
