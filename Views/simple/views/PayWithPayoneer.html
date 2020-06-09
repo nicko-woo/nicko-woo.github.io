@@ -97,16 +97,16 @@
                             <tr>
                               <td class="totalsLabel"><b>Amount To Pay:</b></td>
                               <td style="text-align: right">
-                                <b><input type="text" class="input-small ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-decimal-number="" ng-decimal-number-allow-negatives="false" ng-model="amountToPay"> {{ orderCurrency }}</b>
+                                <!-- <b><input type="text" class="input-small ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-decimal-number="" ng-decimal-number-allow-negatives="false" ng-model="amountToPay"> {{ orderCurrency }}</b> -->
                                 <form name="form">
-                                  <label for="input">Input field:</label>
+                                  <!-- <label for="input">Input field:</label> -->
                                   <input type="number" name="input" min="{{min}}" max="{{outstanding}}" ng-model="input" required step="0.01" />
-                                  <div ng-messages="form.input.$error" style="color: #ff0000" role="alert" ng-if="form.input.$dirty">
+                                  <!-- <div ng-messages="form.input.$error" style="color: #ff0000" role="alert" ng-if="form.input.$dirty">
                                     <div ng-message="required">This field is required</div>
                                     <div ng-message="min">This field must be at least {{min}}.</div>
                                     <div ng-message="max">This field must be at max {{max}}.</div>
                                     <div ng-message="number">Not a valid number.</div>
-                                  </div>
+                                  </div> -->
                                 </form>
                               </td>
                             </tr>
@@ -125,7 +125,7 @@
                               <td></td>
                               <td>
                                 <div class="pull-right">
-                                  <button class="btn btn-primary" ng-disabled="form.input.$dirty" ng-click="payByAmount()">Pay</button>
+                                  <button class="btn btn-primary" ng-disabled="form.input.$error" ng-click="payByAmount()">Pay</button>
                                 </div>
                               </td>
                             </tr>
