@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 427!')
+    console.log('pay with payoneer works 428!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -152,7 +152,8 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             { id: "column2", name: "Ordered Quantity", field: "OrderedQuantity", width: 160, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
             { id: "column3", name: "Paid Quantity", field: "Quantity", width: 140, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
             { id: "column4", name: "Price", field: "Price", width: 100, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
-            { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: Slick.Editors.Float, cssClass: "slick-cell slickgrid-text-editor-icon slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center", formatter: roundOffValuesFormatter}
+            // { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: Slick.Editors.Float, cssClass: "slick-cell slickgrid-text-editor-icon slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center", formatter: roundOffValuesFormatter}
+            { id: "column5", name: "Quantity To Pay", field: "ToPayQuantity", width: 160, editor: CustomFloatPositiveEditor, cssClass: "slick-cell slickgrid-text-editor-icon slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center"}
         ];
 
         let optionsByItems = {
@@ -432,12 +433,106 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
         // }
 
         if (value > 10) {
-            return 2;
+            return 10;
         }
         else {
             return value;
         }
     }
+
+    function CustomFloatPositiveEditor(args) {
+        var $element,
+            defaultValue,
+            scope = this,
+            decimalPlaces = parseInt(args.column.editorArg) || 20, //20 max supported by toFixed
+            loadSource = function(source) {
+                $element.empty();
+                $element.val(defaultValue);
+            }
+
+        this.init = function() {
+            $element = $('<input type="text" class="editor-text" />');
+
+            $element.bind("keydown.nav", function(e) {
+                if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT) {
+                    e.stopImmediatePropagation();
+                }
+            });
+
+            $element.appendTo(args.container);
+            $element.focus().select();
+        };
+
+        this.destroy = function() {
+            $element.remove();
+        };
+
+        this.focus = function() {
+            $element.focus();
+        };
+
+        this.loadValue = function(item) {
+            defaultValue = item[args.column.field];
+            $element.val(defaultValue);
+            $element[0].defaultValue = defaultValue;
+            $element.select();
+
+            if (typeof args.column.editorSource == "function") {
+                args.callback = loadSource;
+                args.column.editorSource(args);
+            }
+        };
+
+        this.serializeValue = function() {
+            return parseFloat($element.val(), 10) || 0;
+        };
+
+        this.applyValue = function(item, state) {
+            item[args.column.field] = state;
+        };
+
+        this.isValueChanged = function() {
+            return (!($element.val() == "" && defaultValue == null)) && ($element.val() != defaultValue);
+        };
+
+        this.validate = function() {
+            if (isNaN($element.val())) {
+                return {
+                    valid: false,
+                    msg: "Please enter a valid number"
+                };
+            }
+
+            if ($element.val() < 0) {
+                return {
+                    valid: false,
+                    msg: "Please enter a positive number"
+                };
+            }
+
+            if ($element.val() > 100) {
+                return {
+                    valid: false,
+                    msg: "Please enter a positive number"
+                };
+            }
+
+            if (new RegExp('^\\d*\\.?\\d{0,' + decimalPlaces + '}$').test($element.val()) === false) {
+                return {
+                    valid: false,
+                    msg: "Please round to " + decimalPlaces + " decimal place" + (decimalPlaces > 1 ? "s" : "")
+                };
+            }
+
+            return {
+                valid: true,
+                msg: null
+            };
+        };
+
+        this.init();
+    }
+
 
     $scope.Close = function () {
         $scope.$destroy();
