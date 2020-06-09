@@ -155,7 +155,7 @@
   <div>
     <div class=tabset-container>
       <lw-tab-set>
-        <lw-tab ng-disabled="hideTabByItems" >
+        <lw-tab ng-if="!hideTabByItems" ng-disabled="hideTabByItems" >
           <lw-tab-header> By Item </lw-tab-header>
           <lw-tab-content>
             <table class="generic-module-layout">
