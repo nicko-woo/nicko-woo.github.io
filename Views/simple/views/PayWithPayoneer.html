@@ -161,7 +161,7 @@
   <div>
     <div class=tabset-container>
       <lw-tab-set>
-        <lw-tab ng-if="showTabByItems">
+        <lw-tab ng-disabled="showTabByItems">
           <lw-tab-header> By Item </lw-tab-header>
           <lw-tab-content>
             <table class="generic-module-layout">
@@ -215,7 +215,7 @@
             </table>
           </lw-tab-content>
         </lw-tab>
-        <lw-tab ng-if="showTabByAmount">
+        <lw-tab ng-disabled="showTabByAmount">
           <lw-tab-header> By Amount </lw-tab-header>
           <lw-tab-content>
             <table class="generic-module-layout">
