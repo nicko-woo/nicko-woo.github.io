@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 447!')
+    console.log('pay with payoneer works 448!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -142,9 +142,12 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
                 var items = [];
                 $scope.payments.forEach(function (payment) {
-                    var tempPaymentItem = payment.items.find(i => i.sku === orderItem.SKU);
-                    if (tempPaymentItem) {
-                        items.push(tempPaymentItem);
+
+                    if (payment.items && payment.items.length) {
+                        var tempPaymentItem = payment.items.find(i => i.sku === orderItem.SKU);
+                        if (tempPaymentItem) {
+                            items.push(tempPaymentItem);
+                        }
                     }
                 });
 
