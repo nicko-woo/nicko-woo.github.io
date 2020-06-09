@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 423!')
+    console.log('pay with payoneer works 424!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -303,6 +303,11 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             Core.Dialogs.addNotify("The value of the amount cannot be less than zero", "WARNING");
             return;
         }
+
+        if(!$scope.form.$valid) {
+            Core.Dialogs.addNotify("Enter valid value", "WARNING");
+            return;
+          }
 
         Core.Dialogs.BusyWorker.showBusy($element);
 
