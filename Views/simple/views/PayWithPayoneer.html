@@ -168,7 +168,7 @@
   <div>
     <div class=tabset-container>
       <lw-tab-set>
-        <lw-tab ng-if=$ctrl.firstTabShown ng-disabled=$ctrl.firstTabDisabled>
+        <lw-tab ng-if=$ctrl.showTabByItems ng-disabled=$ctrl.firstTabDisabled>
           <lw-tab-header> {{$ctrl.title}} </lw-tab-header>
           <lw-tab-content>
             <table class="generic-module-layout">
@@ -222,7 +222,7 @@
             </table>
           </lw-tab-content>
         </lw-tab>
-        <lw-tab ng-if=$ctrl.hideTabByAmount>
+        <lw-tab ng-if=$ctrl.showTabByAmount>
           <lw-tab-header> Tab #2 </lw-tab-header>
           <lw-tab-content>
             <table class="generic-module-layout">
