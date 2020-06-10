@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 453!')
+    console.log('pay with payoneer works 454!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -302,7 +302,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                 .then(function () {
                     $scope.gridItems = $scope.GetDataForGrid();
                     $scope.GetGridByItems();
-                    $scope.GetGridByAmount();
+                    // $scope.GetGridByAmount();
                     $scope.GetGridPayments();
                     $scope.paid = $scope.GetSumSelected($scope.gridItems, 'Quantity', 'Price').toFixed(2);
                     $scope.outstanding = $scope.GetSumOutstanding($scope.gridItems, 'OrderedQuantity', 'Quantity', 'Price').toFixed(2);
@@ -374,7 +374,7 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
             $scope.GetPayments()
                 .then(function () {
                     $scope.gridItems = $scope.GetDataForGrid();
-                    $scope.GetGridByItems();
+                    // $scope.GetGridByItems();
                     $scope.GetGridByAmount();
                     $scope.GetGridPayments();
                     // $scope.paid = $scope.GetSumSelected($scope.gridItems, 'Quantity', 'Price').toFixed(2);
