@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 452!')
+    console.log('pay with payoneer works 453!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -84,6 +84,9 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                     tempSelectedToPay = $scope.GetSumSelected($scope.gridItems, 'Price', 'ToPayQuantity').toFixed(2);
                     $scope.selectedToPay = tempSelectedToPay;
                 });
+
+            setTimeout(() => $scope.gridByAmount.resizeCanvas(), 200);
+            setTimeout(() => $scope.gridByAmount.render(), 400);
 
             $scope.Loaded = true;
             Core.Dialogs.BusyWorker.hideBusy($element);
