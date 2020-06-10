@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 468!')
+    console.log('pay with payoneer works 469!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
