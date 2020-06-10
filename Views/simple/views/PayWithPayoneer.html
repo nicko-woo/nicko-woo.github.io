@@ -235,7 +235,7 @@
                             <!-- <b><input type="text" class="input-small ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-decimal-number="" ng-decimal-number-allow-negatives="false" ng-model="amountToPay"> {{ orderCurrency }}</b> -->
                             <form name="form">
                               <!-- <label for="input">Input field:</label> -->
-                              <input type="number" name="input" max="{{outstanding}}"
+                              <input class="input-small" type="number" name="input" min="0" max="{{outstanding}}"
                                 ng-model="amountToPay" required step="0.01" />
                               <!-- <div ng-messages="form.input.$error" style="color: #ff0000" role="alert" ng-if="form.input.$dirty">
                                 <div ng-message="required">This field is required</div>
