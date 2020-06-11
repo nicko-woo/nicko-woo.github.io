@@ -1,5 +1,5 @@
 var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
-    console.log('pay with payoneer works 471!')
+    console.log('pay with payoneer works 472!')
 
     const apiUrl = "https://test-app-lp.azurewebsites.net/";
 
@@ -17,6 +17,9 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
                 $scope.Initialize();
         }
     };
+
+    
+    $scope.unauthorized = true;
 
     $scope.Initialize = function () {
 
@@ -39,7 +42,6 @@ var PayWithPayoneerView = function ($scope, $element, $filter, $compile, $q, con
 
             $scope.paymentsType = 0;
 
-            $scope.unauthorized = true;
 
 
             $scope.gridItems = [];
