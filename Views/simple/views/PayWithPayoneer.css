@@ -105,6 +105,11 @@
     align-items: center;
 }
 .inner {
-    background-color: gainsboro;
+    width: 100%;
+    text-align: center;
+}
+
+.inner .h2 {
+    color: orangered;
 }
 
