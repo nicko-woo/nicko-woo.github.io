@@ -3,7 +3,7 @@ var PlaceHolder = function ($scope, $element) {
         var items = [{
             text: "Remove Out Of Stock",
             key: "RemoveOutOfStockButton",
-            icon: "fa fa-credit-card"
+            icon: "fa fa-minus-circle"
         }];
 
         return items;
@@ -43,7 +43,7 @@ var PlaceHolder = function ($scope, $element) {
                         break;
                 }
             },
-            width: "300px",
+            width: "400px",
             ngScope: $scope
 
         });
