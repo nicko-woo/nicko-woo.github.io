@@ -52,4 +52,4 @@ var PlaceHolder = function ($scope, $element) {
     }
 }
 
-Core.PlaceHolderManager.register("EditOpenOrder_RightTopButtons", PlaceHolder)
+Core.PlaceHolderManager.register("OpenOrders_EditOrderView", PlaceHolder)
