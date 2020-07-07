@@ -53,3 +53,5 @@ var PlaceHolder = function ($scope, $element) {
 }
 
 Core.PlaceHolderManager.register("OpenOrder_EditOrder_ItemsButtons", PlaceHolder)
+
+Core.PlaceHolderManager.register("OpenOrder_EditOrder_OrderControlButtons", PlaceHolder);
