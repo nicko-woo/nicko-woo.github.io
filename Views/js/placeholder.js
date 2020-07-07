@@ -19,7 +19,7 @@ var PlaceHolder = function ($scope, $element) {
     this.onClick = function () {
 
             dialogs.question({
-                message: msg,
+                message: "Are you sure?",
                 title: "Delete?",
                 callback: function (event) {
                     switch (event.action) {
