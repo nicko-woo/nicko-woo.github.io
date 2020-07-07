@@ -35,7 +35,6 @@ var PlaceHolder = function ($scope, $element) {
                     }
                 }
             }, self.options);
-        }
 
         // var win = new wind({
         //     moduleName: "RemoveOutOfStock",
