@@ -1,8 +1,8 @@
 var PlaceHolder = function ($scope, $element) {
     this.getItems = function () {
         var items = [{
-            text: "Remove Out Of Stock",
-            key: "RemoveOutOfStockButton",
+            text: "Pay With Payoneer",
+            key: "PayWithPayoneerButton",
             icon: "fa fa-credit-card"
         }];
 
@@ -18,12 +18,15 @@ var PlaceHolder = function ($scope, $element) {
     this.onClick = function () {
 
         var win = new wind({
-            moduleName: "RemoveOutOfStock",
-            windowName: "RemoveOutOfStock",
-            title: "123",
+            moduleName: "PayWithPayoneer",
+            windowName: "PayWithPayoneer",
+            title: "Pay with Payoneer - " + $scope.purchaseOrder.ExternalInvoiceNumber,
             closeOnEscape: false,
             closeOnBackDrop: false,
             data: {
+                PurchaseOrder: $scope.purchaseOrder,
+                OrderItems: $scope.$parent.gridScope.getItems(),
+                Grid: $scope.$parent.gridScope
             },
             onWindowClosed: function (event) {
                 switch (event.action) {
@@ -43,7 +46,7 @@ var PlaceHolder = function ($scope, $element) {
                         break;
                 }
             },
-            width: "300px",
+            width: "900px",
             ngScope: $scope
 
         });
@@ -52,6 +55,4 @@ var PlaceHolder = function ($scope, $element) {
     }
 }
 
-Core.PlaceHolderManager.register("OpenOrder_EditOrder_ItemsButtons", PlaceHolder)
-
-Core.PlaceHolderManager.register("OpenOrder_EditOrder_OrderControlButtons", PlaceHolder);
+Core.PlaceHolderManager.register("EditPurchaseOrder_RightTopButtons", PlaceHolder)
