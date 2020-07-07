@@ -14,6 +14,7 @@ var PlaceHolder = function ($scope, $element) {
     }
 
     const wind = require('core/Window');
+    const dialogs = require("core/dialogs");
 
     this.onClick = function () {
 
