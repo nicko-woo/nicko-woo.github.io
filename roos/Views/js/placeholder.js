@@ -20,7 +20,7 @@ var PlaceHolder = function ($scope, $element) {
         var win = new wind({
             moduleName: "RemoveOutOfStock",
             windowName: "RemoveOutOfStock",
-            title: "",
+            title: "123",
             closeOnEscape: false,
             closeOnBackDrop: false,
             data: {
