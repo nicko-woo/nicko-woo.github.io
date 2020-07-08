@@ -1,6 +1,6 @@
 var PlaceHolder = function ($scope, $element) {
 
-    console.log("roos placeholder works 117");
+    console.log("roos placeholder works 118");
     this.getItems = function () {
         var items = [{
             text: "Remove Out Of Stock",
@@ -42,11 +42,15 @@ var PlaceHolder = function ($scope, $element) {
 
         busyWorker.showBusy($element.find(".itemsTableContainer"), "Updating");
 
+        $scope.amountProcessed = 0;
+
         $scope.order.Items.forEach(item => {
 
             var service = new Services.OrdersService(self.options);
 
             if (item.AvailableStock <= 0 && item.OnOrder <= 0) {
+
+                $scope.amountProcessed++;
 
                 service.removeOrderItem($scope.order.OrderId, item.RowId, $scope.locationId, function (event) {
                     if (event.hasErrors() == false) {
@@ -71,8 +75,15 @@ var PlaceHolder = function ($scope, $element) {
                     $scope.$apply();
                 });
             }
-            
+
         });
+
+        if ($scope.amountProcessed > 0) {
+            Core.Dialogs.addNotify("Items succesfully removed", "SUCCESS");
+        }
+        else {
+            Core.Dialogs.addNotify("No items to remove", "WARNING");
+        }
 
         busyWorker.hideBusy($element.find(".itemsTableContainer"));
     };
