@@ -1,4 +1,6 @@
 var PlaceHolder = function ($scope, $element) {
+
+    console.log("roos placeholder works 114");
     this.getItems = function () {
         var items = [{
             text: "Remove Out Of Stock",
@@ -18,21 +20,21 @@ var PlaceHolder = function ($scope, $element) {
 
     this.onClick = function () {
 
-            dialogs.question({
-                message: "Are you sure?",
-                title: "Delete?",
-                callback: function (event) {
-                    switch (event.action) {
-                        case "YES":
-                            $scope.itemChangedAskRecalculation(
-                                function () {
-                                    $scope.removeOutOfStock();
-                                }
-                            );
-                            break;
-                    }
+        dialogs.question({
+            message: "Are you sure?",
+            title: "Delete?",
+            callback: function (event) {
+                switch (event.action) {
+                    case "YES":
+                        $scope.itemChangedAskRecalculation(
+                            function () {
+                                $scope.removeOutOfStock();
+                            }
+                        );
+                        break;
                 }
-            }, self.options);
+            }
+        }, self.options);
 
         // var win = new wind({
         //     moduleName: "RemoveOutOfStock",
@@ -64,13 +66,43 @@ var PlaceHolder = function ($scope, $element) {
         //     ngScope: $scope
 
         // });
-        
+
         // win.open();
     }
 
-    $scope.removeOutOfStock = function() {
+    $scope.removeOutOfStock = function () {
         $scope.order.Items.forEach(item => {
             console.log(item.SKU);
+
+            var service = new Services.OrdersService(self.options);
+            busyWorker.showBusy($element.find(".itemsTableContainer"), "Updating");
+
+            if (itemAvailableStock <= 0) {
+                service.removeOrderItem($scope.order.OrderId, item.RowId, $scope.locationId, function (event) {
+                    if (event.hasErrors() == false) {
+                        for (var i = 0; i < $scope.order.Items.length; i++) {
+                            if ($scope.order.Items[i].RowId == item.RowId) {
+                                $scope.order.Items.splice(i, 1);
+                                item = null;
+                                break;
+                            }
+                        }
+                        if (recalculatePackaging) {
+                            $scope.saveOrderPackagingCalculation(true, false, function () {
+                                $scope.updateTotalsInfo(event.result);
+                            });
+                        }
+                        else
+                            $scope.updateTotalsInfo(event.result);
+    
+                    } else {
+                        dialogs.addNotify(event.error.errorMessage, "ERROR");
+                    }
+                    $scope.$apply();
+                    busyWorker.hideBusy($element.find(".itemsTableContainer"));
+                });
+            }
+            
         });
     };
 
@@ -102,33 +134,33 @@ var PlaceHolder = function ($scope, $element) {
     //     }
     // };
 
-    // $scope.removeItemConfirmed1 = function (item, recalculatePackaging) {
-    //     var service = new Services.OrdersService(self.options);
-    //     busyWorker.showBusy($element.find(".itemsTableContainer"), "Updating");
-    //     service.removeOrderItem($scope.order.OrderId, item.RowId, $scope.locationId, function (event) {
-    //         if (event.hasErrors() == false) {
-    //             for (var i = 0 ; i < $scope.order.Items.length ; i++) {
-    //                 if ($scope.order.Items[i].RowId == item.RowId) {
-    //                     $scope.order.Items.splice(i, 1);
-    //                     item = null;
-    //                     break;
-    //                 }
-    //             }
-    //             if (recalculatePackaging) {
-    //                 $scope.saveOrderPackagingCalculation(true, false, function () {
-    //                     $scope.updateTotalsInfo(event.result);
-    //                 });
-    //             }
-    //             else
-    //                 $scope.updateTotalsInfo(event.result);
+    $scope.removeItemConfirmed1 = function (item, recalculatePackaging) {
+        var service = new Services.OrdersService(self.options);
+        busyWorker.showBusy($element.find(".itemsTableContainer"), "Updating");
+        service.removeOrderItem($scope.order.OrderId, item.RowId, $scope.locationId, function (event) {
+            if (event.hasErrors() == false) {
+                for (var i = 0; i < $scope.order.Items.length; i++) {
+                    if ($scope.order.Items[i].RowId == item.RowId) {
+                        $scope.order.Items.splice(i, 1);
+                        item = null;
+                        break;
+                    }
+                }
+                if (recalculatePackaging) {
+                    $scope.saveOrderPackagingCalculation(true, false, function () {
+                        $scope.updateTotalsInfo(event.result);
+                    });
+                }
+                else
+                    $scope.updateTotalsInfo(event.result);
 
-    //         } else {
-    //             dialogs.addNotify(event.error.errorMessage, "ERROR");
-    //         }
-    //         $scope.$apply();
-    //         busyWorker.hideBusy($element.find(".itemsTableContainer"));
-    //     });
-    // };
+            } else {
+                dialogs.addNotify(event.error.errorMessage, "ERROR");
+            }
+            $scope.$apply();
+            busyWorker.hideBusy($element.find(".itemsTableContainer"));
+        });
+    };
 
 }
 
