@@ -1,6 +1,6 @@
 var PlaceHolder = function ($scope, $element) {
 
-    console.log("roos placeholder works 115");
+    console.log("roos placeholder works 116");
     this.getItems = function () {
         var items = [{
             text: "Remove Out Of Stock",
@@ -15,13 +15,13 @@ var PlaceHolder = function ($scope, $element) {
         return true;
     }
 
-    const wind = require('core/Window');
     const dialogs = require("core/dialogs");
+    const busyWorker = require("core/busyWorker/busyWorker");
 
     this.onClick = function () {
 
         dialogs.question({
-            message: "Are you sure?",
+            message: "Are you sure? All unavailable items will be removed from order",
             title: "Delete?",
             callback: function (event) {
                 switch (event.action) {
@@ -36,48 +36,18 @@ var PlaceHolder = function ($scope, $element) {
             }
         }, self.options);
 
-        // var win = new wind({
-        //     moduleName: "RemoveOutOfStock",
-        //     windowName: "RemoveOutOfStock",
-        //     title: "123",
-        //     closeOnEscape: false,
-        //     closeOnBackDrop: false,
-        //     data: {
-        //     },
-        //     onWindowClosed: function (event) {
-        //         switch (event.action) {
-        //             case "OK":
-        //                 $scope.CheckHasChanged();
-        //                 if (!$scope.$$phase) {
-        //                     $scope.$apply();
-        //                 }
-        //                 break;
-        //             case "CLOSE":
-        //                 if (event.result) {
-        //                     $scope.CheckHasChanged();
-        //                     if (!$scope.$$phase) {
-        //                         $scope.$apply();
-        //                     }
-        //                 }
-        //                 break;
-        //         }
-        //     },
-        //     width: "400px",
-        //     ngScope: $scope
-
-        // });
-
-        // win.open();
     }
 
     $scope.removeOutOfStock = function () {
+
+        busyWorker.showBusy($element.find(".itemsTableContainer"), "Updating");
+
         $scope.order.Items.forEach(item => {
-            console.log(item.SKU);
 
             var service = new Services.OrdersService(self.options);
-            busyWorker.showBusy($element.find(".itemsTableContainer"), "Updating");
 
-            if (itemAvailableStock <= 0) {
+            if (item.AvailableStock <= 0) {
+
                 service.removeOrderItem($scope.order.OrderId, item.RowId, $scope.locationId, function (event) {
                     if (event.hasErrors() == false) {
                         for (var i = 0; i < $scope.order.Items.length; i++) {
@@ -99,67 +69,12 @@ var PlaceHolder = function ($scope, $element) {
                         dialogs.addNotify(event.error.errorMessage, "ERROR");
                     }
                     $scope.$apply();
-                    busyWorker.hideBusy($element.find(".itemsTableContainer"));
                 });
             }
             
         });
-    };
 
-    // $scope.removeItem = function (item) {
-    //     //$scope.selectedItem = item;
-    //     if (item != null) {
-    //         var msg = "Are you sure you want to delete item \"{0} - {1}\"?".replace("{0}", item.SKU).replace("{1}", item.Title);
-    //         if (item.IsService)
-    //             msg = "Are you sure you want to delete \"{0}\"?".replace("{0}", item.Title);
-
-    //         dialogs.question({
-    //             message: msg,
-    //             title: "Delete?",
-    //             callback: function (event) {
-    //                 switch (event.action) {
-    //                     case "YES":
-    //                         $scope.itemChangedAskRecalculation(
-    //                             function () {
-    //                                 $scope.removeItemConfirmed1(item, true);
-    //                             },
-    //                             function () {
-    //                                 $scope.removeItemConfirmed1(item, false);
-    //                             }
-    //                         );
-    //                         break;
-    //                 }
-    //             }
-    //         }, self.options);
-    //     }
-    // };
-
-    $scope.removeItemConfirmed1 = function (item, recalculatePackaging) {
-        var service = new Services.OrdersService(self.options);
-        busyWorker.showBusy($element.find(".itemsTableContainer"), "Updating");
-        service.removeOrderItem($scope.order.OrderId, item.RowId, $scope.locationId, function (event) {
-            if (event.hasErrors() == false) {
-                for (var i = 0; i < $scope.order.Items.length; i++) {
-                    if ($scope.order.Items[i].RowId == item.RowId) {
-                        $scope.order.Items.splice(i, 1);
-                        item = null;
-                        break;
-                    }
-                }
-                if (recalculatePackaging) {
-                    $scope.saveOrderPackagingCalculation(true, false, function () {
-                        $scope.updateTotalsInfo(event.result);
-                    });
-                }
-                else
-                    $scope.updateTotalsInfo(event.result);
-
-            } else {
-                dialogs.addNotify(event.error.errorMessage, "ERROR");
-            }
-            $scope.$apply();
-            busyWorker.hideBusy($element.find(".itemsTableContainer"));
-        });
+        busyWorker.hideBusy($element.find(".itemsTableContainer"));
     };
 
 }
