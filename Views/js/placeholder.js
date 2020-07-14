@@ -1,6 +1,6 @@
 var PlaceHolder = function ($scope, $element) {
 
-    console.log("roos placeholder works 121");
+    console.log("roos placeholder works 122");
     this.getItems = function () {
         var items = [{
             text: "Remove Out Of Stock",
@@ -83,6 +83,8 @@ var PlaceHolder = function ($scope, $element) {
                         break;
                     }
                 }
+
+                $scope.$apply();
             }
 
         });
