@@ -1,6 +1,6 @@
 var PlaceHolder = function ($scope, $element) {
 
-    console.log("roos placeholder works 131");
+    console.log("roos placeholder works 132");
     this.getItems = function () {
         var items = [{
             text: "Remove Out Of Stock",
@@ -36,6 +36,8 @@ var PlaceHolder = function ($scope, $element) {
         //         }
         //     }
         // }, self.options);
+
+        $scope.prepareItems();
 
         var win = new wind({
             moduleName: "RemoveOutOfStock",
