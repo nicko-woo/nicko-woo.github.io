@@ -1,11 +1,7 @@
 var RemoveOutOfStockView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
 
     $scope.itemsToRemove = $scope.$parent.$parent.$parent.order.Items;
-    $scope.Initialize = function () {
-        $scope.GetGridItemsToRemove();
-    };
-
-    $scope.Initialize();
+    
 
     // $scope.removeOutOfStock = function () {
     //     console.log("items removed (test)");
