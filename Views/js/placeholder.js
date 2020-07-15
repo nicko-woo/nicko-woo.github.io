@@ -1,6 +1,6 @@
 var PlaceHolder = function ($scope, $element) {
 
-    console.log("roos placeholder works 135");
+    console.log("roos placeholder works 136");
     this.getItems = function () {
         var items = [{
             text: "Remove Out Of Stock",
@@ -20,6 +20,21 @@ var PlaceHolder = function ($scope, $element) {
     const wind = require('core/Window');
 
     this.onClick = function () {
+
+        $scope.order.Items.forEach(item => {
+
+            if (item.AvailableStock <= 0 && item.OnOrder <= 0) {
+
+                $scope.ItemsToRemove.push(item);
+
+            }
+
+        });
+
+        if ($scope.ItemsToRemove.length < 1) {
+            Core.Dialogs.addNotify("No items to remove", "WARNING");
+            return;
+        }
 
         // dialogs.question({
         //     message: "Are you sure? All unavailable items will be removed from order",
