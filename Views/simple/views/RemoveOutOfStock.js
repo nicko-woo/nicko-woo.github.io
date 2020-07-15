@@ -1,7 +1,7 @@
 var RemoveOutOfStockView = function ($scope, $element, $filter, $compile, $q, controlService, stockService, purchaseorderService, $http, $timeout) {
 
     $scope.Initialize = function () {
-        $scope.GetGridItemsToRemove();
+        //$scope.GetGridItemsToRemove();
     };
 
     $scope.Initialize();
@@ -19,8 +19,6 @@ var RemoveOutOfStockView = function ($scope, $element, $filter, $compile, $q, co
             { id: "column1", name: "SKU", field: "paymentDate", width: 220, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
             { id: "column2", name: "Quantity", field: "paidAmount", width: 220, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" },
             { id: "column3", name: "Unit Cost", field: "paidAmount", width: 220, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" }
-
-            // { id: "column3", name: "Items paid", field: "paidItemsQuantity", width: 220, cssClass: "slick-cell slickgrid-align-center", headerCssClass: "slick-header-column slickgrid-align-center" }
         ];
 
         let optionsItemsToRemove = {
@@ -32,7 +30,7 @@ var RemoveOutOfStockView = function ($scope, $element, $filter, $compile, $q, co
             autoEdit: false
         };
 
-        let data = $scope.$parent.order.Items;
+        let data = [];
 
         if (data && data.length) {
             dataViewItemsToRemove.setItems(data);
