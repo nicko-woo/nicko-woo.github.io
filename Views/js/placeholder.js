@@ -1,6 +1,6 @@
 var PlaceHolder = function ($scope, $element) {
 
-    console.log("roos placeholder works 141");
+    console.log("roos placeholder works 142");
     this.getItems = function () {
         var items = [{
             text: "Remove Out Of Stock",
@@ -79,13 +79,12 @@ var PlaceHolder = function ($scope, $element) {
                             //     $scope.$apply();
                             // }
 
-                            console.log("No, no remove");
                         }
                         break;
                 }
             },
             width: "900px",
-            ngScope: $scope
+            // ngScope: $scope
 
         });
         
@@ -130,12 +129,12 @@ var PlaceHolder = function ($scope, $element) {
                                 break;
                             }
                         }
-                        if (recalculatePackaging) {
+                        // if (recalculatePackaging) {
                             $scope.saveOrderPackagingCalculation(true, false, function () {
                                 $scope.updateTotalsInfo(event.result);
                             });
-                        }
-                        else
+                        // }
+                        // else
                             $scope.updateTotalsInfo(event.result);
     
                     } else {
