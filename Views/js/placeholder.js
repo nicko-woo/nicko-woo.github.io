@@ -1,6 +1,6 @@
 var PlaceHolder = function ($scope, $element) {
 
-    console.log("roos placeholder works 123");
+    console.log("roos placeholder works 124");
     this.getItems = function () {
         var items = [{
             text: "Remove Out Of Stock",
@@ -20,21 +20,53 @@ var PlaceHolder = function ($scope, $element) {
 
     this.onClick = function () {
 
-        dialogs.question({
-            message: "Are you sure? All unavailable items will be removed from order",
-            title: "Delete?",
-            callback: function (event) {
+        // dialogs.question({
+        //     message: "Are you sure? All unavailable items will be removed from order",
+        //     title: "Delete?",
+        //     callback: function (event) {
+        //         switch (event.action) {
+        //             case "YES":
+        //                 $scope.itemChangedAskRecalculation(
+        //                     function () {
+        //                         $scope.removeOutOfStock();
+        //                     }
+        //                 );
+        //                 break;
+        //         }
+        //     }
+        // }, self.options);
+
+        var win = new wind({
+            moduleName: "RemoveOutOfStock",
+            windowName: "RemoveOutOfStock",
+            title: "Confirmation",
+            closeOnEscape: false,
+            closeOnBackDrop: false,
+            data: { },
+            onWindowClosed: function (event) {
                 switch (event.action) {
-                    case "YES":
-                        $scope.itemChangedAskRecalculation(
-                            function () {
-                                $scope.removeOutOfStock();
+                    case "OK":
+                        $scope.CheckHasChanged();
+                        if (!$scope.$$phase) {
+                            $scope.$apply();
+                        }
+                        break;
+                    case "CLOSE":
+                        if (event.result) {
+                            $scope.CheckHasChanged();
+                            if (!$scope.$$phase) {
+                                $scope.$apply();
                             }
-                        );
+                        }
                         break;
                 }
-            }
-        }, self.options);
+            },
+            width: "900px",
+            ngScope: $scope
+
+        });
+        
+        win.open();
 
     }
 
