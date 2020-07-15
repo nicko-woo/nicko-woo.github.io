@@ -12,6 +12,7 @@ var RemoveOutOfStockView = function ($scope, $element, $filter, $compile, $q, co
     
 
     $scope.GetGridItemsToRemove = function () {
+
         let dataViewItemsToRemove = new Slick.Data.DataView();
 
         let columnsItemsToRemove = [
@@ -39,6 +40,6 @@ var RemoveOutOfStockView = function ($scope, $element, $filter, $compile, $q, co
 
         $scope.gridItemsToRemove = new Slick.Grid("#roosItemsGrid", dataViewItemsToRemove, columnsItemsToRemove, optionsItemsToRemove);
         $scope.gridItemsToRemove.setColumns(columnsItemsToRemove);
-    };
+    }
 
 };
