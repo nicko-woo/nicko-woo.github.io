@@ -1,6 +1,6 @@
 var PlaceHolder = function ($scope, $element) {
 
-    console.log("roos placeholder works 142");
+    console.log("roos placeholder works 143");
     this.getItems = function () {
         var items = [{
             text: "Remove Out Of Stock",
@@ -20,6 +20,8 @@ var PlaceHolder = function ($scope, $element) {
     const wind = require('core/Window');
 
     this.onClick = function () {
+
+        $scope.ItemsToRemove = [];
 
         $scope.order.Items.forEach(item => {
 
@@ -52,7 +54,7 @@ var PlaceHolder = function ($scope, $element) {
         //     }
         // }, self.options);
 
-        $scope.prepareItems();
+        // $scope.prepareItems();
 
         var win = new wind({
             moduleName: "RemoveOutOfStock",
