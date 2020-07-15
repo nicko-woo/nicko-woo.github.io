@@ -9,14 +9,17 @@
       <thead>
         <tr>
           <th style="min-width: 160px;">SKU</th>
+          <th style="min-width: 160px">Title</th>
           <th style="min-width: 100px">Quantity</th>
-          <th style="min-width: 62px">Due in</th>
+          <th style="min-width: 100px">Available in stock</th>
         </tr>
       </thead>
-      <tbody>'
+      <tbody>
         <tr ng-repeat="i in itemsToRemove">
-          <td>{{ i.ChannelSKU }}</td>
+          <td>{{ i.SKU }}</td>
+          <td>{{ i.Title }}</td>
           <td>{{ i.Quantity }}</td>
+          <td>{{ i.AvailableStock }}</td>
           <td></td>
         </tr>
       </tbody>
