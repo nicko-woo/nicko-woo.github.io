@@ -1,6 +1,6 @@
 var PlaceHolder = function ($scope, $element) {
 
-    console.log("roos placeholder works 124");
+    console.log("roos placeholder works 125");
     this.getItems = function () {
         var items = [{
             text: "Remove Out Of Stock",
@@ -17,6 +17,7 @@ var PlaceHolder = function ($scope, $element) {
 
     const dialogs = require("core/dialogs");
     const busyWorker = require("core/busyWorker/busyWorker");
+    const wind = require('core/Window');
 
     this.onClick = function () {
 
