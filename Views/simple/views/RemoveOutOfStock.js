@@ -7,7 +7,6 @@ var RemoveOutOfStockView = function ($scope, $element, $filter, $compile, $q, co
     self.onMessage = function (msg) {
         switch (msg.key) {
             case Core.Messenger.MESSAGE_TYPES.INITIALIZE:
-                Core.Dialogs.BusyWorker.showBusy($element);
                 $scope.itemsToRemove = msg.data.ItemsToRemove;
         }
     };
