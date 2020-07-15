@@ -15,7 +15,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="i in itemsToRemove">
+        <tr ng-repeat="i in itemsToRemove track by $index">
           <td>{{ i.SKU }}</td>
           <td>{{ i.Title }}</td>
           <td>{{ i.Quantity }}</td>
