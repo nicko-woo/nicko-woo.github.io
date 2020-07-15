@@ -1,6 +1,6 @@
 var PlaceHolder = function ($scope, $element) {
 
-    console.log("roos placeholder works 139");
+    console.log("roos placeholder works 140");
     this.getItems = function () {
         var items = [{
             text: "Remove Out Of Stock",
@@ -70,6 +70,7 @@ var PlaceHolder = function ($scope, $element) {
                         // }
 
                         console.log("OK, remove...");
+                        $scope.removeOutOfStock();
                         break;
                     case "NO":
                         if (event.result) {
@@ -120,39 +121,29 @@ var PlaceHolder = function ($scope, $element) {
 
                 $scope.amountProcessed++;
 
-                // service.removeOrderItem($scope.order.OrderId, item.RowId, $scope.locationId, function (event) {
-                //     if (event.hasErrors() == false) {
-                //         for (var i = 0; i < $scope.order.Items.length; i++) {
-                //             if ($scope.order.Items[i].RowId == item.RowId) {
-                //                 $scope.order.Items.splice(i, 1);
-                //                 item = null;
-                //                 break;
-                //             }
-                //         }
-                //         if (recalculatePackaging) {
-                //             $scope.saveOrderPackagingCalculation(true, false, function () {
-                //                 $scope.updateTotalsInfo(event.result);
-                //             });
-                //         }
-                //         else
-                //             $scope.updateTotalsInfo(event.result);
+                service.removeOrderItem($scope.order.OrderId, item.RowId, $scope.locationId, function (event) {
+                    if (event.hasErrors() == false) {
+                        for (var i = 0; i < $scope.order.Items.length; i++) {
+                            if ($scope.order.Items[i].RowId == item.RowId) {
+                                $scope.order.Items.splice(i, 1);
+                                item = null;
+                                break;
+                            }
+                        }
+                        if (recalculatePackaging) {
+                            $scope.saveOrderPackagingCalculation(true, false, function () {
+                                $scope.updateTotalsInfo(event.result);
+                            });
+                        }
+                        else
+                            $scope.updateTotalsInfo(event.result);
     
-                //     } else {
-                //         dialogs.addNotify(event.error.errorMessage, "ERROR");
-                //     }
-                //     $scope.$apply();
-                // });
-
-
-                for (var i = 0; i < $scope.order.Items.length; i++) {
-                    if ($scope.order.Items[i].RowId == item.RowId) {
-                        $scope.order.Items.splice(i, 1);
-                        item = null;
-                        //break;
+                    } else {
+                        dialogs.addNotify(event.error.errorMessage, "ERROR");
                     }
-                }
+                    $scope.$apply();
+                });
 
-                //$scope.$apply();
             }
 
         });
