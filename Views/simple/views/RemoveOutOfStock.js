@@ -8,6 +8,8 @@ var RemoveOutOfStockView = function ($scope, $element, $filter, $compile, $q, co
         }
     };
 
+    const busyWorker = require("core/busyWorker/busyWorker");
+
     $scope.removeOutOfStock = function () {
 
         busyWorker.showBusy($element.find(".itemsTableContainer"), "Updating");

@@ -1,6 +1,6 @@
 var PlaceHolder = function ($scope, $element) {
 
-    console.log("roos placeholder works 134");
+    console.log("roos placeholder works 135");
     this.getItems = function () {
         var items = [{
             text: "Remove Out Of Stock",
@@ -48,18 +48,22 @@ var PlaceHolder = function ($scope, $element) {
             data: { ItemsToRemove: $scope.ItemsToRemove },
             onWindowClosed: function (event) {
                 switch (event.action) {
-                    case "OK":
-                        $scope.CheckHasChanged();
-                        if (!$scope.$$phase) {
-                            $scope.$apply();
-                        }
+                    case "Yes":
+                        // $scope.CheckHasChanged();
+                        // if (!$scope.$$phase) {
+                        //     $scope.$apply();
+                        // }
+
+                        console.log("OK, remove...");
                         break;
-                    case "CLOSE":
+                    case "No":
                         if (event.result) {
-                            $scope.CheckHasChanged();
-                            if (!$scope.$$phase) {
-                                $scope.$apply();
-                            }
+                            // $scope.CheckHasChanged();
+                            // if (!$scope.$$phase) {
+                            //     $scope.$apply();
+                            // }
+
+                            console.log("No, no remove");
                         }
                         break;
                 }
