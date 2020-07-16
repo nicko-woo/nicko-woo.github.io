@@ -1,6 +1,6 @@
 var PlaceHolder = function ($scope, $element) {
 
-    console.log("roos placeholder works 144");
+    console.log("roos placeholder works 145");
     this.getItems = function () {
         var items = [{
             text: "Remove Out Of Stock",
@@ -68,7 +68,7 @@ var PlaceHolder = function ($scope, $element) {
             width: "900px"
 
         });
-        
+
         win.open();
 
     }
@@ -98,11 +98,11 @@ var PlaceHolder = function ($scope, $element) {
                                 break;
                             }
                         }
-                            $scope.saveOrderPackagingCalculation(true, false, function () {
-                                $scope.updateTotalsInfo(event.result);
-                            });
+                        $scope.saveOrderPackagingCalculation(true, false, function () {
                             $scope.updateTotalsInfo(event.result);
-    
+                        });
+                        $scope.updateTotalsInfo(event.result);
+
                     } else {
                         dialogs.addNotify(event.error.errorMessage, "ERROR");
                     }
