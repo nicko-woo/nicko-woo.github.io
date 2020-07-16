@@ -1,6 +1,6 @@
 var PlaceHolder = function ($scope, $element) {
 
-    console.log("roos placeholder works 143");
+    console.log("roos placeholder works 144");
     this.getItems = function () {
         var items = [{
             text: "Remove Out Of Stock",
@@ -38,24 +38,6 @@ var PlaceHolder = function ($scope, $element) {
             return;
         }
 
-        // dialogs.question({
-        //     message: "Are you sure? All unavailable items will be removed from order",
-        //     title: "Delete?",
-        //     callback: function (event) {
-        //         switch (event.action) {
-        //             case "YES":
-        //                 $scope.itemChangedAskRecalculation(
-        //                     function () {
-        //                         $scope.removeOutOfStock();
-        //                     }
-        //                 );
-        //                 break;
-        //         }
-        //     }
-        // }, self.options);
-
-        // $scope.prepareItems();
-
         var win = new wind({
             moduleName: "RemoveOutOfStock",
             windowName: "RemoveOutOfStock",
@@ -71,7 +53,6 @@ var PlaceHolder = function ($scope, $element) {
                         //     $scope.$apply();
                         // }
 
-                        console.log("OK, remove...");
                         $scope.removeOutOfStock();
                         break;
                     case "NO":
@@ -80,13 +61,11 @@ var PlaceHolder = function ($scope, $element) {
                             // if (!$scope.$$phase) {
                             //     $scope.$apply();
                             // }
-
                         }
                         break;
                 }
             },
-            width: "900px",
-            // ngScope: $scope
+            width: "900px"
 
         });
         
@@ -95,18 +74,6 @@ var PlaceHolder = function ($scope, $element) {
     }
 
     $scope.ItemsToRemove = [];
-
-    $scope.prepareItems = function () {
-        $scope.order.Items.forEach(item => {
-
-            if (item.AvailableStock <= 0 && item.OnOrder <= 0) {
-
-                $scope.ItemsToRemove.push(item);
-
-            }
-
-        });
-    }
 
     $scope.removeOutOfStock = function () {
 
@@ -131,12 +98,9 @@ var PlaceHolder = function ($scope, $element) {
                                 break;
                             }
                         }
-                        // if (recalculatePackaging) {
                             $scope.saveOrderPackagingCalculation(true, false, function () {
                                 $scope.updateTotalsInfo(event.result);
                             });
-                        // }
-                        // else
                             $scope.updateTotalsInfo(event.result);
     
                     } else {
