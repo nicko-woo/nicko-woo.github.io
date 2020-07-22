@@ -1,6 +1,6 @@
 var PlaceHolder = function ($scope, $element) {
 
-    console.log("roos placeholder works 145");
+    console.log("roos placeholder works 146");
     this.getItems = function () {
         var items = [{
             text: "Remove Out Of Stock",
@@ -24,6 +24,10 @@ var PlaceHolder = function ($scope, $element) {
         $scope.ItemsToRemove = [];
 
         $scope.order.Items.forEach(item => {
+
+            if (item.level > 0 && item.CompositeSubItems && item.CompositeSubItems.length > 0) {
+                continue;
+            }
 
             if (item.AvailableStock <= 0 && item.OnOrder <= 0) {
 
@@ -84,6 +88,10 @@ var PlaceHolder = function ($scope, $element) {
         $scope.order.Items.forEach(item => {
 
             var service = new Services.OrdersService(self.options);
+
+            if (item.level > 0 && item.CompositeSubItems && item.CompositeSubItems.length > 0) {
+                continue;
+            }
 
             if (item.AvailableStock <= 0 && item.OnOrder <= 0) {
 
