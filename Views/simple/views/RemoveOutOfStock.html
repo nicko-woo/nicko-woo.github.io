@@ -7,7 +7,12 @@
           <th style="min-width: 160px;">SKU</th>
           <th style="min-width: 160px">Title</th>
           <th style="min-width: 100px">Quantity</th>
+          <th style="min-width: 100px">Stock Level</th>
           <th style="min-width: 100px">Available in stock</th>
+          <th style="min-width: 100px">In Order Book</th>
+          <th style="min-width: 100px">Tracked</th>
+          <th style="min-width: 100px">On Order</th>
+          <th style="min-width: 100px">On Purchase Order</th>
         </tr>
       </thead>
       <tbody>
@@ -15,7 +20,15 @@
           <td>{{ i.SKU }}</td>
           <td>{{ i.Title }}</td>
           <td>{{ i.Quantity }}</td>
+          <td>{{ i.Level }}</td>
           <td>{{ i.AvailableStock }}</td>
+          <td>{{ i.InOrderBook }}</td>
+          <td>
+            <div ng-if="i.MinimumLevel == -1">false</div>
+            <div ng-if="i.MinimumLevel != -1">true</div>
+          </td>
+          <td>{{ i.OnOrder }}</td>
+          <td>{{ i.OnPurchaseOrder }}</td>
           <td></td>
         </tr>
       </tbody>
