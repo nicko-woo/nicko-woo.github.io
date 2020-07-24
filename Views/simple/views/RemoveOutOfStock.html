@@ -9,9 +9,8 @@
           <th >Quantity</th>
           <th >Stock Level</th>
           <th >Available in stock</th>
-          <th >In Order Book</th>
           <th >Tracked</th>
-          <th >On Order</th>
+          <th >Due</th>
         </tr>
       </thead>
       <tbody>
@@ -21,7 +20,6 @@
           <td>{{ i.Quantity }}</td>
           <td>{{ i.Level }}</td>
           <td>{{ i.AvailableStock }}</td>
-          <td>{{ i.InOrderBook }}</td>
           <td>
             <div ng-if="i.MinimumLevel == -1">false</div>
             <div ng-if="i.MinimumLevel != -1">true</div>
