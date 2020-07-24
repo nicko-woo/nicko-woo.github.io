@@ -22,7 +22,7 @@
           <td>{{ i.AvailableStock }}</td>
           <td>
             <div ng-if="i.MinimumLevel == -1">false</div>
-            <div ng-if="i.MinimumLevel != -1">true</div>
+            <div ng-if="i.MinimumLevel > -1">true</div>
           </td>
           <td>{{ i.OnOrder }}</td>
           <td></td>
