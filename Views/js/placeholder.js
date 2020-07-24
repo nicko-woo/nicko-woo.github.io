@@ -1,6 +1,6 @@
 var PlaceHolder = function ($scope, $element) {
 
-    console.log("roos placeholder works 161");
+    console.log("roos placeholder works 162");
     this.getItems = function () {
         var items = [{
             text: "Remove Out Of Stock",
@@ -30,7 +30,7 @@ var PlaceHolder = function ($scope, $element) {
             // }
 
             // else if (item.AvailableStock <= 0 && item.OnOrder <= 0) {
-                else if ((item.AvailableStock + item.OnOrder) < item.Quantity) {
+                if ((item.AvailableStock + item.OnOrder) < item.Quantity) {
 
                 $scope.ItemsToRemove.push(item);
 
