@@ -15,17 +15,77 @@
       </thead>
       <tbody>
         <tr ng-repeat="i in itemsToRemove track by $index">
-          <td>{{ i.SKU }}</td>
-          <td>{{ i.Title }}</td>
-          <td>{{ i.Quantity }}</td>
-          <td>{{ i.Level }}</td>
-          <td>{{ i.AvailableStock }}</td>
-          <td>
-            <div ng-if="i.MinimumLevel == -1">false</div>
-            <div ng-if="i.MinimumLevel > -1">true</div>
-          </td>
-          <td>{{ i.OnOrder }}</td>
-          <td></td>
+          <div ng-if="i.CompositeSubItems.length == 0">
+
+            <td>{{ i.SKU }}</td>
+            <td>{{ i.Title }}</td>
+            <td>{{ i.Quantity }}</td>
+            <td>{{ i.Level }}</td>
+            <td>{{ i.AvailableStock }}</td>
+            <td>
+              <div ng-if="i.MinimumLevel == -1">false</div>
+              <div ng-if="i.MinimumLevel > -1">true</div>
+            </td>
+            <td>{{ i.OnOrder }}</td>
+            <td></td>
+
+          </div>
+
+
+          <div ng-if="i.CompositeSubItems.length > 0">
+
+            
+              <table lw-tst="grid2" class="lw-table lw-table-fixed order-items" style="table-layout: auto !important">
+                <thead>
+                  <tr>
+                    <th style="min-width: 160px;">SKU</th>
+                    <th style="min-width: 160px">Title</th>
+                    <th >Quantity</th>
+                    <th >Stock Level</th>
+                    <th >Available in stock</th>
+                    <th >Tracked</th>
+                    <th >Due</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr ng-repeat="si in i.CompositeSubItems track by $index">
+                    <td>{{ si.SKU }}</td>
+                    <td>{{ si.Title }}</td>
+                    <td>{{ si.Quantity }}</td>
+                    <td>{{ si.Level }}</td>
+                    <td>{{ si.AvailableStock }}</td>
+                    <td>
+                      <div ng-if="si.MinimumLevel == -1">false</div>
+                      <div ng-if="si.MinimumLevel > -1">true</div>
+                    </td>
+                    <td>{{ si.OnOrder }}</td>
+                    <td></td>
+                
+                  </tr>
+                </tbody>
+
+
+              </table>
+            
+
+
+
+            <td>{{ i.SKU }}</td>
+            <td>{{ i.Title }}</td>
+            <td>{{ i.Quantity }}</td>
+            <td>{{ i.Level }}</td>
+            <td>{{ i.AvailableStock }}</td>
+            <td>
+              <div ng-if="i.MinimumLevel == -1">false</div>
+              <div ng-if="i.MinimumLevel > -1">true</div>
+            </td>
+            <td>{{ i.OnOrder }}</td>
+            <td></td>
+
+          </div>
+
+          
         </tr>
       </tbody>
 
