@@ -31,7 +31,7 @@
         </thead>
         <tbody >
 
-          <div ng-if="i.CompositeSubItems.length < 1" >
+          <div ng-if="!i.CompositeSubItems[0]" >
             <tr>
               <td>{{ i.SKU }}</td>
               <td>{{ i.Title }}</td>
@@ -48,7 +48,7 @@
     
           </div>
 
-          <div ng-if="i.CompositeSubItems && i.CompositeSubItems.length > 0" >
+          <div ng-if="i.CompositeSubItems[0] && i.CompositeSubItems.length > 0" >
             <tr style="font-weight:bold">
               <td>{{ i.SKU }}</td>
               <td>{{ i.Title }}</td>
