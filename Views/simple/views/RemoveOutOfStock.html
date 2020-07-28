@@ -34,7 +34,6 @@
 
           <div ng-if="i.CompositeSubItems.length > 0">
 
-            
               <table lw-tst="grid2" class="lw-table lw-table-fixed order-items" style="table-layout: auto !important">
                 <thead>
                   <tr>
@@ -49,7 +48,7 @@
                 </thead>
 
                 <tbody>
-                  <tr ng-repeat="si in i.CompositeSubItems track by $index">
+                  <tr ng-repeat="si in CompositeSubItems track by $index">
                     <td>{{ si.SKU }}</td>
                     <td>{{ si.Title }}</td>
                     <td>{{ si.Quantity }}</td>
@@ -65,12 +64,8 @@
                   </tr>
                 </tbody>
 
-
               </table>
             
-
-
-
             <td>{{ i.SKU }}</td>
             <td>{{ i.Title }}</td>
             <td>{{ i.Quantity }}</td>
@@ -85,7 +80,6 @@
 
           </div>
 
-          
         </tr>
       </tbody>
 
