@@ -30,7 +30,7 @@
           </tr>
         </thead>
         <tbody >
-          <div ng-if="i.CompositeSubItems.length > 0" >
+          <div ng-if="i.CompositeSubItems?.length > 0" >
             <tr style="font-weight:bold">
               <td>{{ i.SKU }}</td>
               <td>{{ i.Title }}</td>
@@ -60,7 +60,7 @@
             </tr>
           </div>
 
-          <div ng-if="i.CompositeSubItems.length == 0" >
+          <div ng-if="i.CompositeSubItems?.length == 0" >
             <tr>
               <td>{{ i.SKU }}</td>
               <td>{{ i.Title }}</td>
