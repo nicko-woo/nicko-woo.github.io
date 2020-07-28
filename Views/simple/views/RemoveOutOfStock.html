@@ -30,6 +30,24 @@
           </tr>
         </thead>
         <tbody >
+
+          <div ng-if="i.CompositeSubItems.length === 0" >
+            <tr>
+              <td>{{ i.SKU }}</td>
+              <td>{{ i.Title }}</td>
+              <td>{{ i.Quantity }}</td>
+              <td>{{ i.Level }}</td>
+              <td>{{ i.AvailableStock }}</td>
+              <td>
+                <div ng-if="i.MinimumLevel == -1">false</div>
+                <div ng-if="i.MinimumLevel > -1">true</div>
+              </td>
+              <td>{{ i.OnOrder }}</td>
+              <td></td>
+            </tr>
+    
+          </div>
+
           <div ng-if="i.CompositeSubItems.length > 0" >
             <tr style="font-weight:bold">
               <td>{{ i.SKU }}</td>
@@ -60,22 +78,7 @@
             </tr>
           </div>
 
-          <div ng-if="i.CompositeSubItems.length == 0" >
-            <tr>
-              <td>{{ i.SKU }}</td>
-              <td>{{ i.Title }}</td>
-              <td>{{ i.Quantity }}</td>
-              <td>{{ i.Level }}</td>
-              <td>{{ i.AvailableStock }}</td>
-              <td>
-                <div ng-if="i.MinimumLevel == -1">false</div>
-                <div ng-if="i.MinimumLevel > -1">true</div>
-              </td>
-              <td>{{ i.OnOrder }}</td>
-              <td></td>
-            </tr>
-    
-          </div>
+          
           
         </tbody>
   
