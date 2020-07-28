@@ -14,4 +14,9 @@ var RemoveOutOfStockView = function ($scope, $element, $filter, $compile, $q) {
         self.close();
     }
 
+    $scope.isExists=function(type){
+        var obj = $scope.articles.find(function(x){ return x.type == type ; });
+        return obj !== null;
+      }
+
 };
