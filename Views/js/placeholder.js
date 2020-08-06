@@ -1,6 +1,6 @@
 var PlaceHolder = function ($scope, $element) {
 
-    console.log("roos placeholder works 182");
+    console.log("roos placeholder works 183 - fixed parent non-tracked items, in this case only tracked child level used");
     this.getItems = function () {
         var items = [{
             text: "Remove Out Of Stock",
@@ -30,11 +30,27 @@ var PlaceHolder = function ($scope, $element) {
             // }
 
             // else if (item.AvailableStock <= 0 && item.OnOrder <= 0) {
-                if ((item.AvailableStock + item.OnOrder) < item.Quantity) {
+                if (item.CompositeSubItems && item.CompositeSubItems.length > 0) {
 
-                $scope.ItemsToRemove.push(item);
-
-            }
+                    let unavailableSubitemsAmount = 0;
+                    item.CompositeSubItems.forEach(subitem => {
+                        if ((subitem.AvailableStock + subitem.OnOrder) < subitem.Quantity) {
+                            unavailableSubitemsAmount++;
+                        }
+                    })
+    
+                    if (unavailableSubitemsAmount > 0) {
+                        $scope.ItemsToRemove.push(item);
+                    }
+                }
+    
+    
+                if (((item.AvailableStock + item.OnOrder) < item.Quantity) && item.MinimumLevel != -1 && (item.CompositeSubItems.length == 0) )  {
+    
+                    $scope.ItemsToRemove.push(item);
+    
+                }
+    
 
         });
 
@@ -90,7 +106,7 @@ var PlaceHolder = function ($scope, $element) {
 
             var service = new Services.OrdersService(self.options);
 
-                if ($scope.ItemsToRemove.includes(item)) {
+            if ($scope.ItemsToRemove.includes(item)) {
 
                 $scope.amountProcessed++;
 
