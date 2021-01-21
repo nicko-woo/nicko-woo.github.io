@@ -2,7 +2,7 @@ var PlaceHolder = function ($scope, $element) {
 
     this.getItems = function () {
         var items = [{
-            text: "CustomImages",
+            text: "Custom Images",
             key: "CustomImages",
             icon: "fa fa-minus-circle",
             content: {
