@@ -2,9 +2,13 @@ var PlaceHolder = function ($scope, $element) {
 
     this.getItems = function () {
         var items = [{
-            text: "Custom Images",
-            key: "customImagesTab",
-            icon: "fa fa-minus-circle"
+            text: "CustomImages",
+            key: "CustomImages",
+            icon: "fa fa-minus-circle",
+            content: {
+                moduleName: "CustomImages",
+                controlName: "CustomImages"
+            }
         }];
 
         return items;
