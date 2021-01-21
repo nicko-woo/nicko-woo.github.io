@@ -1,4 +1,4 @@
-var RemoveOutOfStockView = function ($scope, $element, $filter, $compile, $q) {
+var CustomImagesView = function ($scope, $element, $filter, $compile, $q) {
 
     var self = this;
     self.onMessage = function (msg) {
