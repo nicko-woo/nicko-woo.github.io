@@ -150,4 +150,8 @@ Core.PlaceHolderManager.register("OpenOrder_EditOrder_ItemsButtons", PlaceHolder
 
 Core.PlaceHolderManager.register("OpenOrder_EditOrder_OrderControlButtons", PlaceHolder);
 
-Core.PlaceHolderManager.register("MyInventory_EditInventoryItemView", PlaceHolder);
+Core.PlaceHolderManager.register({
+    moduleName: "MyInventory",
+    placeHolderName: "MyInventory_EditInventoryItemView"
+}, PlaceHolder);
+
