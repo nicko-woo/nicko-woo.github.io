@@ -6,8 +6,8 @@ var PlaceHolder = function ($scope, $element) {
             key: "CustomImages",
             icon: "fa fa-minus-circle",
             content: {
-                moduleName: "CustomImagesView",
-                controlName: "CustomImagesView"
+                moduleName: "CustomImages",
+                controlName: "CustomImages"
             }
         }];
 
