@@ -1,4 +1,7 @@
 <div ng-controller="SpecSheetView">
+    <script src="https://cdn.jsdelivr.net/npm/pdfkit@0.11.0/js/pdfkit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/blob-stream@0.1.3/index.min.js"></script>
+    
     <div class="ci-container">
         <p> {{stockItemId}} </p>
 
@@ -6,7 +9,8 @@
 
         <!-- Product Details -->
         <label for="productDetails">Product Details:</label>
-        <textarea class="ext-prop" id="productDetails" name="productDetails" rows="6" cols="100" ng-model="productDetails.PropertyValue" maxlength="2000"></textarea>
+        <textarea class="ext-prop" id="productDetails" name="productDetails" rows="6" cols="100"
+            ng-model="productDetails.PropertyValue" maxlength="2000"></textarea>
 
 
         <!-- <p> Product Details: </p>
@@ -14,32 +18,36 @@
 
         <!-- ArtWork -->
         <label for="artwork">Artwork:</label>
-        <textarea class="ext-prop" id="artwork" name="artwork" rows="6" cols="100" ng-model="artwork.PropertyValue" maxlength="2000"></textarea>
+        <textarea class="ext-prop" id="artwork" name="artwork" rows="6" cols="100" ng-model="artwork.PropertyValue"
+            maxlength="2000"></textarea>
         <!-- <p> Artwork </p>
         <input class="ext-prop" type="text" name="artwork" ng-model="artwork.PropertyValue" /> -->
 
         <!-- Packaging Details -->
         <label for="packagingDetails">Packaging Details:</label>
-        <textarea class="ext-prop" id="packagingDetails" name="packagingDetails" rows="6" cols="100" ng-model="packagingDetails.PropertyValue" maxlength="2000"></textarea>
+        <textarea class="ext-prop" id="packagingDetails" name="packagingDetails" rows="6" cols="100"
+            ng-model="packagingDetails.PropertyValue" maxlength="2000"></textarea>
         <!-- <p> Packaging Details: </p>
         <input class="ext-prop" type="text" name="packagingDetails" ng-model="packagingDetails.PropertyValue" /> -->
 
         <!-- Inner Carton -->
         <label for="innerCarton">Inner Carton:</label>
-        <textarea class="ext-prop" id="innerCarton" name="innerCarton" rows="6" cols="100" ng-model="innerCarton.PropertyValue" maxlength="2000"></textarea>
+        <textarea class="ext-prop" id="innerCarton" name="innerCarton" rows="6" cols="100"
+            ng-model="innerCarton.PropertyValue" maxlength="2000"></textarea>
         <!-- <p> Inner Carton: </p>
         <input class="ext-prop" type="text" name="innerCarton" ng-model="innerCarton.PropertyValue" /> -->
 
         <!-- General Comments -->
         <label for="generalComments">General Comments:</label>
-        <textarea class="ext-prop" id="generalComments" name="generalComments" rows="6" cols="100" ng-model="generalComments.PropertyValue" maxlength="2000"></textarea>
+        <textarea class="ext-prop" id="generalComments" name="generalComments" rows="6" cols="100"
+            ng-model="generalComments.PropertyValue" maxlength="2000"></textarea>
         <!-- <p> General Comments: </p>
         <input class="ext-prop" type="text" name="generalComments" ng-model="generalComments.PropertyValue" /> -->
 
         <br>
         <!-- <div class="pull-right"> -->
-            <button class="btn btn-primary" ng-click="saveProperties()">Save Properties</button>
-            <button class="btn btn-primary" ng-click="generateSpecSheet()">Generate Spec Sheet</button>
+        <button class="btn btn-primary" ng-click="saveProperties()">Save Properties</button>
+        <button class="btn btn-primary" ng-click="generateSpecSheet()">Generate Spec Sheet</button>
         <!-- </div> -->
 
     </div>
