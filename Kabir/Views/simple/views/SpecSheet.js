@@ -14,11 +14,22 @@ var SpecSheetView = function ($scope, $element, $filter, $compile, $q) {
     var InventoryService = require("services/InventoryService");
     var stockService = new Services.StockService();
 
-    $scope.extPropsNames = InventoryService.getExtendedPropertyNames();
-    $scope.extPropsTypes = InventoryService.GetExtendedPropertyTypes();
-    $scope.extPropsAllNames = InventoryService.getAllExtendedPropertyNames();
+    // $scope.extPropsNames = InventoryService.getExtendedPropertyNames();
+    // $scope.extPropsTypes = InventoryService.GetExtendedPropertyTypes();
+    // $scope.extPropsAllNames = InventoryService.getAllExtendedPropertyNames();
 
-    $scope.itemExtProps = InventoryService.GetInventoryItemExtendedProperties($scope.stockItemId);
+    worker.showBusy();
+    InventoryService.GetInventoryItemExtendedProperties(
+      $scope.stockItemId,
+      function (event) {
+        if (event.hasErrors()) {
+          showErrorAndClose(event.error.errorMessage);
+        } else {
+          $scope.itemExtProps = event.result;
+        }
+        worker.hideBusy();
+      }
+    );
 
     //UpdateInventoryItemExtendedProperties
   }
