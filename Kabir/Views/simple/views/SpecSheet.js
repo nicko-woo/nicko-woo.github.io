@@ -69,8 +69,8 @@ var SpecSheetView = function ($scope, $element, $filter, $compile, $q) {
 
   $scope.generateSpecSheet = function () {
       // require dependencies
-      const PDFDocument = require("pdfkit");
-      const blobStream = require("blob-stream");
+      const PDFDocument = require(["pdfkit"]);
+      const blobStream = require(["blob-stream"]);
       // create a document the same way as above
       const doc = new PDFDocument();
       // pipe the document to a blob
