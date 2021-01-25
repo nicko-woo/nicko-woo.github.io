@@ -1,4 +1,4 @@
-var CustomImagesView = function ($scope, $element, $filter, $compile, $q) {
+var SpecSheetView = function ($scope, $element, $filter, $compile, $q) {
   var self = this;
   var sc = $scope.$parent.$parent.$parent.$parent;
   self.onMessage = function (msg) {
