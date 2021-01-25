@@ -13,21 +13,19 @@ var SpecSheetView = function ($scope, $element, $filter, $compile, $q) {
     // $scope.stockItemId = $scope.itemId;
     var InventoryService = require("services/InventoryService");
     var stockService = new Services.StockService();
+
+    $scope.extPropsNames = InventoryService.getExtendedPropertyNames();
+    $scope.extPropsTypes = InventoryService.GetExtendedPropertyTypes();
+    $scope.extPropsAllNames = InventoryService.getAllExtendedPropertyNames();
+
+    $scope.itemExtProps = InventoryService.GetInventoryItemExtendedProperties($scope.stockItemId);
+
+    //UpdateInventoryItemExtendedProperties
   }
 
+  $scope.saveProperties = function () {
 
-  // $scope.Close = function () {
-  //   $scope.itemsToRemove = null;
-  //   $scope.$destroy();
-  //   self.close();
-  // };
-
-  // $scope.isExists = function (type) {
-  //   var obj = $scope.articles.find(function (x) {
-  //     return x.type == type;
-  //   });
-  //   return obj !== null;
-  // };
+  }
 
   $scope.generateSpecSheet = function () {
     //   // require dependencies
