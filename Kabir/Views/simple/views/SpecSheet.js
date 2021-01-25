@@ -1,6 +1,6 @@
 var SpecSheetView = function ($scope, $element, $filter, $compile, $q) {
   var self = this;
-  var sc = $scope.$parent.$parent.$parent.$parent;
+  $scope = $scope.$parent.$parent.$parent.$parent;
   self.onMessage = function (msg) {
     switch (msg.key) {
       case Core.Messenger.MESSAGE_TYPES.INITIALIZE:
