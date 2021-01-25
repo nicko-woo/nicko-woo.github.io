@@ -10,17 +10,19 @@ var SpecSheetView = function ($scope, $element, $filter, $compile, $q) {
 
   $scope.Initialize = function () {
 
-    var inventoryService = new Services.InventoryService(self.options);
-    var stockService = new Services.StockService();
+    $scope.inventoryService = new Services.InventoryService(self.options);
+    $scope.stockService = new Services.StockService();
 
     $scope.getProperties();
+    
+    
 
     
   };
 
   $scope.getProperties = function () {
     Core.Dialogs.BusyWorker.showBusy($element);
-    inventoryService.GetInventoryItemExtendedProperties(
+    $scope.inventoryService.GetInventoryItemExtendedProperties(
       $scope.stockItemId,
       function (event) {
         if (event.hasErrors()) {
@@ -28,12 +30,20 @@ var SpecSheetView = function ($scope, $element, $filter, $compile, $q) {
           Core.Dialogs.addNotify("ERROR", "ERROR");
         } else {
           $scope.itemExtProps = event.result;
+
+          $scope.productDetails = $scope.itemExtProps.find(x => x.ProperyName === "Product Details");
+          $scope.artwork = $scope.itemExtProps.find(x => x.ProperyName === "Artwork");
+          $scope.packagingDetails = $scope.itemExtProps.find(x => x.ProperyName === "Packaging Details");
+          $scope.innerCarton = $scope.itemExtProps.find(x => x.ProperyName === "Inner Carton");
+          $scope.generalComments = $scope.itemExtProps.find(x => x.ProperyName === "General Comments");
         }
         Core.Dialogs.BusyWorker.hideBusy($element);
 
       }
     );
   };
+
+
 
   $scope.saveProperties = function () {
 
@@ -45,9 +55,24 @@ var SpecSheetView = function ($scope, $element, $filter, $compile, $q) {
 // id: "e36f5f0a-286f-dfbf-2e16-4dc82a8bf5ee"
 // pkRowId: "ea16e0fd-6963-4479-81de-3eeb0173ec4d"
 
+
+// PropertyType: "Attribute"
+// PropertyValue: "40063811187444"
+// ProperyName: "GTIN"
+// fkStockItemId: "403c94eb-103f-4b4e-9190-2479e06c7f03"
+// pkRowId: "f368905e-d3f7-450c-877a-3535c1a573f7"
+
     var updatedProperties = [];
+
+    updatedProperties.push($scope.productDetails);
+    updatedProperties.push($scope.artwork);
+    updatedProperties.push($scope.packagingDetails);
+    updatedProperties.push($scope.innerCarton);
+    updatedProperties.push($scope.generalComments);
+
+
     if (updatedProperties.length) {
-      inventoryService.UpdateInventoryItemExtendedProperties(updatedProperties, function (event) {
+      $scope.inventoryService.UpdateInventoryItemExtendedProperties(updatedProperties, function (event) {
           if (event.hasErrors()) {
             showErrorAndClose(event.error.errorMessage);
             Core.Dialogs.addNotify("ERROR", "ERROR");
