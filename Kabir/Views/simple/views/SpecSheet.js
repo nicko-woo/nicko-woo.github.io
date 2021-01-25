@@ -9,6 +9,12 @@ var SpecSheetView = function ($scope, $element, $filter, $compile, $q) {
     }
   };
 
+  $scope.Initialize = function () { 
+    $scope = $scope.$parent.$parent.$parent.$parent;
+    $scope.stockItemId = $scope.$parent.$parent.$parent.$parent.itemId;
+  }
+
+
   // $scope.Close = function () {
   //   $scope.itemsToRemove = null;
   //   $scope.$destroy();
