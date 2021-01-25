@@ -9,15 +9,9 @@ var SpecSheetView = function ($scope, $element, $filter, $compile, $q) {
   };
 
   $scope.Initialize = function () {
-
     $scope.inventoryService = new Services.InventoryService(self.options);
     $scope.stockService = new Services.StockService();
-
     $scope.getProperties();
-    
-    
-
-    
   };
 
   $scope.getProperties = function () {
