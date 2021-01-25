@@ -8,35 +8,58 @@ var SpecSheetView = function ($scope, $element, $filter, $compile, $q) {
     }
   };
 
-  $scope.Initialize = function () { 
+  $scope.Initialize = function () {
+
+    
     // $scope = $scope.$parent.$parent.$parent.$parent;
     // $scope.stockItemId = $scope.itemId;
-    var InventoryService = require("services/InventoryService");
+    
+    var inventoryService = new Services.InventoryService(self.options);
     var stockService = new Services.StockService();
 
     // $scope.extPropsNames = InventoryService.getExtendedPropertyNames();
     // $scope.extPropsTypes = InventoryService.GetExtendedPropertyTypes();
     // $scope.extPropsAllNames = InventoryService.getAllExtendedPropertyNames();
 
-    worker.showBusy();
+    Core.Dialogs.BusyWorker.showBusy($element);
     InventoryService.GetInventoryItemExtendedProperties(
       $scope.stockItemId,
       function (event) {
         if (event.hasErrors()) {
           showErrorAndClose(event.error.errorMessage);
+          Core.Dialogs.addNotify("ERROR", "ERROR");
         } else {
           $scope.itemExtProps = event.result;
         }
-        worker.hideBusy();
+        Core.Dialogs.BusyWorker.hideBusy($element);
+
       }
     );
 
     //UpdateInventoryItemExtendedProperties
-  }
+  };
 
   $scope.saveProperties = function () {
 
+//     IsChanged: true
+// PropertyType: "Attribute"
+// PropertyValue: "20"
+// ProperyName: "CTN QTY"
+// fkStockItemId: "e78d959f-a663-40be-bb40-237482d92571"
+// id: "e36f5f0a-286f-dfbf-2e16-4dc82a8bf5ee"
+// pkRowId: "ea16e0fd-6963-4479-81de-3eeb0173ec4d"
+    var updatedProperties = [];
+    if (updatedProperties.length) {
+      inventoryService.UpdateInventoryItemExtendedProperties(updatedProperties, function (event) {
+          if (event.hasErrors()) {
+            showErrorAndClose(event.error.errorMessage);
+            Core.Dialogs.addNotify("ERROR", "ERROR");
+          } else {
+            Core.Dialogs.addNotify("Properties were updated", "SUCCESS");
+          }
+      });
   }
+  };
 
   $scope.generateSpecSheet = function () {
     //   // require dependencies
