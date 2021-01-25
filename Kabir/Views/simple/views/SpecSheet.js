@@ -1,7 +1,7 @@
 var SpecSheetView = function ($scope, $element, $filter, $compile, $q) {
   var self = this;
-  $scope = $scope.$parent.$parent.$parent.$parent;
-  $scope.stockItemId = $scope.$parent.$parent.$parent.$parent.itemId;
+  // $scope = $scope.$parent.$parent.$parent.$parent;
+  // $scope.stockItemId = $scope.$parent.$parent.$parent.$parent.itemId;
   self.onMessage = function (msg) {
     switch (msg.key) {
       case Core.Messenger.MESSAGE_TYPES.INITIALIZE:
@@ -12,6 +12,8 @@ var SpecSheetView = function ($scope, $element, $filter, $compile, $q) {
   $scope.Initialize = function () { 
     $scope = $scope.$parent.$parent.$parent.$parent;
     $scope.stockItemId = $scope.$parent.$parent.$parent.$parent.itemId;
+    var InventoryService = require("services/InventoryService");
+    var stockService = new Services.StockService();
   }
 
 
