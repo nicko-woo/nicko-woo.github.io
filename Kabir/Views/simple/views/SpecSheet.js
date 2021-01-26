@@ -71,6 +71,13 @@ var SpecSheetView = function ($scope, $element, $filter, $compile, $q) {
   };
 
   $scope.generateSpecSheet = function () {
+
+    var docDefinition = { content: 'This is an sample PDF printed with pdfMake' } ;
+    var date = new Date();  
+            date = moment(date).format('DD_MMM_YYYY_HH_mm_ss');  
+            pdfMake.createPdf(docDefinition).download('PDF_' + date + '.pdf');  
+            
+//pdfMake.createPdf(docDefinition).open(); //to open pdf in new window 
     // // require dependencies
     // const PDFDocument = require(["pdfkit"]);
     // const blobStream = require(["blob-stream"]);
@@ -110,10 +117,10 @@ var SpecSheetView = function ($scope, $element, $filter, $compile, $q) {
 
     ////---------------------------------------
 
-    const { jsPDF } = require("jspdf"); 
-    const doc = new jsPDF();
-    doc.text("Hello world!", 10, 10);
-    doc.save("a4.pdf");
+    // const { jsPDF } = require("jspdf"); 
+    // const doc = new jsPDF();
+    // doc.text("Hello world!", 10, 10);
+    // doc.save("a4.pdf");
   };
 
   $scope.saveAs = function (blob, fileName) {
