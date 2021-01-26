@@ -1,6 +1,6 @@
 var PlaceHolder = function ($scope, $element) {
 
-    console.log('new route param');
+    console.log('new route param 1');
     this.getItems = function () {
         var items = [{
             text: "Spec Sheet",
