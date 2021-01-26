@@ -74,8 +74,8 @@ var SpecSheetView = function ($scope, $element, $filter, $compile, $q) {
 
     var docDefinition = { content: 'This is an sample PDF printed with pdfMake' } ;
     var date = new Date();  
-            date = moment(date).format('DD_MMM_YYYY_HH_mm_ss');  
-            pdfMake.createPdf(docDefinition).download('PDF_' + date + '.pdf');  
+            // date = moment(date).format('DD_MMM_YYYY_HH_mm_ss');  
+            pdfMake.createPdf(docDefinition).download('PDF_' + '.pdf');  
             
 //pdfMake.createPdf(docDefinition).open(); //to open pdf in new window 
     // // require dependencies
