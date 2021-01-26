@@ -1,47 +1,34 @@
 <div ng-controller="SpecSheetView">
-    <head>
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/pdfmake.js"></script> -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/pdfmake.min.js" integrity="sha512-HLbtvcctT6uyv5bExN/qekjQvFIl46bwjEq6PBvFogNfZ0YGVE+N3w6L+hGaJsGPWnMcAQ2qK8Itt43mGzGy8Q==" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/vfs_fonts.min.js" integrity="sha512-VIF8OqBWob/wmCvrcQs27IrQWwgr3g+iA4QQ4hH/YeuYBIoAUluiwr/NX5WQAQgUaVx39hs6l05cEOIGEB+dmA==" crossorigin="anonymous"></script>
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/vfs_fonts.js"></script> -->
-    </head>
     
 
     <div class="ci-container">
-        <p> {{stockItemId}} </p>
+        <p> {{itemGuid}} </p>
 
-        <!-- <iframe class="responsive-iframe" src="https://application.doodle-products.com/?itemGuid=1234"></iframe> -->
+        <iframe class="responsive-iframe" src="https://application.doodle-products.com/?itemGuid={{stockItemId}}"></iframe>
 
-        <!-- Product Details -->
-        <label for="productDetails">Product Details:</label>
+        <!-- <label for="productDetails">Product Details:</label>
         <textarea class="ext-prop" id="productDetails" name="productDetails" rows="4" cols="100"
             ng-model="productDetails.PropertyValue" maxlength="2000"></textarea>
 
-        <!-- ArtWork -->
         <label for="artwork">Artwork:</label>
         <textarea class="ext-prop" id="artwork" name="artwork" rows="4" cols="100" ng-model="artwork.PropertyValue"
             maxlength="2000"></textarea>
 
-        <!-- Packaging Details -->
         <label for="packagingDetails">Packaging Details:</label>
         <textarea class="ext-prop" id="packagingDetails" name="packagingDetails" rows="4" cols="100"
             ng-model="packagingDetails.PropertyValue" maxlength="2000"></textarea>
 
-        <!-- Inner Carton -->
         <label for="innerCarton">Inner Carton:</label>
         <textarea class="ext-prop" id="innerCarton" name="innerCarton" rows="4" cols="100"
             ng-model="innerCarton.PropertyValue" maxlength="2000"></textarea>
 
-        <!-- General Comments -->
         <label for="generalComments">General Comments:</label>
         <textarea class="ext-prop" id="generalComments" name="generalComments" rows="4" cols="100"
             ng-model="generalComments.PropertyValue" maxlength="2000"></textarea>
 
-        <!-- <div class="pull-right"> -->
         <button class="btn btn-primary" ng-click="saveProperties()">Save Properties</button>
-        <button class="btn btn-primary" ng-click="generateSpecSheet()">Generate Spec Sheet</button>
-        <!-- </div> -->
-
+        <button class="btn btn-primary" ng-click="generateSpecSheet()">Generate Spec Sheet</button> -->
+      
     </div>
 
 
