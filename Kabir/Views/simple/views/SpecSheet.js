@@ -91,20 +91,29 @@ var SpecSheetView = function ($scope, $element, $filter, $compile, $q) {
     //   iframe.src = url;
     // });
 
-    var PdfPrinter = require(["pdfMake"]);
-    var printer = new PdfPrinter(fonts);
-    var fs = require(["fs"]);
+    ////------------------------------------------
 
-    var docDefinition = {
-      content: [
-        "First paragraph",
-        "Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines",
-      ],
-    };
+    // var PdfPrinter = require(["pdfMake"]);
+    // var printer = new PdfPrinter(fonts);
+    // var fs = require(["fs"]);
 
-    var pdfDoc = printer.createPdfKitDocument(docDefinition);
-    pdfDoc.pipe(fs.createWriteStream("pdfs/basics.pdf"));
-    pdfDoc.end();
+    // var docDefinition = {
+    //   content: [
+    //     "First paragraph",
+    //     "Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines",
+    //   ],
+    // };
+
+    // var pdfDoc = printer.createPdfKitDocument(docDefinition);
+    // pdfDoc.pipe(fs.createWriteStream("pdfs/basics.pdf"));
+    // pdfDoc.end();
+
+    ////---------------------------------------
+
+    const { jsPDF } = require("jspdf"); 
+    const doc = new jsPDF();
+    doc.text("Hello world!", 10, 10);
+    doc.save("a4.pdf");
   };
 
   $scope.saveAs = function (blob, fileName) {
