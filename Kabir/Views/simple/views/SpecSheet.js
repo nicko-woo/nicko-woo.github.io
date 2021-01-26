@@ -1,4 +1,4 @@
-var SpecSheetView = function ($scope, $element, $filter, $compile, $q) {
+var SpecSheetView = function ($scope, $element, $filter, $compile, $q, $http) {
   var self = this;
   $scope.stockItemId = $scope.$parent.$parent.$parent.$parent.itemId;
   self.onMessage = function (msg) {
@@ -71,56 +71,49 @@ var SpecSheetView = function ($scope, $element, $filter, $compile, $q) {
   };
 
   $scope.generateSpecSheet = function () {
+    var docDefinition = {
+      content: "This is an sample PDF printed with pdfMake",
+    };
+    var date = new Date();
+    // date = moment(date).format('DD_MMM_YYYY_HH_mm_ss');
+    pdfMake.createPdf(docDefinition).download("PDF_" + ".pdf");
 
-    var docDefinition = { content: 'This is an sample PDF printed with pdfMake' } ;
-    var date = new Date();  
-            // date = moment(date).format('DD_MMM_YYYY_HH_mm_ss');  
-            pdfMake.createPdf(docDefinition).download('PDF_' + '.pdf');  
-            
-//pdfMake.createPdf(docDefinition).open(); //to open pdf in new window 
-    // // require dependencies
-    // const PDFDocument = require(["pdfkit"]);
-    // const blobStream = require(["blob-stream"]);
-    // // create a document the same way as above
-    // const doc = new PDFDocument();
-    // // pipe the document to a blob
-    // const stream = doc.pipe(blobStream());
-    // // add your content to the document here, as usual
-    // // get a blob when you're done
-    // doc.end();
-    // stream.on("finish", function () {
-    //   // get a blob you can do whatever you like with
-    //   const blob = stream.toBlob("application/pdf");
+    var promises = [];
+    promises.push($scope.GetPayments());
+    promises.push($scope.GetBalance());
 
-    //   $scope.saveAs(blob, "SpecSheet.pdf");
-    //   // or get a blob URL for display in the browser
-    //   const url = stream.toBlobURL("application/pdf");
-    //   iframe.src = url;
-    // });
+    $q.all(promises).then(
+      function (resolved) {},
+      function (reason) {
+        Core.Dialogs.BusyWorker.hideBusy($element);
+        $scope.ShowError = true;
+      }
+    );
+  };
 
-    ////------------------------------------------
+  $scope.GetPDF = function () {
+    var deferred = $q.defer();
+    $http({
+      method: "GET",
+      url:
+        "http://application.doodle-products.com/api/PurchaseProps/getPurchaseOrdersWithProps",
+      params: {},
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+        Authorization: $scope.userId,
+      },
+    }).then(
+      function success(response) {
+        $scope.payments = response.data;
 
-    // var PdfPrinter = require(["pdfMake"]);
-    // var printer = new PdfPrinter(fonts);
-    // var fs = require(["fs"]);
+        deferred.resolve();
+      },
+      function error(response) {
+        deferred.reject();
+      }
+    );
 
-    // var docDefinition = {
-    //   content: [
-    //     "First paragraph",
-    //     "Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines",
-    //   ],
-    // };
-
-    // var pdfDoc = printer.createPdfKitDocument(docDefinition);
-    // pdfDoc.pipe(fs.createWriteStream("pdfs/basics.pdf"));
-    // pdfDoc.end();
-
-    ////---------------------------------------
-
-    // const { jsPDF } = require("jspdf"); 
-    // const doc = new jsPDF();
-    // doc.text("Hello world!", 10, 10);
-    // doc.save("a4.pdf");
+    return deferred.promise;
   };
 
   $scope.saveAs = function (blob, fileName) {
