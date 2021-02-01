@@ -3,7 +3,7 @@ var SpecSheetView = function ($scope, $element, $filter, $compile, $q, $http) {
   $scope.stockItemId = $scope.$parent.$parent.$parent.$parent.itemId;
 
   let plkrFrame = document.getElementById("plkrFrame");
-  let url_string = "https://application.doodle-products.com/pluggable/";
+  let url_string = "https://application.doodle-products.com/";
 
   let frameUrl = url_string + "?itemGuid=" + $scope.stockItemId;
   plkrFrame.src = frameUrl;
