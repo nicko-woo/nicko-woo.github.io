@@ -1,4 +1,4 @@
-var SpecSheetView = function ($scope, $element, $filter, $compile, $q, $http) {
+var CustomImagesView = function ($scope, $element, $filter, $compile, $q, $http) {
   var self = this;
   $scope.stockItemId = $scope.$parent.$parent.$parent.$parent.itemId;
   $scope.headerInfo = $scope.$parent.$parent.$parent.$parent.headerInfo;
