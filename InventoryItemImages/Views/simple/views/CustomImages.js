@@ -5,7 +5,7 @@ var CustomImagesView = function ($scope, $element, $filter, $compile, $q, $http)
   let plkrFrame = document.getElementById("plkrFrameImages");
   let url_string = "https://application.doodle-products.com/inventory-images/";
 
-  let frameUrl = url_string + "?itemGuid=" + $scope.stockItemId + + "?sku=" + $scope.headerInfo;
+  let frameUrl = url_string + "?itemGuid=" + $scope.stockItemId + "?sku=" + $scope.headerInfo;
   plkrFrame.src = frameUrl;
 
   self.onMessage = function (msg) {
