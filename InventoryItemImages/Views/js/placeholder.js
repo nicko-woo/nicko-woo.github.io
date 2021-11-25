@@ -58,7 +58,7 @@ Core.PlaceHolderManager.register("MyInventory_EditInventoryItem_Tabs", PlaceHold
             //     "beforeend",
             //     '<div><iframe src="https://application.doodle-products.com"></iframe></div>'
             //   );
-              result.src = result.src + "&userId=" + session.userId + "&userEmail=" + session.userName +  + "&userType=" + session.userType;
+              result.src = result.src + "&userId=" + session.userId + "&userEmail=" + session.userName + "&userType=" + session.userType;
               return;
             }
           }
