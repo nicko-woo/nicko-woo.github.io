@@ -73,6 +73,6 @@ Core.PlaceHolderManager.register("MyInventory_EditInventoryItem_Tabs", PlaceHold
     setTimeout(function () {
       const targetNode = document.getElementsByClassName("opened-modules")[0];
       observer.observe(targetNode, config);
-    }, 200);
+    }, 1000);
   });
 });
