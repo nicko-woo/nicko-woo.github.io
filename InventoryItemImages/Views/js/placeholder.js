@@ -29,12 +29,12 @@ Core.PlaceHolderManager.register("MyInventory_EditInventoryItem_Tabs", PlaceHold
     const config = { childList: true, subtree: true };
 
     function searchTree(element, matchingTitle) {
-      if (element.querySelectorAll("external-ui-component") && element.baseURI.indexOf("K-Reports") > - 1) {
-        console.log("Founded external-ui-component");
-        return element.querySelectorAll("iframe")[0];
-      }
-
-      
+        if (element) {
+            if (element.querySelectorAll("external-ui-component") && element.baseURI.indexOf("K-Reports") > - 1) {
+            return element.querySelectorAll("iframe")[0];
+            }
+        }
+        
       else if (element.children != null) {
         var i;
         var result = null;
@@ -52,12 +52,6 @@ Core.PlaceHolderManager.register("MyInventory_EditInventoryItem_Tabs", PlaceHold
           for (const node of mutation.addedNodes) {
             var result = searchTree(node, "external-ui-component");
             if (result) {
-            //   console.log("Founded needed IFrame");
-            //   console.log(result);
-            //   result.insertAdjacentHTML(
-            //     "beforeend",
-            //     '<div><iframe src="https://application.doodle-products.com"></iframe></div>'
-            //   );
               result.src = result.src + "&userId=" + session.userId + "&userEmail=" + session.userName + "&userType=" + session.userType;
               return;
             }
