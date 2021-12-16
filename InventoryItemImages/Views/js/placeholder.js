@@ -29,7 +29,7 @@ Core.PlaceHolderManager.register("MyInventory_EditInventoryItem_Tabs", PlaceHold
     const config = { childList: true, subtree: true };
 
     function searchTree(element, matchingTitle) {
-        if (element) {
+        if (element && element.querySelectorAll) {
             if (element.querySelectorAll("external-ui-component") && element.baseURI.indexOf("K-Reports") > - 1) {
             return element.querySelectorAll("iframe")[0];
             }
